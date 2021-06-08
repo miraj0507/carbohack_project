@@ -7,15 +7,19 @@
 
 body{
     background-color:#1D2521;
+   
+    background-repeat: repeat;
     background-position: center;
 }
 
 
 .container{
-    width: 55%;
-    height: 650px;
-    margin: 8% auto;
-    background: #fff;
+    width: 65%;
+    height: 1200px;
+     margin: 8% auto;
+     padding-left: 0px;
+     padding-right: 0px;
+    background: white;
     border-radius: 5px;
     position: relative;
     overflow: hidden;
@@ -24,17 +28,22 @@ body{
 h3{
     text-align: center;
     margin-top: 80px;
-    color: #66bfbb;
+    color: #5d0623;
+    font-size: 35px;
+    font-family: serif;
 }
 .container form{
     width: 100%;
     position: absolute;
-    /* margin:  auto; */
+     margin:  auto; 
     transition: 0.5s;
 }
 .form-check {
     padding: 1%;
-    margin: 10px 0 1px 100px;
+    margin: 10px  40px 30px 10px;
+    font-family: serif;
+    font-size: 20px;
+    font-style: bold;
 }
 ::placeholder{
     color: #777;
@@ -56,10 +65,10 @@ form button{
      
 }
 #form2{
-    left: 1000px;
+    left: 1500px;
 }
 #form3{
-    left: 1000%;
+    left: 1000px;
 }
 .step-row{
     width: 100%;
@@ -99,3 +108,55 @@ form button{
   
     border-left: 40px solid #42a341;
 }
+.slider {
+    -webkit-appearance: none;
+   
+    width: 90%;
+    height: 30px;
+    border-radius: 5px;
+    background: rgba(2, 85, 20, 0.431);
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider:hover {
+    opacity: 1;
+  }
+
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #04AA6D;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #04AA6D;
+    cursor: pointer;
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
