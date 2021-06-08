@@ -1,0 +1,69 @@
+from flask import Flask, url_for, session, request, redirect
+from authlib.integrations.flask_client import OAuth
+
+class Google():
+	
+	app = Flask(__name__)
+	app.secret_key='random key'
+
+	oauth = OAuth(app)
+	google = oauth.register(
+	    name='google',
+	    client_id='605004903750-9idp7cggojabevccn697qbbg2cthb1bc.apps.googleusercontent.com',
+	    client_secret='fF9LnK2QFou9Wb6TM10fl_rf',
+	    access_token_url='https://accounts.google.com/o/oauth2/token',
+	    access_token_params=None,
+	    authorize_url='https://accounts.google.com/o/oauth2/auth',
+	    authorize_params=None,
+	    api_base_url='https://www.googleapis.com/oauth2/v1/',
+	    userinfo_endpoint='https://openidconnect.googleapis.com/v1/userinfo',  # This is only needed if using openId to fetch user info
+	    client_kwargs={'scope': 'openid email profile'},
+    )
+
+	g = oauth.create_client('google')
+
+
+	def to_auth_page(self):
+		return self.g
+
+	def send_user_info(self):
+		token=(self.oauth).google.authorize_access_token()
+		resp = (self.oauth).google.get('userinfo')
+		return resp.json()
+
+
+import requests
+import urllib.parse
+import random
+
+class Facebook:
+	CLIENT_ID='#'
+	CLIENT_SECRET='#'
+
+	redirect_url=urllib.parse.quote('#/auth_face/')
+
+	state = ''.join([str(random.randint(1,7)) for i in range(0,6)])
+
+	auth_endpoint = f"https://www.facebook.com/v6.0/dialog/oauth?client_id={CLIENT_ID}&redirect_uri={redirect_url}&state={state}"
+
+
+	def __init__(self):
+		pass
+
+
+
+
+	def get_User_Info(self, code):
+
+		access_token_url=f"https://graph.facebook.com/v6.0/oauth/access_token?redirect_uri={self.redirect_url}&client_id={self.CLIENT_ID}&client_secret={self.CLIENT_SECRET}&code={code}"
+		response = requests.get(access_token_url)
+
+		acctok=response.json()['access_token']
+		headerDict={'Accept':'application/json','Authorization':f"Bearer {acctok}"}
+		userInfo=requests.get('https://graph.facebook.com/me',headers=headerDict)
+
+		user_email_link=f"https://graph.facebook.com/v11.0/{userInfo['id']}/accounts"
+		param={'access_token':acctok}
+		userInfo['email']=requests.get(user_email_link, param)
+
+		return userInfo.json()
