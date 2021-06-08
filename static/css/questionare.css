@@ -30,7 +30,7 @@ h3{
     margin-top: 80px;
     color: #5d0623;
     font-size: 35px;
-    font-family: serif;
+    font-family: "Poppins", sans-serif;
 }
 .container form{
     width: 100%;
@@ -41,7 +41,7 @@ h3{
 .form-check {
     padding: 1%;
     margin: 10px  40px 30px 10px;
-    font-family: serif;
+    font-family: "Poppins", sans-serif;
     font-size: 20px;
     font-style: bold;
 }
@@ -82,10 +82,8 @@ form button{
 .step-col{
     color: white;
     width:33%;
-    text-align: center;
-    
+    text-align: center;    
     position:relative;
-
 }
 #progress{
     position:absolute;
