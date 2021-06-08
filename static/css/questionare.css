@@ -13,7 +13,7 @@ body{
 
 .container{
     width: 55%;
-    height: 600px;
+    height: 650px;
     margin: 8% auto;
     background: #fff;
     border-radius: 5px;
@@ -23,24 +23,18 @@ body{
 
 h3{
     text-align: center;
-    margin-top: 100px;
+    margin-top: 80px;
     color: #66bfbb;
 }
 .container form{
     width: 100%;
     position: absolute;
-    margin:  auto;
+    /* margin:  auto; */
     transition: 0.5s;
 }
-form input{
-    width: 100%;
-    padding: 10px 5px;
-    margin: 10px 0;
-    border: 0;
-    border-bottom: 1px solid #999 ;
-    line-height: 50px;
-    outline: none;
-    background: transparent;
+.form-check {
+    padding: 1%;
+    margin: 10px 0 1px 100px;
 }
 ::placeholder{
     color: #777;
@@ -58,6 +52,7 @@ form button{
     margin: 0 10px;
     border-radius: 30px ;
    background:linear-gradient(to right,#074C00 ,#42a341);
+   color: white;
      
 }
 #form2{
@@ -76,9 +71,10 @@ form button{
     position:relative;
 }
 .step-col{
+    color: white;
     width:33%;
     text-align: center;
-    color:#333;
+    
     position:relative;
 
 }
