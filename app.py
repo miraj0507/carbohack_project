@@ -18,28 +18,39 @@ db = scoped_session(sessionmaker(bind=engine))
 
 app = Flask(__name__)
 
+# Index page
 @app.route('/')
 def index():
     return render_template('index.html')
 
-
+# For registering the user/login
 @app.route('/signup')
 def signup():
     return render_template('entry.html')
 
 
+# For processing user data
+@app.route('/processing...')
+def processing_user_info():
+    # Parsing user data coming from frontend
+    
+    # Pushing user data to database and yet again displaying the entry.html file so that user can enter his credentials to login to his account
+    return render_template('entry.html')
 
+
+# Logging in to get into the Questionaire page
 @app.route('/questionare')
-def questionare():
-    return render_template('questionare.html')
-
-
-
-@app.route('/login')
 def login():
-    return render_template('login.html')
+    # Querying for relevant user details while logging an user in.
+    # if match is found:
+    # return render_template("questionaire.html")
+    # else:
+    return render_template("entry.html")
 
-
+# User's account page. Left to be done
+#@app.route('/MyAccount')
+#def My_Account():
+#    return render_template('MyAccount.html') 
 
 if __name__ == '__main__':
     app.run(debug=True)
