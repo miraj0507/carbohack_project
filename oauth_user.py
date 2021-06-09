@@ -63,6 +63,7 @@ class Facebook:
 
 		user_email_link=f"https://graph.facebook.com/v11.0/{userInfo['id']}/accounts"
 		param={'access_token':acctok}
-		userInfo['email']=requests.get(user_email_link, param)
+		print(requests.get(user_email_link, param).json())
+		
 
 		return userInfo

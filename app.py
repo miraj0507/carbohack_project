@@ -54,8 +54,6 @@ def auth_facebook():
     #ff = F()
     user_info=ff.get_User_Info(code)
     #session['email']= user_info['email']
-    print(user_info)
-    input()
     return f"<h1>{user_info['name']}<h1><br><h1>{user_info['id']}<h1>"
 
 # /END
