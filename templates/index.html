@@ -10,7 +10,7 @@
         <!--========== CSS ==========-->
         <link rel="stylesheet" href="/static/css/styles.css">
 
-        <title>Responsive website food</title>
+        <title>CarboHack</title>
     </head>
     <body>
 
@@ -22,17 +22,19 @@
         <!--========== HEADER ==========-->
         <header class="l-header" id="header">
             <nav class="nav bd-container">
-                <a href="#" class="nav__logo">Tasty</a>
+                <a href="#" class="nav__logo">CarboHack</a>
 
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list">
                         <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
                         <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
                         <li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
-                        <li class="nav__item"><a href="#menu" class="nav__link">Menu</a></li>
-                        <li class="nav__item"><a href="#contact" class="nav__link">Contact us</a></li>
+                        <!--<li class="nav__item"><a href="#menu" class="nav__link">Menu</a></li>-->
+                        <li class="nav__item"><a href="#contact" class="nav__link">Join us</a></li>
 
                         <li><i class='bx bx-moon change-theme' id="theme-button"></i></li>
+                        <li class="nav__item"><a href="/templates/entry.html" class="nav__link">Sign In</a></li>
+                        <li class="nav__item"><a href="/templates/entry.html" class="nav__link">Sign Up</a></li>
                     </ul>
                 </div>
 
@@ -47,12 +49,12 @@
             <section class="home" id="home">
                 <div class="home__container bd-container bd-grid">
                     <div class="home__data">
-                        <h1 class="home__title">CARBOHACK </h1>
-                        <h2 class="home__subtitle">Track your carbon emission <br> the week.</h2>
-                        <a href="#" class="button">View Menu</a>
+                        <h1 class="home__title">TRACK YOUR CARBON FOOTPRINT</h1>
+                        <h2 class="home__subtitle">& play a part in <br> saving our Earth</h2>
+                        <a href="/templates/entry.html" class="button">Join The Movement</a>
                     </div>
     
-                    <img src="/static/img/home.png" alt="" class="home__img">
+                    <img src="/static/img/footprint1.jpg" alt="" class="home__img" >
                 </div>
             </section>
             
@@ -60,28 +62,28 @@
             <section class="about section bd-container" id="about">
                 <div class="about__container  bd-grid">
                     <div class="about__data">
-                        <span class="section-subtitle about__initial">About us</span>
-                        <h2 class="section-title about__initial">We cook the best <br> tasty food</h2>
-                        <p class="about__description">We cook the best food in the entire city, with excellent customer service, the best meals and at the best price, visit us.</p>
-                        <a href="#" class="button">Explore history</a>
+                        <!-- <span class="section-subtitle about__initial">About</span> -->
+                        <h2 class="section-title about__initial">WHAT IS <br> CARBON FOOTPRINT</h2>
+                        <p class="about__description">A carbon footprint is the total amount of greenhouse gases emitted by an individual, organization, event or place. The lower your carbon footprint is, the better it is for our environment. Hence by reducing your own carbon footprint, you would essentially be playing a part in saving our Earth.</p>
+                        <!--<a href="#" class="button">Explore history</a>-->
                     </div>
 
-                    <img src="/static/img/about.jpg" alt="" class="about__img">
+                    <img src="/static/img/about3.jpg" alt="" class="about__img">
                 </div>
             </section>
 
             <!--========== SERVICES ==========-->
             <section class="services section bd-container" id="services">
-                <span class="section-subtitle">Offering</span>
-                <h2 class="section-title">Our amazing services</h2>
+                <!-- <span class="section-subtitle">Services</span> -->
+                <h2 class="section-title">WHAT WE DO</h2>
 
                 <div class="services__container  bd-grid">
                     <div class="services__content">
                         <svg class="services__img" xmlns="http://www.w3.org/2000/svg">
                            
                         </svg>
-                        <h3 class="services__title">Excellent food</h3>
-                        <p class="services__description">We offer our clients excellent quality services for many years, with the best and delicious food in the city.</p>
+                        <h3 class="services__title">Calculate your</h3>
+                        <p class="services__description">Carbon Footprint caused by your lifestyle and actions. You can learn your carbon footprint just by answering a few simple questions of ours.</p>
                     </div>
 
                     <div class="services__content">
@@ -93,8 +95,8 @@
                             </clipPath>
                             </defs>
                         </svg>
-                        <h3 class="services__title">Fast food</h3>
-                        <p class="services__description">We offer our clients excellent quality services for many years, with the best and delicious food in the city.</p>
+                        <h3 class="services__title">Track it everyday</h3>
+                        <p class="services__description">We make it possible for you to track your own carbon footprint on a daily and monthly basis and check whether you are reducing it successfully.</p>
                     </div>
 
                     <div class="services__content">
@@ -108,13 +110,14 @@
                                 </clipPath>
                                 </defs>
                         </svg>
-                        <h3 class="services__title">Delivery</h3>
-                        <p class="services__description">We offer our clients excellent quality services for many years, with the best and delicious food in the city.</p>
+                        <h3 class="services__title">Help you reduce</h3>
+                        <p class="services__description">your carbon emission. We offer personalized suggetions on the basis of your lifetyle and calculated carbon footprint.</p>
                     </div>
                 </div>
             </section>
 
             <!--========== MENU ==========-->
+            <!--
             <section class="menu section bd-container" id="menu">
                 <span class="section-subtitle">Special</span>
                 <h2 class="section-title">Menu of the week</h2>
@@ -144,22 +147,25 @@
                         <a href="#" class="button menu__button"><i class='bx bx-cart-alt'></i></a>
                     </div>
                 </div>
-            </section>
+            </section> -->
 
             <!--===== APP =======-->
             <section class="app section bd-container">
                 <div class="app__container bd-grid">
                     <div class="app__data">
-                        <span class="section-subtitle app__initial">App</span>
-                        <h2 class="section-title app__initial">App is aviable</h2>
-                        <p class="app__description">Find our application and download it, you can make reservations, food orders, see your deliveries on the way and much more.</p>
+                        <!-- <span class="section-subtitle app__initial"></span> -->
+                        <h2 class="section-title app__initial"><a href="/templates/entry.html" class="button">Sign In</a> OR
+                            <a href="/templates/entry.html" class="button">Sign Up</a></h2>
+                        <p class="app__description">TO TRACK YOUR CARBON EMISSION</p> <!--Find our application and download it, you can make reservations, food orders, see your deliveries on the way and much more.</p>
                         <div class="app__stores">
                             <a href="#"><img src="/static/img/app1.png" alt="" class="app__store"></a>
-                            <a href="#"><img src="/static/img/app2.png" alt="" class="app__store"></a>
-                        </div>
+                            <a href="#"><img src="/static/img/app2.png" alt="" class="app__store"></a> 
+                            
+                            
+                        </div>-->
                     </div>
 
-                    <img src="/static/img/movil-app.png" alt="" class="app__img">
+                    <img src="/static/img/road1.jpg" alt="" class="app__img">
                 </div>
             </section>
 
@@ -167,13 +173,13 @@
             <section class="contact section bd-container" id="contact">
                 <div class="contact__container bd-grid">
                     <div class="contact__data">
-                        <span class="section-subtitle contact__initial">Let's talk</span>
-                        <h2 class="section-title contact__initial">Contact us</h2>
-                        <p class="contact__description">If you want to reserve a table in our restaurant, contact us and we will attend you quickly, with our 24/7 chat service.</p>
+                        <!-- <span class="section-subtitle contact__initial">Let's talk</span> -->
+                        <h2 class="section-title contact__initial">Our Community</h2>
+                        <p class="contact__description">Join us in our fight for Earth's survival.</p>
                     </div>
 
                     <div class="contact__button">
-                        <a href="#" class="button">Contact us now</a>
+                        <a href="#" class="button">Join the Community</a>
                     </div>
                 </div>
             </section>
@@ -183,8 +189,8 @@
         <footer class="footer section bd-container">
             <div class="footer__container bd-grid">
                 <div class="footer__content">
-                    <a href="#" class="footer__logo">Tasty Food</a>
-                    <span class="footer__description">Restaurant</span>
+                    <a href="#" class="footer__logo">CarboHack</a>
+                    <span class="footer__description">Track your carbon footprint</span>
                     <div>
                         <a href="#" class="footer__social"><i class='bx bxl-facebook'></i></a>
                         <a href="#" class="footer__social"><i class='bx bxl-instagram'></i></a>
