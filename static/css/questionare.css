@@ -6,7 +6,7 @@
 }
 
 body{
-    background-color:#1D2521;
+    background:#1D2521;
    
     background-repeat: repeat;
     background-position: center;
@@ -16,9 +16,9 @@ body{
 .container{
     width: 65%;
     height: 1200px;
-     margin: 8% auto;
-     padding-left: 0px;
-     padding-right: 0px;
+    margin: 8% auto;
+    padding-left: 0px;
+    padding-right: 0px;
     background: white;
     border-radius: 5px;
     position: relative;
@@ -35,7 +35,7 @@ h3{
 .container form{
     width: 100%;
     position: absolute;
-     margin:  auto; 
+    margin:  auto; 
     transition: 0.5s;
 }
 .form-check {
@@ -50,15 +50,16 @@ h3{
 }
 .btn-box{
     width: 100%;
-    margin: 30px auto;
+    margin: 20px auto;
     text-align: center;
     text-emphasis-color: white;
+    font-family: "Poppins", sans-serif;
 
 }
 form button{
     width:110px;
     height: 40px;
-    margin: 0 10px;
+    border-color: #04AA6D ;
     border-radius: 30px ;
    background:linear-gradient(to right,#074C00 ,#42a341);
    color: white;
@@ -84,6 +85,7 @@ form button{
     width:33%;
     text-align: center;    
     position:relative;
+    font-family: "Poppins", sans-serif;
 }
 #progress{
     position:absolute;
@@ -108,53 +110,92 @@ form button{
 }
 .slider {
     -webkit-appearance: none;
-   
     width: 90%;
-    height: 30px;
+    height: 10px;
     border-radius: 5px;
-    background: rgba(2, 85, 20, 0.431);
+    background: #d3d3d3;
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
   }
-  
-  .slider:hover {
-    opacity: 1;
-  }
 
-  .slider::-webkit-slider-thumb {
+.slider:hover {
+opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 25px;
-    height: 25px;
-    background: #04AA6D;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; 
+    background: #074C00;
     cursor: pointer;
   }
   
-  .slider::-moz-range-thumb {
-    width: 25px;
+.slider::-moz-range-thumb {
+    width: 23px;
     height: 25px;
-    background: #04AA6D;
+    border-radius: 50%; 
+    background: #074C00;
     cursor: pointer;
+}
+.input-field i {
+    text-align: center;
+    line-height: 55px;
+    color: #acacac;
+    transition: 0.5s;
+    font-size: 1.1rem;
   }
-  
 
+.input-field input::placeholder {
+    color: #aaa;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+  }
+  .input-field input {
+    background: none;
+    outline: none;
+    border: none;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  .input-field {
+    max-width: 180px;
+    width: 90%;
+    background-color: #f0f0f0;
+    margin: 10px auto;
+    height: 55px;
+    border-radius: 55px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 0.4rem;
+    position: relative;
+  }
+p{
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.food-options{
+  padding: 10px 0 0 250px;
+}
+/* .custom-control{
+  padding: 40px;
+} */
+.custom-control-label{
+  position: relative;
+  top: 10px;
+  padding-left: 10px;
+  font-family: "Poppins", sans-serif;
+  padding-bottom: 50px;
+}
+.ramen{
+  padding: 10px;
+}
+.custom-control-input{
+  size: 150px;
+}
