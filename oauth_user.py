@@ -32,48 +32,33 @@ class Google():
 		return resp.json()
 
 
-import requests
-import urllib.parse
-import random
-
-class Facebook:
-	CLIENT_ID='2896973843953926'
-	CLIENT_SECRET='ca2531220b6a1259e046d0c406633a42'
+class Facebook():
+	app = Flask(__name__)
+	app.secret_key='random key'
 	
-	redirect_url=''
-	auth_endpoint = ''
+	oauth = OAuth(app)
+	facebook = oauth.register(
+	    name='facebook',
+	    client_id='2896973843953926',
+	    client_secret='ca2531220b6a1259e046d0c406633a42',
+	    access_token_url='https://graph.facebook.com/v6.0/oauth/access_token',
+	    access_token_params=None,
+	    authorize_url='https://www.facebook.com/v6.0/dialog/oauth',
+	    authorize_params=None,
+	    api_base_url='https://graph.facebook.com/',
+	    userinfo_endpoint='https://graph.facebook.com/me',  # This is only needed if using openId to fetch user info
+	    client_kwargs={'scope': 'email'},
+	    )
+	f = oauth.create_client('facebook')
+	
+	def to_auth_page(self):
+		return self.f
 
-
-	def __init__(self):
-		pass
-
-	def create_auth_endpoint(self):
-			self.redirect_url=urllib.parse.quote(url_for('auth_facebook',_scheme='https',_external=True))
-			print(self.redirect_url)
-
-			state = ''.join([str(random.randint(1,7)) for i in range(0,6)])
-
-			self.auth_endpoint = f"https://www.facebook.com/v6.0/dialog/oauth?client_id={self.CLIENT_ID}&redirect_uri={self.redirect_url}&state={state}"
-
-
-
-
-
-	def get_User_Info(self, code):
-
-		access_token_url=f"https://graph.facebook.com/v6.0/oauth/access_token?redirect_uri={self.redirect_url}&client_id={self.CLIENT_ID}&client_secret={self.CLIENT_SECRET}&code={code}"
-		response = requests.get(access_token_url)
-
-		acctok=response.json()['access_token']
-		headerDict={'Accept':'application/json','Authorization':f"Bearer {acctok}"}
-		params={'fields':'email,name'}
-		userInfo=(requests.get('https://graph.facebook.com/me',headers=headerDict,params=params)).json()
-
-		print(acctok)
-
-		user_email_link=f"https://graph.facebook.com/v11.0/{userInfo['id']}/user"
-		param={'access_token':acctok}
-		print(requests.get(user_email_link, param).content)
-
-
-		return userInfo
+	def send_user_info(self):
+		token = oauth.facebook.authorize_access_token()
+		print(token)
+		resp = oauth.facebook.get('/me',params={'fields':'name,email'})
+		user_info = resp.json()
+		return user_info
+		    
+	
