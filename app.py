@@ -1,3 +1,4 @@
+
 import requests
 import json
 
@@ -5,6 +6,13 @@ from flask import Flask, session, render_template, request, redirect, url_for
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+from authlib.integrations.flask_client import OAuth
+
+
+import os, sys
+sys.path.append(".")
+from oauth_user import Google, Facebook
+
 
 # Configure session to use filesystem
 app.config["SESSION_PERMANENT"] = False
@@ -15,19 +23,61 @@ Session(app)
 engine = create_engine("URL for database")
 db = scoped_session(sessionmaker(bind=engine))
 
-
 app = Flask(__name__)
+app.secret_key = 'random key'
+
 
 # Index page
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# For registering the user/login
-@app.route('/signup')
-def signup():
+
+@app.route('/entry')
+def entry():
     return render_template('entry.html')
 
+#*************************************************************************
+#GOOGLE OAUTH /START
+
+gg=Google()
+
+@app.route('/signup_google')
+def signup_google():
+    google=gg.to_auth_page()
+    redirect_url = url_for('auth_google', _external=True,_scheme='https')
+    print(redirect_url)
+    return google.authorize_redirect(redirect_url)
+
+
+@app.route('/auth_google')
+def auth_google():
+    user_info = gg.send_user_info()
+    #Use the user_info
+    return redirect('/entry')
+
+# /END
+# *************************************************************************
+#FACEBOOK OAUTH /START
+
+ff=Facebook()
+
+@app.route('/signup_facebook')
+def signup_facebook():
+    facebook=ff.to_auth_page()
+    redirect_url = url_for('auth_facebook', _external=True,_scheme='https')
+    print(redirect_url)
+    return facebook.authorize_redirect(redirect_url)
+
+@app.route('/auth_facebook/')
+def auth_facebook():
+    user_info = ff.send_user_info()
+    print(user_info)
+    #Use the user_info
+    return redirect('/entry')
+
+# /END
+#***************************************************************************
 
 # For processing user data
 @app.route('/processing...')
