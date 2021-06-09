@@ -27,7 +27,8 @@ gg=Google()
 @app.route('/signup_google')
 def signup_google():
     google=gg.to_auth_page()
-    redirect_url = url_for('auth_google', _external=True)
+    redirect_url = url_for('auth_google', _external=True,_scheme='https')
+    print(redirect_url)
     return google.authorize_redirect(redirect_url)
 
 
@@ -47,8 +48,8 @@ ff=Facebook()
 def signup_facebook():
     return redirect(ff.auth_endpoint)
 
-@app.route('/face/', methods=['GET'])
-def face():
+@app.route('/auth_facebook/', methods=['GET'])
+def auth_facebook():
     code=request.args.get("code")
     #ff = F()
     user_info=ff.get_User_Info(code)
