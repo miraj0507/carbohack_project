@@ -267,8 +267,15 @@ img{
 }
 
 .home__img{
-  width: 300px;
+  /* width: 300px;
+  height: 400px;
   justify-self: center;
+  border-radius: 110px; */
+  width: 280px;
+  height: 400px;
+  border-radius: .5rem;
+  justify-self: center;
+
 }
 
 /*========== BUTTONS ==========*/
@@ -296,6 +303,7 @@ img{
 
 .about__img{
   width: 280px;
+  height: 300px;
   border-radius: .5rem;
   justify-self: center;
 }
@@ -394,7 +402,11 @@ img{
 }
 
 .app__img{
-  width: 230px;
+  /* width: 230px;
+  justify-self: center; */
+  width: 280px;
+  height: 400px;
+  border-radius: .5rem;
   justify-self: center;
 }
 
