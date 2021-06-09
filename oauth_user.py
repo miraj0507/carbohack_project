@@ -55,9 +55,9 @@ class Facebook():
 		return self.f
 
 	def send_user_info(self):
-		token = oauth.facebook.authorize_access_token()
+		token = (self.oauth).facebook.authorize_access_token()
 		print(token)
-		resp = oauth.facebook.get('/me',params={'fields':'name,email'})
+		resp = (self.oauth).facebook.get('/me',params={'fields':'name,email'})
 		user_info = resp.json()
 		return user_info
 		    
