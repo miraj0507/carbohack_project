@@ -39,9 +39,8 @@ import random
 class Facebook:
 	CLIENT_ID='2896973843953926'
 	CLIENT_SECRET='ca2531220b6a1259e046d0c406633a42'
-
-        redirect_url=urllib.parse.quote('https://trial-container-yvkhc.run-ap-south1.goorm.io/auth_facebook/')
-
+	redirect_url=urllib.parse.quote('https://trial-container-yvkhc.run-ap-south1.goorm.io/auth_facebook/')
+	
 	state = ''.join([str(random.randint(1,7)) for i in range(0,6)])
 
 	auth_endpoint = f"https://www.facebook.com/v6.0/dialog/oauth?client_id={CLIENT_ID}&redirect_uri={redirect_url}&state={state}"
