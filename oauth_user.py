@@ -65,4 +65,4 @@ class Facebook:
 		param={'access_token':acctok}
 		userInfo['email']=requests.get(user_email_link, param)
 
-		return userInfo.json()
+		return userInfo
