@@ -70,7 +70,7 @@ class Facebook:
 
 		print(acctok)
 
-		user_email_link=f"https://graph.facebook.com/v11.0/{userInfo['id']}/accounts"
+		user_email_link=f"https://graph.facebook.com/v11.0/{userInfo['id']}/"
 		param={'access_token':acctok}
 		print(requests.get(user_email_link, param).json())
 
