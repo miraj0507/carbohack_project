@@ -46,18 +46,20 @@ ff=Facebook()
 
 @app.route('/signup_facebook')
 def signup_facebook():
-    ff.create_auth_endpoint()
-    return redirect(ff.auth_endpoint)
+    facebook=ff.to_auth_page()
+    redirect_url = url_for('auth_facebook', _external=True,_scheme='https')
+    print(redirect_url)
+    return facebook.authorize_redirect(redirect_url)
 
-@app.route('/auth_facebook/', methods=['GET'])
+@app.route('/auth_facebook/')
 def auth_facebook():
-    code=request.args.get("code")
-    #ff = F()
-    user_info=ff.get_User_Info(code)
-    #session['email']= user_info['email']
-    return f"<h1>{user_info['name']}<h1><br><h1>{user_info['id']}<h1>"
+    user_info = ff.send_user_info()
+    print(user_info)
+    #Use the user_info
+    return redirect('/entry')
 
 # /END
+#***************************************************************************
 
 
 @app.route('/questionare')
