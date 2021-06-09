@@ -40,6 +40,7 @@ class Facebook:
 	CLIENT_ID='2896973843953926'
 	CLIENT_SECRET='ca2531220b6a1259e046d0c406633a42'
 	
+	redirect_url=''
 	auth_endpoint = ''
 
 
@@ -47,11 +48,11 @@ class Facebook:
 		pass
 
 	def create_auth_endpoint(self):
-			redirect_url=urllib.parse.quote(url_for('/auth_facebook/',_scheme='https',_external=True))
+			self.redirect_url=urllib.parse.quote(url_for('/auth_facebook/',_scheme='https',_external=True))
 
 			state = ''.join([str(random.randint(1,7)) for i in range(0,6)])
 
-			self.auth_endpoint = f"https://www.facebook.com/v6.0/dialog/oauth?client_id={self.CLIENT_ID}&redirect_uri={redirect_url}&state={state}"
+			self.auth_endpoint = f"https://www.facebook.com/v6.0/dialog/oauth?client_id={self.CLIENT_ID}&redirect_uri={self.redirect_url}&state={state}"
 
 
 
