@@ -48,9 +48,8 @@ class Facebook:
 		pass
 
 	def create_auth_endpoint(self):
-			self.redirect_url=urllib.parse.quote(url_for('auth_facebook',_scheme='https',_external=True))+'/'
+			self.redirect_url=urllib.parse.quote(url_for('auth_facebook',_scheme='https',_external=True))
 			print(self.redirect_url)
-			input()
 
 			state = ''.join([str(random.randint(1,7)) for i in range(0,6)])
 
