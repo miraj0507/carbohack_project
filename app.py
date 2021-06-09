@@ -46,6 +46,7 @@ ff=Facebook()
 
 @app.route('/signup_facebook')
 def signup_facebook():
+    ff.create_auth_endpoint()
     return redirect(ff.auth_endpoint)
 
 @app.route('/auth_facebook/', methods=['GET'])
