@@ -4,7 +4,7 @@ import json
 
 from flask import Flask, session, render_template, request, redirect, url_for
 from flask_session import Session
-from sqlalchemy import create_engine
+from flask_sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from authlib.integrations.flask_client import OAuth
 
@@ -13,6 +13,9 @@ import os, sys
 sys.path.append(".")
 from oauth_user import Google, Facebook, Linkedin
 
+
+app = Flask(__name__)
+app.secret_key = 'random key'
 
 # Configure session to use filesystem
 app.config["SESSION_PERMANENT"] = False
@@ -23,8 +26,6 @@ Session(app)
 engine = create_engine("URL for database")
 db = scoped_session(sessionmaker(bind=engine))
 
-app = Flask(__name__)
-app.secret_key = 'random key'
 
 
 # Index page
