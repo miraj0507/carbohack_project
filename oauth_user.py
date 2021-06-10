@@ -60,5 +60,38 @@ class Facebook():
 		resp = (self.oauth).facebook.get('/me',params={'fields':'name,email'})
 		user_info = resp.json()
 		return user_info
-		    
+	
+	
+class Linkedin():
+	app = Flask(__name__)
+	app.secret_key = 'random key'
+	
+	oauth = OAuth(app)
+	linkedin = oauth.register(
+	    name='linkedin',
+	    client_id='78u7oehwxtcfhl',
+	    client_secret='Wib8hXLBq2if1Aki',
+	    access_token_url='https://www.linkedin.com/oauth/v2/accessToken',
+	    access_token_params=None,
+	    access_token_method='POST',
+	    authorize_url='https://www.linkedin.com/oauth/v2/authorization',
+	    api_base_url='https://api.linkedin.com/v2',
+	    client_kwargs={'scope': 'r_liteprofile r_emailaddress'},
+	)
+	
+	l = oauth.create_client('linkedin')
+	
+	def to_auth_page(self):
+		return self.l
+	
+	def send_user_info(self):
+		token = (self.oauth).linkedin.authorize_access_token()
+		resp1 = (self.oauth).linkedin.get('https://api.linkedin.com/v2/me').json()
+		resp2 = (self.oauth).linkedin.get('https://api.linkedin.com/v2/emailAddress', params={'q':'members','projection':'(elements*(handle~))'}).json()
+		user_info = {}
+		user_info['firstname']=resp1['localizedFirstName']
+		user_info['lastname']=resp1['localizedLastName']
+		user_info['id']=resp1['id']
+		user_info['email']=resp2['elements'][0]['handle~']['emailaddress']
+		return user_info
 	
