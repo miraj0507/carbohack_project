@@ -92,6 +92,6 @@ class Linkedin():
 		user_info['firstname']=resp1['localizedFirstName']
 		user_info['lastname']=resp1['localizedLastName']
 		user_info['id']=resp1['id']
-		user_info['email']=resp2['elements'][0]['handle~']['emailaddress']
+		user_info['email']=resp2['elements'][0]['handle~']['emailAddress']
 		return user_info
 	
