@@ -11,8 +11,11 @@ from authlib.integrations.flask_client import OAuth
 
 import os, sys
 sys.path.append(".")
-from oauth_user import Google, Facebook
+from oauth_user import Google, Facebook, Linkedin
 
+
+app = Flask(__name__)
+app.secret_key = 'random key'
 
 # Configure session to use filesystem
 app.config["SESSION_PERMANENT"] = False
@@ -20,11 +23,9 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Set up database
-engine = create_engine("URL for database")
-db = scoped_session(sessionmaker(bind=engine))
+#engine = create_engine("URL for database")
+#db = scoped_session(sessionmaker(bind=engine))
 
-app = Flask(__name__)
-app.secret_key = 'random key'
 
 
 # Index page
@@ -78,6 +79,26 @@ def auth_facebook():
 
 # /END
 #***************************************************************************
+# LINKEDIN OAUTH /START
+
+ll=Linkedin()
+
+@app.route('/signup_linkedin')
+def signup_linkedin():
+    linkedin=ll.to_auth_page()
+    redirect_url = url_for('auth_linkedin', _external=True,_scheme='https')
+    return linkedin.authorize_redirect(redirect_url)
+
+@app.route('/auth_linkedin')
+def auth_linkedin():
+    user_info = ll.send_user_info()
+    print(user_info)
+    #use the user_info
+    return redirect('/entry')
+    
+# /END
+#***************************************************************************
+
 
 # For processing user data
 @app.route('/processing...')
