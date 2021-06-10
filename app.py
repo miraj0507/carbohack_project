@@ -11,7 +11,7 @@ from authlib.integrations.flask_client import OAuth
 
 import os, sys
 sys.path.append(".")
-from oauth_user import Google, Facebook
+from oauth_user import Google, Facebook, Linkedin
 
 
 # Configure session to use filesystem
@@ -78,6 +78,26 @@ def auth_facebook():
 
 # /END
 #***************************************************************************
+# LINKEDIN OAUTH /START
+
+ll=Linkedin()
+
+@app.route('/signup_linkedin')
+def signup_linkedin():
+    linkedin=ll.to_auth_page()
+    redirect_url = url_for('auth_linkedin', _external=True,_scheme='https')
+    return linkedin.authorize_redirect(redirect_url)
+
+@app.route('/auth_linkedin')
+def auth_linkedin():
+    user_info = ll.send_user_info()
+    print(user_info)
+    #use the user_info
+    return redirect('/entry')
+    
+# /END
+#***************************************************************************
+
 
 # For processing user data
 @app.route('/processing...')
