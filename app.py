@@ -11,7 +11,7 @@ from authlib.integrations.flask_client import OAuth
 
 import os, sys
 sys.path.append(".")
-from oauth_user import Google, Facebook, Linkedin
+from oauth_user import Google, Facebook, Linkedin, Twitter
 
 
 app = Flask(__name__)
@@ -54,6 +54,7 @@ def signup_google():
 @app.route('/auth_google')
 def auth_google():
     user_info = gg.send_user_info()
+    print(user_info)
     #Use the user_info
     return redirect('/entry')
 
@@ -98,7 +99,26 @@ def auth_linkedin():
     
 # /END
 #***************************************************************************
+# TWITTER OAUTH /START
 
+tt=Twitter()
+
+@app.route('/signup_twitter')
+def signup_twitter():
+    twitter=tt.to_auth_page()
+    redirect_url= url_for('auth_twitter', _external=True, _scheme='https')
+    return twitter.authorize_redirect(redirect_url)
+
+@app.route('/auth_twitter')
+def auth_twitter():
+    user_info = tt.send_user_info()
+    print(user_info)
+    #use the user_info
+    return redirect('/entry')
+
+
+# /END
+#***************************************************************************
 
 # For processing user data
 @app.route('/processing...')

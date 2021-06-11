@@ -1,10 +1,11 @@
 from flask import Flask, url_for, session, request, redirect
 from authlib.integrations.flask_client import OAuth
 
+app = Flask(__name__)
+app.secret_key='random key'
+
+
 class Google():
-	
-	app = Flask(__name__)
-	app.secret_key='random key'
 
 	oauth = OAuth(app)
 	google = oauth.register(
@@ -33,8 +34,6 @@ class Google():
 
 
 class Facebook():
-	app = Flask(__name__)
-	app.secret_key='random key'
 	
 	oauth = OAuth(app)
 	facebook = oauth.register(
@@ -63,8 +62,6 @@ class Facebook():
 	
 	
 class Linkedin():
-	app = Flask(__name__)
-	app.secret_key = 'random key'
 	
 	oauth = OAuth(app)
 	linkedin = oauth.register(
@@ -93,5 +90,37 @@ class Linkedin():
 		user_info['lastname']=resp1['localizedLastName']
 		user_info['id']=resp1['id']
 		user_info['email']=resp2['elements'][0]['handle~']['emailAddress']
+		return user_info
+	
+
+class Twitter():
+	
+	oauth = OAuth(app)
+	oauth.register(
+	    name='twitter',
+	    client_id='KEmpKPQEWrVPWNXEOYhEuI4EO',
+	    client_secret='EgEzFqSYUrHIuw7Jil4kluUHFnL07zu9v6LBfTCRO9oXUgHoGj',
+	    api_base_url='https://api.twitter.com/1.1/',
+	    request_token_url='https://api.twitter.com/oauth/request_token',
+	    access_token_url='https://api.twitter.com/oauth/access_token',
+	    authorize_url='https://api.twitter.com/oauth/authenticate',
+	    #fetch_token=lambda: session.get('token'),  # DON'T DO IT IN PRODUCTION
+	)
+	
+	t = oauth.create_client('twitter')
+	
+	def to_auth_page(self):
+		return self.t
+	
+	def send_user_info(self):
+		token = (self.oauth).twitter.authorize_access_token()
+		url = 'account/verify_credentials.json'
+		resp = (self.oauth).twitter.get(url, params={'include_email':'true'}).json()
+		user_info = {}
+		name = resp['name'].split()
+		user_info['firstname']=name[0]
+		user_info['lastname']=' '.join([i for i in name[1:]])
+		user_info['id']=resp['id']
+		user_info['email']=resp['email']
 		return user_info
 	
