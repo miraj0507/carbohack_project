@@ -115,7 +115,7 @@ class Twitter():
 	def send_user_info(self):
 		token = (self.oauth).twitter.authorize_access_token()
 		url = 'account/verify_credentials.json'
-    		resp = oauth.twitter.get(url, params={'include_email':'true'}).json()
+		resp = oauth.twitter.get(url, params={'include_email':'true'}).json()
 		user_info = {}
 		name = resp['name'].split()
 		user_info['firstname']=name[0]
