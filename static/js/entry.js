@@ -10,3 +10,33 @@ sign_in_btn.addEventListener("click", () => {
   container.classList.remove("sign-up-mode");
 });
 
+
+
+  $('#signup').click(function() {
+
+      $.ajax({
+          type: "POST",
+          url: 'admin/login.php',
+          data: {
+              'fullname': $("#fullname").val(),
+              'email': $("#email-signup").val(),
+              'password': $("#password-signup").val(),
+              'location': $("#location").val()
+          },
+          success: function(data)
+          {
+              if (data === 'Correct') {
+                container.classList.remove("sign-up-mode");
+              }
+              else {
+                  alert("Signup-Again");
+              }
+          },
+          error: function(){
+            alert("signup-again");
+          }
+      });
+
+  });
+
+  
