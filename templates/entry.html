@@ -9,6 +9,8 @@
     ></script>
     <link rel="stylesheet" href="/static/css/entry.css" />
     <title>Sign in & Sign up Form</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </head>
   <body>
     <div class="container">
@@ -27,16 +29,16 @@
             <input type="submit" value="Login" class="btn solid" />
             <p class="social-text">Or Sign in with social platforms</p>
             <div class="social-media">
-              <a href="/signup_facebook" class="social-icon">
+              <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
               </a>
-              <a href="/signup_twitter" class="social-icon" >
+              <a href="#" class="social-icon">
                 <i class="fab fa-twitter"></i>
               </a>
-              <a href="/signup_google" class="social-icon">
+              <a href="#" class="social-icon">
                 <i class="fab fa-google"></i>
               </a>
-              <a href="/signup_linkedin" class="social-icon">
+              <a href="#" class="social-icon">
                 <i class="fab fa-linkedin-in"></i>
               </a>
             </div>
@@ -45,33 +47,33 @@
             <h2 class="title">Sign up</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Fullname" />
+              <input id="fullname" type="text" placeholder="Fullname" />
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              <input id="email-signup" type="email" placeholder="Email" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input id="password-signup"type="password" placeholder="Password" />
             </div>
             <div class="input-field">
               <i class="fas fa-thumbtack"></i>
-              <input type="text" placeholder="Loaction-State" />
+              <input id="location" type="text" placeholder="Loaction-State" />
             </div>
-            <input type="submit" class="btn" value="Sign up" />
+            <input  id="signup" type="submit" class="btn" value="Sign up" />
             <p class="social-text">Or Sign up with social platforms</p>
             <div class="social-media">
-              <a href="/signup_facebook" class="social-icon">
+              <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
               </a>
-              <a href="/signup_twitter" class="social-icon" >
+              <a href="#" class="social-icon">
                 <i class="fab fa-twitter"></i>
               </a>
-              <a href="/signup_google" class="social-icon">
+              <a href="#" class="social-icon">
                 <i class="fab fa-google"></i>
               </a>
-              <a href="/signup_linkedin" class="social-icon">
+              <a href="#" class="social-icon">
                 <i class="fab fa-linkedin-in"></i>
               </a>
             </div>
@@ -110,6 +112,7 @@
     </div>
 
     <script src="/static/js/entry.js"></script>
+
+
   </body>
 </html>
-
