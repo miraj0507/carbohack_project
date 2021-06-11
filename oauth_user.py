@@ -1,10 +1,11 @@
 from flask import Flask, url_for, session, request, redirect
 from authlib.integrations.flask_client import OAuth
 
+app = Flask(__name__)
+app.secret_key='random key'
+
+
 class Google():
-	
-	app = Flask(__name__)
-	app.secret_key='random key'
 
 	oauth = OAuth(app)
 	google = oauth.register(
@@ -33,8 +34,6 @@ class Google():
 
 
 class Facebook():
-	app = Flask(__name__)
-	app.secret_key='random key'
 	
 	oauth = OAuth(app)
 	facebook = oauth.register(
@@ -63,8 +62,6 @@ class Facebook():
 	
 	
 class Linkedin():
-	app = Flask(__name__)
-	app.secret_key = 'random key'
 	
 	oauth = OAuth(app)
 	linkedin = oauth.register(
@@ -97,8 +94,6 @@ class Linkedin():
 	
 
 class Twitter():
-	app = Flask(__name__)
-	app.secret_key='random key'
 	
 	oauth = OAuth(app)
 	oauth.register(
