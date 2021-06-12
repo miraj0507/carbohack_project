@@ -132,6 +132,16 @@ def processing_signup():
     print(user_info)
     return "Correct"
 
+@app.route('/processing_signin', methods=['POST'])
+def processing_signin():
+    user_info = {}
+    user_info['email'] = request.form['email']
+    user_info['password'] = request.form['password']
+    print(user_info)
+    return "Correct"
+
+
+
 
 # Logging in to get into the Questionaire page
 @app.route('/questionare')

@@ -35,7 +35,33 @@ sign_in_btn.addEventListener("click", () => {
               }
           },
           error: function(){
-            alert("signup-again");
+            alert("server side error");
+          }
+      });
+
+  });
+
+
+  $('#signin').click(function() {
+
+      $.ajax({
+          type: "POST",
+          url: '/processing_signin',
+          data: {
+              email: $("#email-signin").val(),
+              password: $("#password-signin").val(),
+          },
+          success: function(response)
+          {
+              if (response === 'Correct') {
+                window.location.href = "/entry"; 
+              }
+              else {
+                  alert("Signin-Again");
+              }
+          },
+          error: function(){
+            alert("server side error");
           }
       });
 
