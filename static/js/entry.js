@@ -10,7 +10,9 @@ sign_in_btn.addEventListener("click", () => {
   container.classList.remove("sign-up-mode");
 });
 
-
+  if ((window.location.href).includes("signup")){
+  container.classList.add("sign-up-mode");
+  }
 
   $('#signup').click(function() {
 

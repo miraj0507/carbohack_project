@@ -34,7 +34,8 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/entry')
+@app.route('/entry_signin')
+@app.route('/entry_signup')
 def entry():
     return render_template('entry.html')
 
