@@ -16,17 +16,19 @@ sign_in_btn.addEventListener("click", () => {
 
       $.ajax({
           type: "POST",
-          url: 'admin/login.php',
+          url: '/processing_signup',
           data: {
-              'fullname': $("#fullname").val(),
-              'email': $("#email-signup").val(),
-              'password': $("#password-signup").val(),
-              'location': $("#location").val()
+              firstname: $("#firstname").val(),
+              lastname: $("#lastname").val(),
+              email: $("#email-signup").val(),
+              password: $("#password-signup").val(),
+              location: $("#location").val()
           },
-          success: function(data)
+          success: function(response)
           {
-              if (data === 'Correct') {
-                container.classList.remove("sign-up-mode");
+              if (response === 'Correct') {
+                alert('Great!!! You are signed up .... Please sign in to access your account. ');
+                container.classList.remove("sign-up-mode"); 
               }
               else {
                   alert("Signup-Again");
