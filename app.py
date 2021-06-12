@@ -121,7 +121,7 @@ def auth_twitter():
 # /END
 #***************************************************************************
 
-# For processing user data
+# MANUAL INPUT USER DATA /START
 @app.route('/processing_signup', methods=['POST'])
 def processing_signup():
     user_info = {}
@@ -141,7 +141,8 @@ def processing_signin():
     print(user_info)
     return "Correct"
 
-
+# /END
+#**************************************************************************
 
 
 # Logging in to get into the Questionaire page
@@ -155,11 +156,11 @@ def login():
 
 
 # User's account page. Left to be done
-#@app.route('/MyAccount')
-#def My_Account():
+@app.route('/MyAccount')
+def My_Account():
 #    Details of the parameters taken in from the questionaire. Stored in the database. Graph is plotted. Things to be calculated according to formulae present here.
 #    https://docs.google.com/document/d/1qZepM5Bbe13qaWUCraEf1Hmmb-otN7MImFnaBgSw44w/edit?ts=60bf9810
-#    return render_template('MyAccount.html') 
+    return render_template('dashboard.html') 
 
 if __name__ == '__main__':
     app.run(debug=True)
