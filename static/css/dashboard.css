@@ -524,6 +524,8 @@ p{
   transition: all 300ms ease-in-out;
 }
 .modal-wrap {
+  text-align: center;
+  align-items: center;
   position: relative;
   display: block;
   width: 100%;
@@ -588,6 +590,72 @@ p{
 	}
 }
 
+
+.slider {
+  margin-bottom: 5%;
+  -webkit-appearance: none;
+  width: 90%;
+  height: 5px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%; 
+  background: #074C00;
+  cursor: pointer;
+}
+#form1 p{
+  padding: 0 0 3% 0 ;
+  margin: 0;
+}
+#form1 h3{
+  margin: 1% 1% 0 1%;
+
+}
+.food-options{
+  text-align: left; 
+  margin: 10%;   
+}
+.meat img{
+  position: relative;
+  left: 50px;
+}
+.low-meat{
+  position: relative;
+  left:200px;
+  bottom: 70px;
+}
+.low-meat img{
+  position: relative;
+  top:5%;
+  left: 40px;
+}
+.fish{
+  position: relative;
+  bottom: 60px;
+}
+.fish img{
+  position: relative;
+  left: 40px;
+}
+.veg{
+  position: relative;
+  left:200px;
+  bottom: 130px;
+}
+.vegan{
+  position: relative;
+  left: 40%;
+  bottom: 100px;
+}
 
 
 
