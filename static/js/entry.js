@@ -15,17 +15,19 @@ sign_in_btn.addEventListener("click", () => {
   }
 
   $('#signup').click(function() {
-
-      $.ajax({
-          type: "POST",
-          url: '/processing_signup',
-          data: {
+    var user_info = {
               firstname: $("#firstname").val(),
               lastname: $("#lastname").val(),
               email: $("#email-signup").val(),
               password: $("#password-signup").val(),
               location: $("#location").val()
-          },
+          }
+
+      /*$.ajax({
+          type: "POST",
+          url: '/processing_signup',
+          contentType: "appilcation/json"
+          data: JSON.stringify(user_info) ,
           success: function(response)
           {
               if (response === 'Correct') {
@@ -39,24 +41,48 @@ sign_in_btn.addEventListener("click", () => {
           error: function(){
             alert("server side error");
           }
-      });
+      });*/
+
+      $.ajax({
+          url: '/processing_signup',
+          type: "POST",
+          data: JSON.stringify(user_info),
+          dataType: "json",
+          contentType: 'application/json',
+          success: function(response) {
+            if (response.resp === 'Correct') {
+                alert('Great!!! You are signed up .... Please sign in to access your account. ');
+                container.classList.remove("sign-up-mode"); 
+              }
+              else {
+                  alert("Signup-Again");
+              }
+          },
+          error: function(){
+            alert("server side error");
+          }
+      });   
 
   });
 
 
-  $('#signin').click(function() {
 
+  $('#signin').click(function() {
+    var user_signin={
+              email: $("#email-signin").val(),
+              password: $("#password-signin").val(),
+          }
       $.ajax({
           type: "POST",
           url: '/processing_signin',
-          data: {
-              email: $("#email-signin").val(),
-              password: $("#password-signin").val(),
-          },
+          data: JSON.stringify(user_signin),
+          dataType: "json",
+          contentType: 'application/json',
           success: function(response)
           {
-              if (response === 'Correct') {
-                window.location.href = "/entry"; 
+              if (response.resp === 'Correct') {
+                console.log("done")
+                window.location.href = "/entry_signin"; 
               }
               else {
                   alert("Signin-Again");
