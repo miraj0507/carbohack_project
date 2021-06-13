@@ -149,12 +149,12 @@ def processing_signin():
 
 # Logging in to get into the Questionaire page
 @app.route('/questionare')
-def login():
+def questionare():
     # Querying for relevant user details while logging an user in.
     # if match is found:
     # return render_template("questionaire.html")
     # else:
-    return render_template("entry.html")
+    return render_template("questionare.html")
 
 
 # User's account page. Left to be done
