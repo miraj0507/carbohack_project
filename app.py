@@ -2,7 +2,7 @@
 import requests
 import json
 
-from flask import Flask, session, render_template, request, redirect, url_for
+from flask import Flask, session, render_template, request, redirect, url_for, jsonify
 #from flask_session import Session
 #from sqlalchemy import create_engine
 #from sqlalchemy.orm import scoped_session, sessionmaker
@@ -124,22 +124,24 @@ def auth_twitter():
 # MANUAL INPUT USER DATA /START
 @app.route('/processing_signup', methods=['POST'])
 def processing_signup():
-    user_info = {}
+    user_info = request.json 
+    '''
     user_info['firstname'] = request.form['firstname']
     user_info['lastname'] = request.form['lastname']
     user_info['email'] = request.form['email']
     user_info['password'] = request.form['password']
     user_info['location'] = request.form['location']
+    '''
     print(user_info)
-    return "Correct"
+    return jsonify(resp="Correct")
 
 @app.route('/processing_signin', methods=['POST'])
 def processing_signin():
-    user_info = {}
-    user_info['email'] = request.form['email']
-    user_info['password'] = request.form['password']
+    user_info = request.json
+    #user_info['email'] = request.form['email']
+    #user_info['password'] = request.form['password']
     print(user_info)
-    return "Correct"
+    return jsonify(resp="Correct")
 
 # /END
 #**************************************************************************
