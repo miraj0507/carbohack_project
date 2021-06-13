@@ -3,9 +3,9 @@ import requests
 import json
 
 from flask import Flask, session, render_template, request, redirect, url_for, jsonify
-#from flask_session import Session
-#from sqlalchemy import create_engine
-#from sqlalchemy.orm import scoped_session, sessionmaker
+from flask_session import Session
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
 from authlib.integrations.flask_client import OAuth
 
 
@@ -18,9 +18,9 @@ app = Flask(__name__)
 app.secret_key = 'random key'
 
 # Configure session to use filesystem
-#app.config["SESSION_PERMANENT"] = False
-#app.config["SESSION_TYPE"] = "filesystem"
-#Session(app)
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 # Set up database
 #engine = create_engine("URL for database")
