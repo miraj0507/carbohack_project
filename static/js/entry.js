@@ -23,25 +23,6 @@ sign_in_btn.addEventListener("click", () => {
               location: $("#location").val()
           }
 
-      /*$.ajax({
-          type: "POST",
-          url: '/processing_signup',
-          contentType: "appilcation/json"
-          data: JSON.stringify(user_info) ,
-          success: function(response)
-          {
-              if (response === 'Correct') {
-                alert('Great!!! You are signed up .... Please sign in to access your account. ');
-                container.classList.remove("sign-up-mode"); 
-              }
-              else {
-                  alert("Signup-Again");
-              }
-          },
-          error: function(){
-            alert("server side error");
-          }
-      });*/
 
       $.ajax({
           url: '/processing_signup',
@@ -50,13 +31,20 @@ sign_in_btn.addEventListener("click", () => {
           dataType: "json",
           contentType: 'application/json',
           success: function(response) {
-            if (response.resp === 'Correct') {
+            if (response.resp1 === 'Correct') {
+              if (response.resp2 === 'Registered'){
                 alert('Great!!! You are signed up .... Please sign in to access your account. ');
-                container.classList.remove("sign-up-mode"); 
+                container.classList.remove("sign-up-mode");
+                }
+              else{
+                alert(response.resp2)
+
               }
-              else {
-                  alert("Signup-Again");
-              }
+
+            }
+            else {
+              alert("Server did not respond");
+            }
           },
           error: function(){
             alert("server side error");
@@ -80,12 +68,12 @@ sign_in_btn.addEventListener("click", () => {
           contentType: 'application/json',
           success: function(response)
           {
-              if (response.resp === 'Correct') {
+              if (response.resp1 === 'Correct') {
                 console.log("done")
-                window.location.href = "/entry_signin"; 
+                window.location.href = response.resp2; 
               }
               else {
-                  alert("Signin-Again");
+                  alert(response.resp2);
               }
           },
           error: function(){
