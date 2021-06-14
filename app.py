@@ -151,6 +151,7 @@ def processing_signin():
     #user_info['email'] = request.form['email']
     #user_info['password'] = request.form['password']
     if db_S.check_user_table(user_info):
+        session['user']=user_info
         if db_S.check_user_input_table(user_info):
             return jsonify(resp1="Correct", resp2='/MyAccount')
         else:
@@ -163,23 +164,53 @@ def processing_signin():
 
 #************************************************** OUTSIDER VIEW /END **************************************************************
 
-# Logging in to get into the Questionaire page
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+#************************************************** INSIDER VIEW /START**************************************************************
+
+
+#QUESTIONARE FILLING /START
 @app.route('/questionare')
 def questionare():
     if not ('user' in session):
         return redirect('/')
-    # Querying for relevant user details while logging an user in.
-    # if match is found:
-    # return render_template("questionaire.html")
-    # else:
+
+    if db_S.check_user_input_table(session['user']):
+        return redirect('/MyAccount')
+    
     return render_template("questionare.html")
 
+@app.route("/questionare_filling", methods=['POST'])
+def questionare_filling():
+    if not('user' in session):
+        return redirect('/')
 
+    user_info = request.json
+    db_S_respond='Registered'#db_S.example(user_info)
+    return jsonify(resp1='Correct', resp2=db_S_respond)
+
+@app.route("/questionare_update", methods=['POST'])
+def questionare_update():
+    if not('user' in session):
+        return redirect('/')
+
+    user_info = request.json
+    print(user_info)
+    db_S_respond='Registered'#db_S.example(user_info)
+    return jsonify(resp1='Correct', resp2=db_S_respond)
+#QUESTIONARE FILLING /END
+
+
+#@app.route("/")
 # User's account page. Left to be done
 @app.route('/MyAccount')
 def My_Account():
     if not ('user' in session):
         return redirect('/')
+    
+    #if not db_S.check_user_input_table(session['user']):
+    #    return redirect('/questionare')
 #    Details of the parameters taken in from the questionaire. Stored in the database. Graph is plotted. Things to be calculated according to formulae present here.
 #    https://docs.google.com/document/d/1qZepM5Bbe13qaWUCraEf1Hmmb-otN7MImFnaBgSw44w/edit?ts=60bf9810
     return render_template('dashboard.html')
@@ -188,9 +219,20 @@ def My_Account():
 def logout():
     if not ('user' in session):
         return redirect('/')
-    session.pop('username', None)
+    session.pop('user', None)
     db_S.gbl_email=''
     return redirect('/')
+
+@app.route('/User_Profile')
+def User_Profile():
+    if not ('user' in session):
+        return redirect('/')
+    
+    #if not db_S.check_user_input_table(session['user']):
+    #    return redirect('/questionare')
+#    Details of the parameters taken in from the questionaire. Stored in the database. Graph is plotted. Things to be calculated according to formulae present here.
+#    https://docs.google.com/document/d/1qZepM5Bbe13qaWUCraEf1Hmmb-otN7MImFnaBgSw44w/edit?ts=60bf9810
+    return render_template('user.html', Fullname='Aunomitra Ghosh', State='West Bengal', EMAIL='aunomitra.ghosh1999@gmail.com')
 
 
 if __name__ == '__main__':

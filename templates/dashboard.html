@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script
         src="https://kit.fontawesome.com/64d58efce2.js"
         crossorigin="anonymous"
@@ -118,16 +119,16 @@
         <div class="modal">		
             <div class="modal-wrap">	
               
-              <form id="form1" action="" >
+              <form id="form1" >
                 <h3>HOW DID YOU TRAVEL TODAY ?</h3>
                 <p>Percentage (between 0 and 10):</p>
                 <div class="form-check form-check-inline container-fluid">
                   <!-- <input class="form-check-input" type="checkbox" id="bus" value="bus"> -->
-                  <label class="form-check-label" for="bus">Bus</label>
+                  <label class="form-check-label" for="bus">Bus  </label>
               
 
-                 <label for="points">:</label>
-                 <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0" required="required">
+                 <label for="points">:</label><br>
+                 <input class="slider" type="range" id="bus-points" name="points" min="0" max="10" value="0" required="required">
                  <output for="range" class="output"></output>
               </div>
               <div class="form-check form-check-inline container-fluid">
@@ -136,7 +137,7 @@
              
 
               <label for="points">:</label>
-              <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0">
+              <input class="slider" type="range" id="metro-points" name="points" min="0" max="10" value="0">
              
               <br>
             </div>
@@ -148,7 +149,7 @@
               
 
               <label for="points">:</label>
-              <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0">
+              <input class="slider" type="range" id="train-points" name="points" min="0" max="10" value="0">
               <br >
             </div>
               
@@ -158,7 +159,7 @@
              
 
                 <label for="points">:</label>
-                <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0"> 
+                <input class="slider" type="range" id="car-points" name="points" min="0" max="10" value="0"> 
               <br>
             </div>
 
@@ -168,7 +169,7 @@
               
 
                 <label for="points">:</label>
-                <input  class="slider" type="range" id="points" name="points" min="0" max="10" value="0">
+                <input  class="slider" type="range" id="motorbike-points" name="points" min="0" max="10" value="0">
               <br>
             </div>
 
@@ -178,7 +179,7 @@
               
 
               <label for="points">:</label>
-              <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0">
+              <input class="slider" type="range" id="bicycle-points" name="points" min="0" max="10" value="0">
               <br>
             </div>
 
@@ -188,17 +189,17 @@
              
 
               <label for="points">:</label>
-              <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0">  
+              <input class="slider" type="range" id="walking-points" name="points" min="0" max="10" value="0">  
             </div>  
             
             <h4>Enter Average Time Travelled</h4>
             <div class="input-field">
               <i class="fas fa-stopwatch"></i>
-              <input type="number" id="quantity" name="quantity" min="0" placeholder="in HRS"  required="required">
+              <input type="number" id="hour-quantity" name="quantity" min="0" placeholder="in HRS"  required="required">
             </div>            
             <div class="input-field">
               <i class="fas fa-stopwatch"></i>
-              <input type="number" id="quantity" name="quantity" min="0" placeholder="in MINS"  required="required">
+              <input type="number" id="min-quantity" name="quantity" min="0" placeholder="in MINS"  required="required">
             </div>
               
               
@@ -209,32 +210,32 @@
                 <div class = "food-options">
                   
                   <div class="custom-control custom-radio meat">
-                    <input type="radio" class="custom-control-input" id="customRadio" name="example1">
-                    <label class="custom-control-label" for="customRadio">Lots of Meat</label>
+                    <input type="radio" class="custom-control-input" id="customRadio1" name="example1" value='lots of meat'>
+                    <label class="custom-control-label" for="customRadio1">Lots of Meat</label>
                     <img class="ramen" src="/static/img/meat.png" alt="ramen-img" style="width: 50px;">                      
                   </div> 
 
                   <div class="custom-control custom-radio low-meat">
-                    <input type="radio" class="custom-control-input" id="customRadio" name="example1">
-                    <label class="custom-control-label" for="customRadio">Low Meat </label> 
+                    <input type="radio" class="custom-control-input" id="customRadio2" name="example1" value='low meat'>
+                    <label class="custom-control-label" for="customRadio2">Low Meat </label> 
                     <img class="ramen" src="/static/img/proteins.png" alt="ramen-img" style="width: 50px;">        
                   </div>
 
                   <div class="custom-control custom-radio fish">
-                    <input type="radio" class="custom-control-input" id="customRadio" name="example1">
-                    <label class="custom-control-label" for="customRadio">Pescatarian  </label>  
+                    <input type="radio" class="custom-control-input" id="customRadio3" name="example1" value='Pescatarian'>
+                    <label class="custom-control-label" for="customRadio3">Pescatarian  </label>  
                     <img class="ramen" src="/static/img/pescatarian.png" alt="ramen-img" style="width: 50px;">       
                   </div>
                   
                   <div class="custom-control custom-radio veg">
-                    <input type="radio" class="custom-control-input" id="customRadio" name="example1">
-                    <label class="custom-control-label" for="customRadio">Vegetarian </label>  
+                    <input type="radio" class="custom-control-input" id="customRadio4" name="example1" value='Vegetarian'>
+                    <label class="custom-control-label" for="customRadio4">Vegetarian </label>  
                     <img class="ramen" src="/static/img/salad.png" alt="ramen-img" style="width: 50px;">       
                   </div>
 
                   <div class="custom-control custom-radio vegan">
-                    <input type="radio" class="custom-control-input" id="customRadio" name="example1">
-                    <label class="custom-control-label" for="customRadio">Vegan  </label>
+                    <input type="radio" class="custom-control-input" id="customRadio5" name="example1" value='Vegan'>
+                    <label class="custom-control-label" for="customRadio5">Vegan  </label>
                     <img class="ramen" src="/static/img/diet.png" alt="ramen-img" style="width: 50px;">         
                   </div>
                 </div>

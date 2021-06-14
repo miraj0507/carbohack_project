@@ -20,6 +20,7 @@
         <script
         src="https://kit.fontawesome.com/64d58efce2.js"
         crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
     </head>
     <body>
@@ -130,31 +131,31 @@
                   <div class = "food-options">
                     
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="step2-meat" name="example1-meat" value="highmeat">
+                      <input type="radio" class="custom-control-input" id="step2-meat" name="example1" value='lots of meat'>
                       <label class="custom-control-label" for="customRadio">Lots of Meat <br/> (more than 100g of meat everyday)</label>
                       <img class="ramen" src="/static/img/meat.png" alt="ramen-img" width="100" height="100">                      
                     </div> 
 
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="step2-lowmeat" name="example1-lowmeat" value="lowmeat">
+                      <input type="radio" class="custom-control-input" id="step2-lowmeat" name="example1" value='low meat'>
                       <label class="custom-control-label" for="customRadio">Low Meat <br/> (Meat every other day on average) </label> 
                       <img class="ramen" src="/static/img/proteins.png" alt="ramen-img" width="100" height="100">        
                     </div>
 
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="step2-pescatarian" name="example1-pescatarian" value="pescatarian">
+                      <input type="radio" class="custom-control-input" id="step2-pescatarian" name="example1" value='Pescatarian'>
                       <label class="custom-control-label" for="customRadio">Pescatarian <br/> (A serving of fish/seafood every other day) </label>  
                       <img class="ramen" src="/static/img/pescatarian.png" alt="ramen-img" width="100" height="100">       
                     </div>
                     
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="step2-vegetarian" name="example1-vegetarian" value="vegetarian">
+                      <input type="radio" class="custom-control-input" id="step2-vegetarian" name="example1" value='Vegetarian'>
                       <label class="custom-control-label" for="customRadio">Vegetarian <br/> (No meat, but eggs and dairy products eaten)</label>  
                       <img class="ramen" src="/static/img/salad.png" alt="ramen-img" width="100" height="100">       
                     </div>
 
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="step2-vegan" name="example1-vegan" value="vegan">
+                      <input type="radio" class="custom-control-input" id="step2-vegan" name="example1" value='Vegan'>
                       <label class="custom-control-label" for="customRadio">Vegan <br/> (NO meat, eggs, dairy or other animal products eaten) </label>
                       <img class="ramen" src="/static/img/diet.png" alt="ramen-img" width="100" height="100">         
                     </div>
@@ -167,7 +168,7 @@
               </form>
 
               <!-- Form 3 -->
-              <form id="form3" >
+              <form id="form3" action='#'>
                   <h3>ONE STEP AWAY FROM KNOWING YOUR CARBON FOOTPRINT.</h3>
                   <h4>What was your electricity consumption range value last month? </h4> 
                   <div class="slider-wrapper">
@@ -202,7 +203,7 @@
                 
                   <div class="btn-box">
                       <button type="button" id="back2">Back</button>
-                      <button id="final-submit" type="submit">Submit</button>                      
+                      <button type="button" id="final-submit">Submit</button>                      
                   </div>
                 </form>
                 
@@ -220,67 +221,6 @@
 
         </div>
 
-
-
-
-
-        <script>
-           
-           var form1= document.getElementById("form1");
-           var form2= document.getElementById("form2");
-           var form3= document.getElementById("form3");
-
-           var next1= document.getElementById("next1");
-           var next2= document.getElementById("next2");
-           var back1= document.getElementById("back1");
-           var back2= document.getElementById("back2");
-           var progress= document.getElementById("progress");
-           next1.onclick=function(){
-               form1.style.left="-1510px";
-               form2.style.left="1px";
-               progress.style.width="66%";
-           }
-           back1.onclick=function(){
-               form1.style.left="1px";
-               form2.style.left="1510px";
-               progress.style.width="33%";
-           }
-           next2.onclick=function(){
-               form2.style.left="-1510px";
-               form3.style.left="1px";
-               progress.style.width="100%";
-           }
-           back2.onclick=function(){
-               form2.style.left="1px";
-               form3.style.left="1510px";
-               progress.style.width="66%";
-           }
-
-
-
-           var rangeSlider = document.getElementById("range-slider");
-           var waoo = document.getElementById("waoo");
-
-var rangeLabel = document.getElementById("range-label");
-
-rangeSlider.addEventListener("input", showSliderValue);
-
-function showSliderValue() {
-  waoo.innerHTML = rangeSlider.value;
-  var labelPosition = (rangeSlider.value /rangeSlider.max);
-  
-  if(rangeSlider.value === rangeSlider.min) {
- rangeLabel.style.left = ((labelPosition * 100) + 2) + "%";
-  } else if (rangeSlider.value === rangeSlider.max) {
- rangeLabel.style.left = ((labelPosition * 100) - 2) + "%";
-  } else {
-  rangeLabel.style.left = (labelPosition * 100) + "%";
-  }
-}
-            </script>
-            
-          
-
-
     </body>
+    <script src="/static/js/questionare.js"></script>
 </html>
