@@ -14,7 +14,7 @@
          
 
         <!-- ===== CSS ===== -->
-        <link rel="stylesheet" href="../static/css/dashboard.css">
+        <link rel="stylesheet" href="/static/css/dashboard.css">
 
         <title>carbohack-homepage</title>
     </head>
@@ -112,141 +112,140 @@
         </div>
 
     
-        <div class="section">
-          <input class="modal-btn" type="checkbox" id="modal-btn" name="modal-btn"/>
-          <label for="modal-btn"><b>Know your daily emission.</b> <i class='bx bx-donate-heart'></i></label> 		
-          <div class="modal">		
-              <div class="modal-wrap">	
-                
-                  <form id="form1" action="" >
-                      <h3>HOW DO YOU TRAVEL MOST OFTEN?</h3>
-                      <p>Percentage (between 0 and 10):</p>
-                      <div class="form-check form-check-inline container-fluid">
-                        <!-- <input class="form-check-input" type="checkbox" id="bus" value="bus"> -->
-                        <label class="form-check-label" for="bus">Bus</label>
-                    
-      
-                       <label for="points">:</label>
-                       <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0" required="required">
-                       <output for="range" class="output"></output>
-                    </div>
-                    <div class="form-check form-check-inline container-fluid">
-                      <!-- <input class="form-check-input" type="checkbox" id="metro" value="metro"> -->
-                      <label class="form-check-label" for="metro">Metro</label>
-                   
-    
-                    <label for="points">:</label>
-                    <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0">
-                   
-                    <br>
-                  </div>
-                   
-    
-                    <div class="form-check form-check-inline container-fluid">
-                      <!-- <input class="form-check-input" type="checkbox" id="train" value="train"> -->
-                      <label class="form-check-label" for="train">Train</label>
-                    
-    
-                    <label for="points">:</label>
-                    <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0">
-                    <br >
-                  </div>
-                    
-                    <div class="form-check form-check-inline container-fluid">
-                      <!-- <input class="form-check-input" type="checkbox" id="car" value="car" > -->
-                      <label class="form-check-label" for="car">CAR/CAB</label>
-                   
-    
-                      <label for="points">:</label>
-                      <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0"> 
-                    <br>
-                  </div>
-    
-                    <div class="form-check form-check-inline container-fluid">
-                      <!-- <input class="form-check-input" type="checkbox" id="motorbike" value="motorbike" > -->
-                      <label class="form-check-label" for="motorbike">MotorBike</label>
-                    
-    
-                      <label for="points">:</label>
-                      <input  class="slider" type="range" id="points" name="points" min="0" max="10" value="0">
-                    <br>
-                  </div>
-    
-                    <div class="form-check form-check-inline container-fluid">
-                      <!-- <input class="form-check-input" type="checkbox" id="bicycle" value="bicycle"> -->
-                      <label class="form-check-label" for="bicycle">Bicycle</label>
-                    
-    
-                    <label for="points">:</label>
-                    <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0">
-                    <br>
-                  </div>
-    
-                    <div class="form-check form-check-inline container-fluid">
-                      <!-- <input class="form-check-input" type="checkbox" id="walking" value="walking"> -->
-                      <label class="form-check-label" for="walking">Walking</label>
-                   
-    
-                    <label for="points">:</label>
-                    <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0">  
-                  </div>  
-                  
-                  <h4>Enter Average Time Travelled</h4>
-                  <div class="input-field">
-                    <i class="fas fa-stopwatch"></i>
-                    <input type="number" id="quantity" name="quantity" min="0" placeholder="in HRS"  required="required">
-                  </div>            
-                  <div class="input-field">
-                    <i class="fas fa-stopwatch"></i>
-                    <input type="number" id="quantity" name="quantity" min="0" placeholder="in MINS"  required="required">
-                  </div>
-                    
-                    
-                  </form>
-  
-                  <form id="form2">
-                      <h3>WHAT'S YOUR DIET FOR TODAY? </h3>
-                      <div class = "food-options">
-                        
-                        <div class="custom-control custom-radio meat">
-                          <input type="radio" class="custom-control-input" id="customRadio" name="example1">
-                          <label class="custom-control-label" for="customRadio">Lots of Meat</label>
-                          <img class="ramen" src="../img/meat.png" alt="ramen-img" style="width: 50px;">                      
-                        </div> 
-    
-                        <div class="custom-control custom-radio low-meat">
-                          <input type="radio" class="custom-control-input" id="customRadio" name="example1">
-                          <label class="custom-control-label" for="customRadio">Low Meat </label> 
-                          <img class="ramen" src="../img/proteins.png" alt="ramen-img" style="width: 50px;">        
-                        </div>
-    
-                        <div class="custom-control custom-radio fish">
-                          <input type="radio" class="custom-control-input" id="customRadio" name="example1">
-                          <label class="custom-control-label" for="customRadio">Pescatarian  </label>  
-                          <img class="ramen" src="../img/pescatarian.png" alt="ramen-img" style="width: 50px;">       
-                        </div>
-                        
-                        <div class="custom-control custom-radio veg">
-                          <input type="radio" class="custom-control-input" id="customRadio" name="example1">
-                          <label class="custom-control-label" for="customRadio">Vegetarian </label>  
-                          <img class="ramen" src="../img/salad.png" alt="ramen-img" style="width: 50px;">       
-                        </div>
-    
-                        <div class="custom-control custom-radio vegan">
-                          <input type="radio" class="custom-control-input" id="customRadio" name="example1">
-                          <label class="custom-control-label" for="customRadio">Vegan  </label>
-                          <img class="ramen" src="../img/diet.png" alt="ramen-img" style="width: 50px;">         
-                        </div>
-                      </div>
+	  <div class="section">
+        <input class="modal-btn" type="checkbox" id="modal-btn" name="modal-btn"/>
+        <label for="modal-btn"><b>Know your daily emission.</b> <i class='bx bx-donate-heart'></i></label> 		
+        <div class="modal">		
+            <div class="modal-wrap">	
+              
+              <form id="form1" action="" >
+                <h3>HOW DID YOU TRAVEL TODAY ?</h3>
+                <p>Percentage (between 0 and 10):</p>
+                <div class="form-check form-check-inline container-fluid">
+                  <!-- <input class="form-check-input" type="checkbox" id="bus" value="bus"> -->
+                  <label class="form-check-label" for="bus">Bus</label>
+              
 
-                      <div class="btn-box"><button type="submit" id="next1">Submit</button></div>
-    
-    
-                  
-                </div>
+                 <label for="points">:</label>
+                 <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0" required="required">
+                 <output for="range" class="output"></output>
+              </div>
+              <div class="form-check form-check-inline container-fluid">
+                <!-- <input class="form-check-input" type="checkbox" id="metro" value="metro"> -->
+                <label class="form-check-label" for="metro">Metro</label>
+             
+
+              <label for="points">:</label>
+              <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0">
+             
+              <br>
+            </div>
+             
+
+              <div class="form-check form-check-inline container-fluid">
+                <!-- <input class="form-check-input" type="checkbox" id="train" value="train"> -->
+                <label class="form-check-label" for="train">Train</label>
+              
+
+              <label for="points">:</label>
+              <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0">
+              <br >
+            </div>
+              
+              <div class="form-check form-check-inline container-fluid">
+                <!-- <input class="form-check-input" type="checkbox" id="car" value="car" > -->
+                <label class="form-check-label" for="car">CAR/CAB</label>
+             
+
+                <label for="points">:</label>
+                <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0"> 
+              <br>
+            </div>
+
+              <div class="form-check form-check-inline container-fluid">
+                <!-- <input class="form-check-input" type="checkbox" id="motorbike" value="motorbike" > -->
+                <label class="form-check-label" for="motorbike">MotorBike</label>
+              
+
+                <label for="points">:</label>
+                <input  class="slider" type="range" id="points" name="points" min="0" max="10" value="0">
+              <br>
+            </div>
+
+              <div class="form-check form-check-inline container-fluid">
+                <!-- <input class="form-check-input" type="checkbox" id="bicycle" value="bicycle"> -->
+                <label class="form-check-label" for="bicycle">Bicycle</label>
+              
+
+              <label for="points">:</label>
+              <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0">
+              <br>
+            </div>
+
+              <div class="form-check form-check-inline container-fluid">
+                <!-- <input class="form-check-input" type="checkbox" id="walking" value="walking"> -->
+                <label class="form-check-label" for="walking">Walking</label>
+             
+
+              <label for="points">:</label>
+              <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0">  
+            </div>  
             
-              </div>			          		
-          </div>		
+            <h4>Enter Average Time Travelled</h4>
+            <div class="input-field">
+              <i class="fas fa-stopwatch"></i>
+              <input type="number" id="quantity" name="quantity" min="0" placeholder="in HRS"  required="required">
+            </div>            
+            <div class="input-field">
+              <i class="fas fa-stopwatch"></i>
+              <input type="number" id="quantity" name="quantity" min="0" placeholder="in MINS"  required="required">
+            </div>
+              
+              
+            </form>
+
+            <form id="form2">
+                <h3>WHAT'S YOUR DIET FOR TODAY? </h3>
+                <div class = "food-options">
+                  
+                  <div class="custom-control custom-radio meat">
+                    <input type="radio" class="custom-control-input" id="customRadio" name="example1">
+                    <label class="custom-control-label" for="customRadio">Lots of Meat</label>
+                    <img class="ramen" src="/static/img/meat.png" alt="ramen-img" style="width: 50px;">                      
+                  </div> 
+
+                  <div class="custom-control custom-radio low-meat">
+                    <input type="radio" class="custom-control-input" id="customRadio" name="example1">
+                    <label class="custom-control-label" for="customRadio">Low Meat </label> 
+                    <img class="ramen" src="/static/img/proteins.png" alt="ramen-img" style="width: 50px;">        
+                  </div>
+
+                  <div class="custom-control custom-radio fish">
+                    <input type="radio" class="custom-control-input" id="customRadio" name="example1">
+                    <label class="custom-control-label" for="customRadio">Pescatarian  </label>  
+                    <img class="ramen" src="/static/img/pescatarian.png" alt="ramen-img" style="width: 50px;">       
+                  </div>
+                  
+                  <div class="custom-control custom-radio veg">
+                    <input type="radio" class="custom-control-input" id="customRadio" name="example1">
+                    <label class="custom-control-label" for="customRadio">Vegetarian </label>  
+                    <img class="ramen" src="/static/img/salad.png" alt="ramen-img" style="width: 50px;">       
+                  </div>
+
+                  <div class="custom-control custom-radio vegan">
+                    <input type="radio" class="custom-control-input" id="customRadio" name="example1">
+                    <label class="custom-control-label" for="customRadio">Vegan  </label>
+                    <img class="ramen" src="/static/img/diet.png" alt="ramen-img" style="width: 50px;">         
+                  </div>
+                </div>
+                
+
+                <div class="btn-box"><button type="submit" id="next1">Submit</button></div>
+                
+              </div>
+          
+            </div>			          		
+        </div>	
        
 
 <!-- personalised goal environmental kit  card -->
