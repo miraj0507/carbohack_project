@@ -1,5 +1,6 @@
 /*===== GOOGLE FONTS =====*/
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+@import url("https://kit.fontawesome.com/64d58efce2.js");
 
 /*===== VARIABLES CSS =====*/
 :root{
@@ -748,7 +749,6 @@ form button{
 
 /* this is for the suggestion cards */
 
-
 /* * {
   margin: 0;
   padding: 0;
@@ -841,14 +841,26 @@ a:hover::after {
 }
 
 .card__title {
+  margin-top: 5px;
   grid-row: 3/4;
-  font-weight: 400;
+  font-weight: 380;
   color: #ffffff;
 }
 
+/* added the following li properties ~Oishee */
+ul li:before {    
+  font-family: 'FontAwesome';
+  content: '\f06c';
+  margin:0 5px 0 -15px;
+  color: #048654;
+}
+li:not(:last-child) {
+  margin-bottom: 10px;
+}
 .card__apply {
   grid-row: 4/5;
   align-self: center;
+  color: #fff;
 }
 
 .card-1 {
