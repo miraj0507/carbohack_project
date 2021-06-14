@@ -524,19 +524,20 @@ p{
   transition: all 300ms ease-in-out;
 }
 .modal-wrap {
+  color:teal;
   text-align: center;
   align-items: center;
   position: relative;
   display: block;
   width: 100%;
-  max-width: 400px;
+  max-width: 410px;
   margin: 0 auto;
   margin-top: 20px;
   margin-bottom: 20px;
   border-radius: 4px;
   overflow: hidden;
   padding-bottom: 20px;
-  background-color: #fff;
+  background-color: #ffeba7;
     -ms-flex-item-align: center;
     align-self: center;
     box-shadow: 0 12px 25px 0 rgba(199,175,189,.25);
@@ -545,9 +546,11 @@ p{
   transition: opacity 250ms 250ms ease, transform 300ms 250ms ease;
 }
 .modal-wrap img {
+  text-align: center;
+  align-items: center;
+  position: relative;
   display: block;
   width: 100%;
-  height: auto;
 }
 .modal-wrap p {
   padding: 20px 30px 0 30px;
@@ -622,7 +625,7 @@ p{
 }
 .food-options{
   text-align: left; 
-  margin: 10%;   
+  margin: 10% 10% 1% 10% ;   
 }
 .meat img{
   position: relative;
@@ -656,6 +659,87 @@ p{
   left: 40%;
   bottom: 100px;
 }
+
+
+.input-field i {
+  text-align: center;
+  line-height: 55px;
+  color: #acacac;
+  transition: 0.5s;
+  font-size: 1.1rem;
+}
+
+.input-field input::placeholder {
+  color: #aaa;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+.input-field input {
+  background: none;
+  outline: none;
+  border: none;
+  line-height: 1;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+}
+.input-field {
+  max-width: 180px;
+  width: 90%;
+  background-color: #f0f0f0;
+  margin: 10px auto;
+  height: 55px;
+  border-radius: 55px;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  padding: 0 0.4rem;
+  position: relative;
+}
+
+form button{
+  width:110px;
+  height: 40px;
+  border-color: #04AA6D ;
+  border-radius: 30px ;
+ background:linear-gradient(to right,#074C00 ,#42a341);
+ color: white;
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
