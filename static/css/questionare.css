@@ -37,12 +37,15 @@ h1,h2{
   color:white;
   font-family: "Poppins", sans-serif;
 }
+label{
+  font-family: "Poppins", sans-serif;
+}
 h4{
   color:teal;
   font-size: 25px;
   margin-top:30px;
   margin-bottom:30px;
-
+  font-family: "Poppins", sans-serif;
   margin-top: 20;
   text-align:center;
 }
@@ -50,7 +53,7 @@ h4{
 h5{
   color:white;
   font-size: 25px;
-
+  font-family: "Poppins", sans-serif;
 }
 
 .container form{
