@@ -64,7 +64,7 @@ class Database_Soumee():
 		if self.check_user_table(user_info):
 			sql_obj=self.db.execute("SELECT user.user_id FROM user WHERE email=:email", {"email":email}).fetchone()
 			#print(type(sql_obj))
-			if len(self.db.execute("SELECT * FROM user_input WHERE user_id = :id ", {"id":sql_obj[0]} ).fetchall())!=0:
+			if len(self.db.execute("SELECT * FROM user_input WHERE user_id = :id ", {"id":(sql_obj.items())[0][1]} ).fetchall())!=0:
 				print("uid exist")
 				return True
 		
