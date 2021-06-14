@@ -35,3 +35,43 @@ linkColor.forEach(l=> l.addEventListener('click', colorLink))
 
 
 
+$("#next1").click(function() {
+    var user_info={
+        bus:$('#bus-points').val(),
+        metro:$('#metro-points').val(),
+        train:$('#train-points').val(),
+        car:$('#car-points').val(),
+        bike:$('#bike-points').val(),
+        bicycle:$('#bicycle-points').val(),
+        walking:$('#walking-points').val(),
+        hour:$('#hour-quantity').val(),
+        minute:$('#min-quantity').val(),
+        food:$('input[name=example1]:checked', '#form2').val(),
+    };
+
+    console.log(user_info);
+    $.ajax({
+        type: "POST",
+        url: '/questionare_update',
+        data: JSON.stringify(user_info),
+        dataType: "json",
+        contentType: 'application/json',
+        success: function(response)
+        {
+            if (response.resp1 === 'Correct') {
+              if (response.resp2 === 'Registered'){
+                window.location.href = '/MyAccount';
+              }
+              else{
+                  alert(response.resp2);
+              }
+            }
+            else {
+                alert("No response from server");
+            }
+        },
+        error: function(){
+          alert("server side error");
+        }
+    });
+});

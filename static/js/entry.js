@@ -69,7 +69,7 @@ sign_in_btn.addEventListener("click", () => {
           success: function(response)
           {
               if (response.resp1 === 'Correct') {
-                console.log("done")
+                //console.log("done")
                 window.location.href = response.resp2; 
               }
               else {
