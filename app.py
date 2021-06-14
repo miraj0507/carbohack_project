@@ -232,7 +232,7 @@ def User_Profile():
     #    return redirect('/questionare')
 #    Details of the parameters taken in from the questionaire. Stored in the database. Graph is plotted. Things to be calculated according to formulae present here.
 #    https://docs.google.com/document/d/1qZepM5Bbe13qaWUCraEf1Hmmb-otN7MImFnaBgSw44w/edit?ts=60bf9810
-    return render_template('user.html', Fullname='Aunomitra Ghosh', State='West Bengal', EMAIL='aunomitra.ghosh1999@gmail.com')
+    return render_template('user.html', fullname='Aunomitra Ghosh', state='West Bengal', email='aunomitra.ghosh1999@gmail.com')
 
 
 if __name__ == '__main__':
