@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Questionaire</title>
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
@@ -14,26 +15,36 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
         
         <!-- internal CSS -->
-        <link rel="stylesheet" href="../static/css/questionare.css">
+        <link rel="stylesheet" href="/static/css/questionare.css">
 
-
+        <script
+        src="https://kit.fontawesome.com/64d58efce2.js"
+        crossorigin="anonymous"></script>
+    
     </head>
     <body>
+      <nav class="navbar navbar-light bg-nav">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <!-- <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top"> -->
+           <h5>CarboHack-Questionare</h5> 
+          </a>
+        </div>
+      </nav>
    
         <!-- Form 1  -->
         <div class="container">
            <div>
             <form id="form1" action="" >
-                <h3>What vehicle do you use most often?</h3>
+                <h3>HOW DO YOU TRAVEL MOST OFTEN?</h3>
                 <div class="form-check form-check-inline container-fluid">
                   <!-- <input class="form-check-input" type="checkbox" id="bus" value="bus"> -->
                   <label class="form-check-label" for="bus">Bus</label>
               
 
-                <label for="points">Percentage (between 0 and 10):</label>
-                <input class="slider" type="range" id="bus" name="bus" min="0" max="10" value="0">
-                <output for="range" class="output"></output>
-                <br>
+                 <label for="points">Percentage (between 0 and 10):</label>
+                 <input class="slider" type="range" id="step1-bus" name="points-bus" min="0" max="10" value="0" required="required">
+                 <output for="range" class="output"></output>
               </div>
 
                 <div class="form-check form-check-inline container-fluid">
@@ -42,7 +53,8 @@
                
 
                 <label for="points">Percentage (between 0 and 10):</label>
-                <input class="slider" type="range" id="metro" name="metro" min="0" max="10" value="0">
+                <input class="slider" type="range" id="step1-metro" name="points-metro" min="0" max="10" value="0">
+               
                 <br>
               </div>
                
@@ -53,7 +65,7 @@
                 
 
                 <label for="points">Percentage (between 0 and 10):</label>
-                <input class="slider" type="range" id="train" name="train" min="0" max="10" value="0">
+                <input class="slider" type="range" id="step1-train" name="points-train" min="0" max="10" value="0">
                 <br >
               </div>
                 
@@ -63,7 +75,7 @@
                
 
                   <label for="points">Percentage (between 0 and 10):</label>
-                  <input class="slider" type="range" id="car" name="car" min="0" max="10" value="0"> 
+                  <input class="slider" type="range" id="step1-car" name="points-car" min="0" max="10" value="0"> 
                 <br>
               </div>
 
@@ -73,7 +85,7 @@
                 
 
                   <label for="points">Percentage (between 0 and 10):</label>
-                  <input  class="slider" type="range" id="bike" name="bike" min="0" max="10" value="0">
+                  <input  class="slider" type="range" id="step1-bike" name="points-bike" min="0" max="10" value="0">
                 <br>
               </div>
 
@@ -83,7 +95,7 @@
                 
 
                 <label for="points">Percentage (between 0 and 10):</label>
-                <input class="slider" type="range" id="bicycle" name="bicycle" min="0" max="10" value="0">
+                <input class="slider" type="range" id="step1-bicycle" name="points-bicycle" min="0" max="10" value="0">
                 <br>
               </div>
 
@@ -93,17 +105,17 @@
                
 
                 <label for="points">Percentage (between 0 and 10):</label>
-                <input class="slider" type="range" id="walk" name="walk" min="0" max="10" value="0">  
+                <input class="slider" type="range" id="step1-walking" name="points-walking" min="0" max="10" value="0">  
               </div>  
               
-              <p>Enter Average Time Travelled</p>
+              <h4>Enter Average Time Travelled</h4>
               <div class="input-field">
-                <i class="fas fa-envelope"></i>
-                <input type="number" id="hrs" name="hrs" min="0" placeholder="in HRS">
+                <i class="fas fa-stopwatch"></i>
+                <input type="number" id="step1-hour" name="quantity" min="0" placeholder="in HRS"  required="required">
               </div>            
               <div class="input-field">
-                <i class="fas fa-envelope"></i>
-                <input type="number" id="min" name="min" min="0" placeholder="in MINS">
+                <i class="fas fa-stopwatch"></i>
+                <input type="number" id="step1-min" name="quantity" min="0" placeholder="in MINS"  required="required">
               </div>
                 
                 <div class="btn-box"><button type="button" id="next1">Next</button></div>
@@ -114,37 +126,37 @@
 
               <!-- Form 2     -->
               <form id="form2">
-                  <h3>ALL ABOUT FOOD </h3>
+                  <h3>SELECT THE DIET MEAL THAT YOU PREFER THE MOST </h3>
                   <div class = "food-options">
                     
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="meat" name="meat">
-                      <label class="custom-control-label" for="meat">Lots of Meat <br/> (more than 100g of meat everyday)</label>
-                      <img class="ramen" src="../img/meat.png" alt="ramen-img" width="100" height="100">                      
+                      <input type="radio" class="custom-control-input" id="step2-meat" name="example1-meat">
+                      <label class="custom-control-label" for="customRadio">Lots of Meat <br/> (more than 100g of meat everyday)</label>
+                      <img class="ramen" src="/static/img/meat.png" alt="ramen-img" width="100" height="100">                      
                     </div> 
 
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="lowmeat" name="lowmeat">
-                      <label class="custom-control-label" for="lowmeat">Low Meat <br/> (Meat every other day on average) </label> 
-                      <img class="ramen" src="proteins.png" alt="ramen-img" width="100" height="100">        
+                      <input type="radio" class="custom-control-input" id="step2-lowmeat" name="example1-lowmeat">
+                      <label class="custom-control-label" for="customRadio">Low Meat <br/> (Meat every other day on average) </label> 
+                      <img class="ramen" src="/static/img/proteins.png" alt="ramen-img" width="100" height="100">        
                     </div>
 
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="fish" name="fish">
-                      <label class="custom-control-label" for="fish">Pescatarian <br/> (A serving of fish/seafood every other day) </label>  
-                      <img class="ramen" src="pescatarian.png" alt="ramen-img" width="100" height="100">       
+                      <input type="radio" class="custom-control-input" id="step2-pescatarian" name="example1-pescatarian">
+                      <label class="custom-control-label" for="customRadio">Pescatarian <br/> (A serving of fish/seafood every other day) </label>  
+                      <img class="ramen" src="/static/img/pescatarian.png" alt="ramen-img" width="100" height="100">       
                     </div>
                     
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="veg" name="veg">
-                      <label class="custom-control-label" for="veg">Vegetarian <br/> (No meat, but eggs and dairy products eaten)</label>  
-                      <img class="ramen" src="salad.png" alt="ramen-img" width="100" height="100">       
+                      <input type="radio" class="custom-control-input" id="step2-vegetarian" name="example1-vegetarian">
+                      <label class="custom-control-label" for="customRadio">Vegetarian <br/> (No meat, but eggs and dairy products eaten)</label>  
+                      <img class="ramen" src="/static/img/salad.png" alt="ramen-img" width="100" height="100">       
                     </div>
 
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="vegan" name="vegan">
-                      <label class="custom-control-label" for="vegan">Vegan <br/> (NO meat, eggs, dairy or other animal products eaten) </label>
-                      <img class="ramen" src="diet.png" alt="ramen-img" width="100" height="100">         
+                      <input type="radio" class="custom-control-input" id="step2-vegan" name="example1-vegan">
+                      <label class="custom-control-label" for="customRadio">Vegan <br/> (NO meat, eggs, dairy or other animal products eaten) </label>
+                      <img class="ramen" src="/static/img/diet.png" alt="ramen-img" width="100" height="100">         
                     </div>
 
                   </div>
@@ -156,43 +168,43 @@
 
               <!-- Form 3 -->
               <form id="form3" >
-                <h3>ONE STEP AWAY FROM KNOWING YOUR CARBON FOOTPRINT.</h3>
-                <h4>What was your electricity consumption range value last month? </h4> 
-                <div class="slider-wrapper">
-                  <label class="slider-wrapper-label"  for="customRadio">  </label>
-                  <input id="bill" class="fluid-slider" type="range" value="0" min="0" max="15000"  required="required">
-                  <span id="money" class="range-label"></span>
-                </div>
-                <div class="box">
-                 <h1 >Value of your electricity bill in INR:</h1> 
-                  <h2 id="waoo">
-                  </h2>
-                </div>
-                <h1 id="waoo">
+                  <h3>ONE STEP AWAY FROM KNOWING YOUR CARBON FOOTPRINT.</h3>
+                  <h4>What was your electricity consumption range value last month? </h4> 
+                  <div class="slider-wrapper">
+                    <label class="slider-wrapper-label"  for="customRadio">  </label>
+                    <input id="range-slider" class="fluid-slider" type="range" value="0" min="0" max="15000"  required="required">
+                    <span id="range-label" class="range-label"></span>
+                  </div>
+                  <div class="box">
+                   <h1 >Value of your electricity bill in INR:</h1> 
+                    <h2 id="waoo">
+                    </h2>
+                  </div>
+                  <h1 id="waoo">
 
-                </h1>
+                  </h1>
 
-                <h4> How many members are there in your family?</h4>
-                <div class="input-field">
-                  <i class="fas fa-user"></i>
-                  <input type="number" id="members" name="members" min="0" placeholder="MEMBERS"  required="required">
-                </div>
-                <h4> Please mention your state </h4>
-                <div class="input-field">
-                  <i class="fas fa-thumbtack"></i>
-                  <input type="text" placeholder="Loaction-State" required="required" id = "state">
-                </div>
-                <h4> How many flights do you take yearly?</h4>
-                <div class="input-field">
-                  <i class="fas fa-plane"></i>
-                  <input type="number" id="flight" name="flight" min="0" placeholder="no-of-flights"  required="required">
-                </div>
-              
-                <div class="btn-box">
-                    <button type="button" id="back2">Back</button>
-                    <button type="submit">Submit</button>                      
-                </div>
-              </form>
+                  <h4> How many members are there in your family?</h4>
+                  <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="number" id="member-quantity" name="quantity" min="0" placeholder="MEMBERS"  required="required">
+                  </div>
+                  <h4> Please mention your state </h4>
+                  <div class="input-field">
+                    <i class="fas fa-thumbtack"></i>
+                    <input type="text" placeholder="Loaction-State" required="required" id="state">
+                  </div>
+                  <h4> How many flights do you take yearly?</h4>
+                  <div class="input-field">
+                    <i class="fas fa-plane"></i>
+                    <input type="number" id="flight" name="quantity" min="0" placeholder="no-of-flights"  required="required">
+                  </div>
+                
+                  <div class="btn-box">
+                      <button type="button" id="back2">Back</button>
+                      <button id="final-submit" type="submit">Submit</button>                      
+                  </div>
+                </form>
                 
 
                 <!-- Progress Bar -->
@@ -207,6 +219,10 @@
 
 
         </div>
+
+
+
+
 
         <script>
            
@@ -239,6 +255,28 @@
                form3.style.left="1510px";
                progress.style.width="66%";
            }
+
+
+
+           var rangeSlider = document.getElementById("range-slider");
+           var waoo = document.getElementById("waoo");
+
+var rangeLabel = document.getElementById("range-label");
+
+rangeSlider.addEventListener("input", showSliderValue);
+
+function showSliderValue() {
+  waoo.innerHTML = rangeSlider.value;
+  var labelPosition = (rangeSlider.value /rangeSlider.max);
+  
+  if(rangeSlider.value === rangeSlider.min) {
+ rangeLabel.style.left = ((labelPosition * 100) + 2) + "%";
+  } else if (rangeSlider.value === rangeSlider.max) {
+ rangeLabel.style.left = ((labelPosition * 100) - 2) + "%";
+  } else {
+  rangeLabel.style.left = (labelPosition * 100) + "%";
+  }
+}
             </script>
             
           
