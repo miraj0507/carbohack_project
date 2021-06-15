@@ -79,7 +79,7 @@ class Calculations():
 
         self.summ = self.avg
 
-        date = (datetime.datetime.now()).strftime("%d") - 1
+        date = int((datetime.datetime.now()).strftime("%d")) - 1
 
         self.x = (self.avg/30)*date
 
@@ -110,8 +110,8 @@ class Calculations():
     
     def calculate_month(self):
         creation_month, creation_year = (0,0) #db_S.example()
-        current_month = (datetime.datetime.now()).strftime("%m")
-        current_year =  (datetime.datetime.now()).strftime("%y")
+        current_month = int((datetime.datetime.now()).strftime("%m"))
+        current_year =  int((datetime.datetime.now()).strftime("%y"))
         month_spend = 0
 
         if current_year == creation_year:
@@ -123,7 +123,7 @@ class Calculations():
 
 
     def first_of_every_month(self):
-        month = self.calculate_month()
+        month = 0 #self.calculate_month()
 
         self.summ += self.x
 
