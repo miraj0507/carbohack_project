@@ -47,7 +47,7 @@ class Database_Soumee():
 		email= user_info["email"]
 		password= user_info["password"]
 
-		if len(self.db.execute("SELECT email, passwords FROM users WHERE email= :email AND password= :password ",
+		if len(self.db.execute("SELECT email, passwords FROM users WHERE email= :email AND passwords= :password ",
 						{"email":email, "password":password}).fetchall())== 0:
 			print("User doesnt exist")
 			return False
