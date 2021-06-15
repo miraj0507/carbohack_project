@@ -3,7 +3,7 @@
 --body-font: 'Poppins', sans-serif;
 }
 body {
-  background: url("/static/img/image5.jpg") no-repeat center center;
+  background: url("/static/img/image6.jpg") no-repeat center center;
   background-size: 1600px 700px;
   background-position: 50% 70%;
   background-attachment: fixed;
@@ -16,7 +16,7 @@ body {
   position: absolute center;
   text-align: center;
   padding-left: 0%;
-  color: #000;
+  color: #fff;
   margin-top: 43px;
 }
 
@@ -25,7 +25,7 @@ body {
   font-size: 21px;
   text-align: center;
   margin-top: 12px;
-  color: #000;
+  color: #fff;
 }
 
 .image {
