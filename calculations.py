@@ -7,7 +7,7 @@ from databse import Database_Soumee
 
 class Calculations():
 
-    def __init__():
+    def __init__(self):
         pass
 
 
