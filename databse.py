@@ -29,6 +29,7 @@ class Database_Soumee():
 	    # Pushing user data to database in the user table
 	    # Checking if no other user exists with the same passwords and stuff
 	    # And yet again displaying the entry.html file so that user can enter his credentials to login to his account
+		#self.db.execute("SELECT password FROM user WHERE password= :password ",{"password":password}).fetchall())== 0 and
 		if len(self.db.execute("SELECT password FROM user WHERE password= :password ",{"password":password}).fetchall())== 0 and len(self.db.execute("SELECT email FROM user WHERE email =:email ", {"email":email}).fetchall())== 0:
 			print("there is no password")
 			print("there is no email")
