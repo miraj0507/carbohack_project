@@ -7,13 +7,13 @@ from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from authlib.integrations.flask_client import OAuth
-
+import datetime
 
 import os, sys
 sys.path.append(".")
 from oauth_user import Google, Facebook, Linkedin, Twitter
 from databse import Database_Soumee
-
+from calculations import Calculations
 
 app = Flask(__name__)
 app.secret_key = 'random key'
@@ -31,6 +31,7 @@ Session(app)
 #db = scoped_session(sessionmaker(bind=engine))
 
 db_S = Database_Soumee()
+calc_S = Calculations()
 
 
 #*********************************************** OUTSIDER VIEW /START ***************************************************************
@@ -67,8 +68,9 @@ def signup_google():
 def auth_google():
     user_info = gg.send_user_info()
     print(user_info)
+    session['user']=user_info
     #Use the user_info
-    return redirect('/entry')
+    return redirect('/MyAccount')
 
 # /END
 # *************************************************************************
@@ -87,8 +89,9 @@ def signup_facebook():
 def auth_facebook():
     user_info = ff.send_user_info()
     print(user_info)
+    session['user']=user_info
     #Use the user_info
-    return redirect('/entry')
+    return redirect('/MyAccount')
 
 # /END
 #***************************************************************************
@@ -106,8 +109,9 @@ def signup_linkedin():
 def auth_linkedin():
     user_info = ll.send_user_info()
     print(user_info)
+    session['user']=user_info
     #use the user_info
-    return redirect('/entry')
+    return redirect('/MyAccount')
     
 # /END
 #***************************************************************************
@@ -125,8 +129,9 @@ def signup_twitter():
 def auth_twitter():
     user_info = tt.send_user_info()
     print(user_info)
+    session['user']=user_info
     #use the user_info
-    return redirect('/entry')
+    return redirect('/MyAccount')
 
 
 # /END
@@ -157,7 +162,7 @@ def processing_signin():
         else:
             return jsonify(resp1="Correct", resp2="/questionare")
     print(user_info)
-    return jsonify(resp1="Incorrect", resp2='You are not in database, Please Sign Up First')
+    return jsonify(resp1="Incorrect", resp2='Invalid Credentials')
 
 # /END
 #**************************************************************************
@@ -170,7 +175,7 @@ def processing_signin():
 #************************************************** INSIDER VIEW /START**************************************************************
 
 
-#QUESTIONARE FILLING /START
+#QUESTIONARE FILLING /START *********************
 @app.route('/questionare')
 def questionare():
     if not ('user' in session):
@@ -188,6 +193,13 @@ def questionare_filling():
 
     user_info = request.json
     db_S_respond='Registered'#db_S.example(user_info)
+    
+    calc_S.food_f()
+    calc_S.travel_f()
+    calc_S.elec_f()
+    
+    calc_S.initial_set_up()
+    #put output values in output_table
     return jsonify(resp1='Correct', resp2=db_S_respond)
 
 @app.route("/questionare_update", methods=['POST'])
@@ -198,8 +210,33 @@ def questionare_update():
     user_info = request.json
     print(user_info)
     db_S_respond='Registered'#db_S.example(user_info)
+    latest_date=db_S.latestDate(session['user'])
+    today_date = str(datetime.datetime.date(datetime.datetime.now()))
+    if today_date == latest_date:
+        calc_S.x = 0 #total co2 from databse
+        
+        calc_S.elec = 0 #elec from database
+        calc_S.food = 0 #food
+        calc_S.travel = 0 #travel
+        
+        calc_S.delete_data()
+    
+    calc_S.x = 0
+    calc_S.avg = 0
+    calc_S.goal = 0
+    calc_S.r = 0
+
+    calc_S.food_f()
+    calc_S.travel_f()
+    calc_S.elec_f()
+    
+    calc_S.entry_every_day()
+
+    
+    #put output values in output_table
     return jsonify(resp1='Correct', resp2=db_S_respond)
-#QUESTIONARE FILLING /END
+
+#QUESTIONARE FILLING /END******************************
 
 
 #@app.route("/")
