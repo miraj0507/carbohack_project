@@ -67,7 +67,7 @@ class Calculations():
             self.food = 7.19
 
     def elec_f(self):
-        spend, no_of_people = (0,0) # db_S.example
+        spend, no_of_people = (0,1) # db_S.example
         spend = spend/no_of_people
         self.elec = spend*0.42/(30*6)
 
