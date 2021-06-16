@@ -170,6 +170,13 @@ def processing_signin():
             return jsonify({'resp': "Correct", 'resp2':"/questionare"})
     print(user_info)
     return jsonify({'resp':"Incorrect", 'resp2':'Invalid Credentials'})
+'''
+    user_info = request.json
+    #user_info['email'] = request.form['email']
+    #user_info['password'] = request.form['password']
+    print(user_info)
+    return jsonify(resp1="Correct", resp2='Invalid Credentials')
+'''
 
 # /END
 #**************************************************************************
@@ -251,8 +258,8 @@ def questionare_update():
 # User's account page. Left to be done
 @app.route('/MyAccount')
 def My_Account():
-    if not ('user' in session):
-        return redirect('/')
+    #if not ('user' in session):
+    #   return redirect('/')
     
     if not db_S.check_user_input_table(session['user']):
         return redirect('/questionare')
