@@ -495,7 +495,7 @@ p{
    border: 0;
   }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
     .custom-radio{
         color:teal;
         font-size: 12px;
