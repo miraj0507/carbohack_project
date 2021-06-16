@@ -12,10 +12,13 @@
         <!-- ===== BOX ICONS ===== -->
         <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 
-         
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js" integrity="sha256-qoN08nWXsFH+S9CtIq99e5yzYHioRHtNB9t2qy1MSmc=" crossorigin="anonymous"></script>
 
         <!-- ===== CSS ===== -->
         <link rel="stylesheet" href="/static/css/dashboard.css">
+
+
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 
         <title>carbohack-homepage</title>
     </head>
@@ -133,6 +136,7 @@
         <div class="modal">		
             <div class="modal-wrap">	
               
+
               <form id="form1" >
                 <h3>HOW DID YOU TRAVEL TODAY ?</h3>
                 <p>Percentage (between 0 and 10):</p>
@@ -284,7 +288,10 @@
       <div class="content">
   
         <h3>Goal Card</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, totam velit? Iure nemo labore inventore?</p>
+        <p>Here's your personalized goal percentage </p>
+        <div class="wrapper">
+          <div class="container-goal chart" data-size="130" data-value="69" data-arrow="down"></div>
+        </div>
         <a href="#">NEXT STEPS</a>
       </div>
     </div>
@@ -552,6 +559,165 @@ GRADIENT BANNER DESIGN BY miraj:
 
 
 
+
+
+
+          <!-- <div class="wrapper">
+            <canvas id='c'></canvas>
+            <div class="label">YEAR</div>
+          </div> -->
+          
+
+<!-- this is the graph  -->
+
+
+
+
+<div class="full">
+  <h1 class="main-title">
+      <span class="span1">Carbon Emission Statistics I:</span>
+      <span class="span2">Percentage growth in India </span>
+   
+  </h1>
+  <div class="container-graph">
+      <div class="bars">
+          
+          <div class="persp5">
+              <figure class="face top"></figure>
+              <figure class="face front"></figure>
+              <figure class="face left"></figure>
+              <figure class="face right"></figure>
+              <figure class="face back"></figure>
+              <div class="face data-y">5.7</div>
+              <div class="face data-x"></div>
+              
+          </div>
+          
+          <div class="persp4">
+              <figure class="face top"></figure>
+              <figure class="face front"></figure>
+              <figure class="face left"></figure>
+              <figure class="face right"></figure>
+              <figure class="face back"></figure>
+              <div class="face data-y">9.6</div>
+              <div class="face data-x"></div>
+              
+          </div>
+          
+          <div class="persp3">
+              <figure class="face top"></figure>
+              <figure class="face front"></figure>
+              <figure class="face left"></figure>
+              <figure class="face right"></figure>
+              <figure class="face back"></figure>
+              <div class="face data-y">15.6</div>
+              <div class="face data-x"></div>
+              
+          </div>
+      
+          <div class="persp2">
+              <figure class="face top"></figure>
+              <figure class="face front"></figure>
+              <figure class="face left"></figure>
+              <figure class="face right"></figure>
+              <figure class="face back"></figure>
+              <div class="face data-y">26.8</div>
+              <div class="face data-x"></div>
+          </div>
+          
+          <div class="persp1">
+              <figure class="face top"></figure>
+              <figure class="face front"></figure>
+              <figure class="face left"></figure>
+              <figure class="face right"></figure>
+              <figure class="face back"></figure>
+              <div class="face data-y">38.5</div>
+              <div class="face data-x"></div>
+          </div>
+      </div>
+      
+      <div class="base"></div>
+   </div>
+  <div class="subtitle">
+              <ul class="list-social">
+                  <li class="fb">2020</li>
+                  <li class="twt">2015</li>
+                  <li class="gp">2010</li>
+                  <li class="lkd">2005</li>
+                  <li class="pin">2000</li>
+              </ul>
+     </div>
+
+
+</div>
+
+
+
+<!-- graph: -->
+
+<div class="line-chart">
+
+  <div class="aspect-ratio">
+    
+    <canvas id="chart"></canvas>
+  </div>
+  <h1 class="heading">Your Carbon Footprint Tracked in a Graph </h1>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+did you know -->
+
+<div class="did-u-know">
+  <h1 class="heading">Did You Know??</h1>
+  <section class="hero-section">
+    <div class="card-grid">
+      <a class="card" href="#">
+        <div class="card__background" style="background-image: url(/static/img/pexels-lukas-rodriguez-7922315.jpg)"></div>
+        <div class="card__content">
+          <p class="card__category">Category</p>
+          <h3 class="card__heading">Example Card Heading</h3>
+        </div>
+      </a>
+      <a class="card" href="#">
+        <div class="card__background" style="background-image: url(/static/img/pexels-alphatradezone-5831264.jpg)"></div>
+        <div class="card__content">
+          <p class="card__category">Category</p>
+          <h3 class="card__heading">Example Card Heading</h3>
+        </div>
+      </a>
+      <a class="card" href="#">
+        <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1556680262-9990363a3e6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
+        <div class="card__content">
+          <p class="card__category">Category</p>
+          <h3 class="card__heading">Example Card Heading</h3>
+        </div>
+      </li>
+    </a>
+    <a class="card" href="#">
+      <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
+      <div class="card__content">
+        <p class="card__category">Category</p>
+        <h3 class="card__heading">Example Card Heading</h3>
+      </div>
+    </a>
+    <div>
+  </section>
+</div>
 
 
 
