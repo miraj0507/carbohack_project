@@ -68,13 +68,7 @@ sign_in_btn.addEventListener("click", () => {
           contentType: 'application/json',
           success: function(response)
           {
-              if (response.resp1 === 'Correct') {
-                //console.log("done")
-                window.location.href = response.resp2; 
-              }
-              else {
-                  alert(response.resp2);
-              }
+              window.location.replace("/MyAccount")
           },
           error: function(){
             alert("server side error");

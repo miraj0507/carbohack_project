@@ -30,10 +30,10 @@ class Database_Soumee():
 	    # Checking if no other user exists with the same passwords and stuff
 	    # And yet again displaying the entry.html file so that user can enter his credentials to login to his account
 		#self.db.execute("SELECT password FROM user WHERE password= :password ",{"password":password}).fetchall())== 0 and
-		if len(self.db.execute("SELECT password FROM user WHERE password= :password ",{"password":password}).fetchall())== 0 and len(self.db.execute("SELECT email FROM user WHERE email =:email ", {"email":email}).fetchall())== 0:
+		if len(self.db.execute("SELECT passwords FROM users WHERE passwords= :password ",{"password":password}).fetchall())== 0 and len(self.db.execute("SELECT email FROM users WHERE emails =:email ", {"email":email}).fetchall())== 0:
 			print("there is no password")
 			print("there is no email")
-			self.db.execute("INSERT INTO user(User_id, full_name, email, password, location_state) VALUES(seq_user.nextval,:full_name, :email, :password, :location_state)",
+			self.db.execute("INSERT INTO users(uid, full_name, email, passwords, location_state) VALUES(seq_user.nextval,:full_name, :email, :password, :location_state)",
 			               { "full_name":full_name, "email":email, "password":password, "location_state": location_state})
 
 			self.db.commit()
@@ -47,7 +47,7 @@ class Database_Soumee():
 		email= user_info["email"]
 		password= user_info["password"]
 
-		if len(self.db.execute("SELECT email, password FROM user WHERE email= :email AND password= :password ",
+		if len(self.db.execute("SELECT email, passwords FROM users WHERE email= :email AND passwords= :password ",
 						{"email":email, "password":password}).fetchall())== 0:
 			print("User doesnt exist")
 			return False
@@ -63,9 +63,9 @@ class Database_Soumee():
 		password= user_info["password"]
 
 		if self.check_user_table(user_info):
-			sql_obj=self.db.execute("SELECT user.user_id FROM user WHERE email=:email", {"email":email}).fetchone()
+			sql_obj=self.db.execute("SELECT users.uid FROM users WHERE email=:email", {"email":email}).fetchone()
 			#print(type(sql_obj))
-			if len(self.db.execute("SELECT * FROM user_input WHERE user_id = :id ", {"id":(sql_obj.items())[0][1]} ).fetchall())!=0:
+			if len(self.db.execute("SELECT * FROM user_input WHERE uid = :id ", {"id":(sql_obj.items())[0][1]} ).fetchall())!=0:
 				print("uid exist")
 				return True
 		
