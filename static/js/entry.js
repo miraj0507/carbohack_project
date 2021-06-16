@@ -16,7 +16,7 @@ $(document).ready(function() {
     container.classList.add("sign-up-mode");
     }
 
-  /*$('#signup').click(function(e) {
+  $('#signup').click(function(e) {
     var user_info = {
               firstname: $("#firstname").val(),
               lastname: $("#lastname").val(),
@@ -48,7 +48,7 @@ $(document).ready(function() {
             else {
               alert("Server did not respond");
             }
-          },
+          },*/
           error: function(){
             alert("server side error");
           }
@@ -62,17 +62,14 @@ $(document).ready(function() {
   });
 
   $('#signin').click(function(e) {
-    /*var user_signin={
+    var user_signin={
               email: $("#email-signin").val(),
               password: $("#password-signin").val(),
           }
       $.ajax({
           type: "POST",
           url: '/processing_signin',
-          data: {
-              email: $("#email-signin").val(),
-              password: $("#password-signin").val(),
-          },
+          data: user_signin,
           //data: JSON.stringify(user_signin),
           //dataType: "json",
           //contentType: 'application/json',
@@ -85,7 +82,7 @@ $(document).ready(function() {
               else {
                   alert(response.resp2);
               }
-          },
+          },*/
           error: function(){
             alert("server side error");
           }
@@ -99,14 +96,10 @@ $(document).ready(function() {
 
   
 
-});*/
+});
+  
 
-
-  //if ((window.location.href).includes("signup")){
-  //container.classList.add("sign-up-mode");
-  //}
-
-  $('#signup').click(function() {
+ /*$('#signup').click(function() {
     var user_info = {
               firstname: $("#firstname").val(),
               lastname: $("#lastname").val(),
@@ -122,7 +115,7 @@ $(document).ready(function() {
           data: JSON.stringify(user_info),
           dataType: "json",
           contentType: 'application/json',
-          /*success: function(response) {
+          success: function(response) {
             if (response.resp1 === 'Correct') {
               if (response.resp2 === 'Registered'){
                 alert('Great!!! You are signed up .... Please sign in to access your account. ');
@@ -137,17 +130,11 @@ $(document).ready(function() {
             else {
               alert("Server did not respond");
             }
-          },*/
+          },
           error: function(){
             alert("server side error");
           }
-      })
-    .done(function(data) {
-        if (data.resp === "Correct"){
-        alert('Great!!! You are signed up .... Please sign in to access your account. ');
-        container.classList.remove("sign-up-mode");}
-      });
-       e.preventDefault();   
+      });   
 
   });
 
@@ -164,7 +151,7 @@ $(document).ready(function() {
           data: JSON.stringify(user_signin),
           dataType: "json",
           contentType: 'application/json',
-          /*success: function(response)
+          success: function(response)
           {
               if (response.resp1 === 'Correct') {
                 //console.log("done")
@@ -173,17 +160,12 @@ $(document).ready(function() {
               else {
                   alert(response.resp2);
               }
-          },*/
+          },
           error: function(){
             alert("server side error");
           }
-      })
-    .done(function(data) {
-        if (data.resp === "Correct"){
-        window.location = '/MyAccount';}
       });
-       e.preventDefault();
 
   });
-});
+*/
   
