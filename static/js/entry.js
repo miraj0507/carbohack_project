@@ -16,7 +16,7 @@ $(document).ready(function() {
     container.classList.add("sign-up-mode");
     }
 
-  $('#signup').click(function(e) {
+  /*$('#signup').click(function(e) {
     var user_info = {
               firstname: $("#firstname").val(),
               lastname: $("#lastname").val(),
@@ -48,7 +48,7 @@ $(document).ready(function() {
             else {
               alert("Server did not respond");
             }
-          },*/
+          },
           error: function(){
             alert("server side error");
           }
@@ -65,7 +65,7 @@ $(document).ready(function() {
     /*var user_signin={
               email: $("#email-signin").val(),
               password: $("#password-signin").val(),
-          }*/
+          }
       $.ajax({
           type: "POST",
           url: '/processing_signin',
@@ -85,7 +85,7 @@ $(document).ready(function() {
               else {
                   alert(response.resp2);
               }
-          },*/
+          },
           error: function(){
             alert("server side error");
           }
@@ -99,10 +99,10 @@ $(document).ready(function() {
 
   
 
-});
+});*/
 
 
- /* if ((window.location.href).includes("signup")){
+  if ((window.location.href).includes("signup")){
   container.classList.add("sign-up-mode");
   }
 
@@ -174,5 +174,5 @@ $(document).ready(function() {
       });
 
   });
-*/
+});
   
