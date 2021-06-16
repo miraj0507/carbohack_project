@@ -1,410 +1,248 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
-*{
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Questionaire</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link rel="icon" href="leaf.png">
 
-body{
-    background:#1D2521;
-   
-    background-repeat: repeat;
-    background-position: center;
-}
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+        
+        <!-- internal CSS -->
+        <link rel="stylesheet" href="/static/css/questionare.css">
 
-
-.container{
-    width: 65%;
-    height: 1450px;
-    margin: 8% auto;
-    padding-left: 0px;
-    padding-right: 0px;
-    background: white;
-    border-radius: 5px;
-    position: relative;
-    overflow: hidden;
-}
-
-h3{
-    text-align: center;
-    margin-top: 80px;
-    margin-bottom: 40px;
-    color: #5d0623;
-    font-size: 35px;
-    font-family: "Poppins", sans-serif;
-}
-h1,h2{
-  color:white;
-  font-family: "Poppins", sans-serif;
-}
-h4{
-  color:teal;
-  font-size: 25px;
-  margin-top:30px;
-  margin-bottom:30px;
-
-  margin-top: 20;
-  text-align:center;
-}
-
-h5{
-  color:white;
-  font-size: 25px;
-
-}
-
-.container form{
-    width: 100%;
-    position: absolute;
-    margin:  auto; 
-    transition: 0.5s;
-}
-.form-check {
-    padding: 1%;
-    margin: 10px  40px 30px 10px;
-    font-family: "Poppins", sans-serif;
-    font-size: 20px;
-    font-style: bold;
-    color:teal;
-}
-::placeholder{
-    color: #777;
-}
-.btn-box{
-    width: 100%;
-    margin: 20px auto;
-    text-align: center;
-    text-emphasis-color: white;
-    font-family: "Poppins", sans-serif;
-
-}
-form button{
-    width:110px;
-    height: 40px;
-    border-color: #04AA6D ;
-    border-radius: 30px ;
-   background:linear-gradient(to right,#074C00 ,#42a341);
-   color: white;
-     
-}
-#form2{
-    left: 1500px;
-}
-#form3{
-    left: 1500px;
-}
-.step-row{
-    width: 100%;
-    height: 50px;
-    margin: 0 ;
-    display:flex;
-    align-items: center;
-    box-shadow:0 -1px 5px #000;
-    position:relative;
-}
-.step-col{
-    color: white;
-    width:33%;
-    text-align: center;    
-    position:relative;
-    font-family: "Poppins", sans-serif;
-}
-#progress{
-    position:absolute;
-    height: 100%;
-    width: 33%;
-    background:linear-gradient(to right,#074C00 ,#42a341);
-    transition:1s;
-
-
-}
-#progress::after{
-    content:'';
-    height: 0;
-    width: 0;
-    border-top: 25px solid transparent;
-    border-bottom: 25px solid transparent;
-    position: absolute;
-    right: -40px;
-    top:0;
-  
-    border-left: 40px solid #42a341;
-}
-.slider {
-    -webkit-appearance: none;
-    width: 90%;
-    height: 10px;
-    border-radius: 5px;
-    background: #d3d3d3;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-  }
-
-.slider:hover {
-opacity: 1;
-}
-
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%; 
-    background: #074C00;
-    cursor: pointer;
-  }
-  
-.slider::-moz-range-thumb {
-    width: 23px;
-    height: 25px;
-    border-radius: 50%; 
-    background: #074C00;
-    cursor: pointer;
-}
-.input-field i {
-    text-align: center;
-    line-height: 55px;
-    color: #acacac;
-    transition: 0.5s;
-    font-size: 1.1rem;
-  }
-
-.input-field input::placeholder {
-    color: #aaa;
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-  }
-  .input-field input {
-    background: none;
-    outline: none;
-    border: none;
-    line-height: 1;
-    font-weight: 600;
-    font-size: 1.1rem;
-    color: #333;
-  }
-  .input-field {
-    max-width: 180px;
-    width: 90%;
-    background-color: #f0f0f0;
-    margin: 10px auto;
-    height: 55px;
-    border-radius: 55px;
-    display: grid;
-    grid-template-columns: 15% 85%;
-    padding: 0 0.4rem;
-    position: relative;
-  }
-p{
-    text-align: center;
-    font-family: "Poppins", sans-serif;
-}
-
-.food-options{
-  padding: 10px 60px 0px 150px;
-}
-/* .custom-control{
-  padding: 40px;
-} */
-.custom-control-label{
-  position: relative;
-  top: 10px;
-  padding-left: 10px;
-  font-family: "Poppins", sans-serif;
-  padding-bottom: 40px;
-}
-.ramen{
-  padding: 10px;
-}
-.custom-control-input{
-  size: 150px;
-}
-.custom-radio{
-    color:teal;
-    font-size: 20px;
-    margin: auto;
-}
-.customRadio
-{
-    color:teal;
-    width:20px;
-    height:20px;
-}
-@media only screen and (max-width: 700px) {
-    .custom-radio{
-        color:teal;
-        font-size: 15px;
-        margin: auto;
-    }
-    .food-options{
-        padding: 10px 40px 0px 90px;
-      }
-      /* .custom-control{
-        padding: 40px;
-      } */
-      h3{
-        text-align: center;
-        margin-top: 80px;
-        color: #5d0623;
-        font-size: 25px;
-        font-family: "Poppins", sans-serif;
-    }
-    .form-check {
-        padding: 1%;
-        margin: 10px  40px 30px 10px;
-        font-family: "Poppins", sans-serif;
-        font-size: 15px;
-        color:teal;
-        font-style: bold;
-    }
-  }
-  .box{
-    margin: auto;
-    padding: 40px;
-    text-align:center;
-    border-style: solid;
-    background:linear-gradient(to right,#074C00 ,#42a341);
-
-
-  }
-.bg-nav{
-  background:linear-gradient(to right,#074C00 ,#42a341);
-
-}
-.navbar-brand{
-  text-emphasis-color:white;
-}
-
-
-.slider-wrapper{
-  margin:  auto;
-  padding: 10px 40px 10px 100px;
-}
-
-
-
-  .fluid-slider {
-    -webkit-appearance: none;
-    width: 90%;
-    height: 30px;
-    background: #045f18;
-    border-radius: 2px;
-    margin: 0;
-    position: relative;
-  }
-  
-  .fluid-slider::-webkit-slider-thumb {
-   -webkit-appearance: none;
-   appearance: none;
-   border-radius: 0;
-   width: 20px;
-   height: 20px;
-   border-radius: 50%;
-   cursor: pointer;
-   background: #fff;
-   opacity: 0.65;
-   border: 4px solid #0c6218;
-   position: relative;
-   transition: all ease-in-out 0.05s;
-  }
-  
-  .fluid-slider::-moz-range-thumb {
-   -moz-appearance: none;
-   appearance: none;
-   border-radius: 0;
-   width: 18px;
-   height: 18px;
-   border-radius: 50%;
-   cursor: pointer;
-   background: #fff;
-   opacity: 0.65;
-   border: 4px solid #076b3c;
-   position: relative;
-   transition: all ease-in-out 0.05s;
-  }
-  
-  .fluid-slider:focus { outline: none; }
-  .fluid-slider:active::-webkit-slider-thumb {
-   background: transparent;
-  }
-  
-  .fluid-slider:active::-moz-range-thumb {
-   background: transparent;
-  }
-  
-  .fluid-slider:active + .range-label {
-    visibility: visible;
-    opacity: 1;
-    top: -75px;
-  }
-  
-  .fluid-slider:before, .fluid-slider::after {
-    position: absolute;
-    content: '';
-    width: 60px;
-    padding: 0.5em;
-    background: #d0d0d0;
-    top: 50%;
-    transform: translateY(-50%);
-    box-sizing: border-box;
-    text-align: center;
-    font-weight: bold;
-    border-radius: 2px;
-  }
-  
-  .fluid-slider:before {
-    left: -50px;
-    content: attr(min);
-  }
-  
-  .fluid-slider:after {
-    right: -50px;
-    content: attr(max);
-  }
-  
-  .range-label {
-    position: relative;
-    display: block;
-    width: 40px;
-    height: 40px;
-    top: -65px;
+        <script
+        src="https://kit.fontawesome.com/64d58efce2.js"
+        crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
-    opacity: 0;
-    background: #fff;
-    border-radius: 50%;
-    line-height: 30px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 0.8em;
-    transform: translateX(-50%);
-    box-sizing: border-box;
-    border: 6px solid #c20042;
-    left: attr(value)20;
-    transition: all ease-in .05s;
-    z-index: -1;
+    </head>
+    <body>
+      <!--------------Preloader----------------->
+      <div class="preloader">
+        <canvas id='canvas'></canvas>
+          <div class="wrapper">
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="shadow"></div>
+              <div class="shadow"></div>
+              <div class="shadow"></div>
+              <span>Loading</span>
+          </div>
+      </div>
+  <!---------------------------------------->
+      <nav class="navbar navbar-light bg-nav">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <!-- <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top"> -->
+           <h5>CarboHack-Questionare</h5> 
+          </a>
+        </div>
+      </nav>
+   
+        <!-- Form 1  -->
+        <div class="container">
+           <div>
+            <form id="form1" action="" >
+                <h3>HOW DO YOU TRAVEL MOST OFTEN?</h3>
+                <div class="form-check form-check-inline container-fluid">
+                  <!-- <input class="form-check-input" type="checkbox" id="bus" value="bus"> -->
+                  <label class="form-check-label" for="bus">Bus</label>
+              
+
+                 <label for="points">Percentage (between 0 and 10):</label>
+                 <input class="slider" type="range" id="step1-bus" name="points-bus" min="0" max="10" value="0" required="required">
+                 <output for="range" class="output"></output>
+              </div>
+
+                <div class="form-check form-check-inline container-fluid">
+                  <!-- <input class="form-check-input" type="checkbox" id="metro" value="metro"> -->
+                  <label class="form-check-label" for="metro">Metro</label>
+               
+
+                <label for="points">Percentage (between 0 and 10):</label>
+                <input class="slider" type="range" id="step1-metro" name="points-metro" min="0" max="10" value="0">
+               
+                <br>
+              </div>
+               
+
+                <div class="form-check form-check-inline container-fluid">
+                  <!-- <input class="form-check-input" type="checkbox" id="train" value="train"> -->
+                  <label class="form-check-label" for="train">Train</label>
+                
+
+                <label for="points">Percentage (between 0 and 10):</label>
+                <input class="slider" type="range" id="step1-train" name="points-train" min="0" max="10" value="0">
+                <br >
+              </div>
+                
+                <div class="form-check form-check-inline container-fluid">
+                  <!-- <input class="form-check-input" type="checkbox" id="car" value="car" > -->
+                  <label class="form-check-label" for="car">CAR/CAB</label>
+               
+
+                  <label for="points">Percentage (between 0 and 10):</label>
+                  <input class="slider" type="range" id="step1-car" name="points-car" min="0" max="10" value="0"> 
+                <br>
+              </div>
+
+                <div class="form-check form-check-inline container-fluid">
+                  <!-- <input class="form-check-input" type="checkbox" id="motorbike" value="motorbike" > -->
+                  <label class="form-check-label" for="motorbike">MotorBike</label>
+                
+
+                  <label for="points">Percentage (between 0 and 10):</label>
+                  <input  class="slider" type="range" id="step1-bike" name="points-bike" min="0" max="10" value="0">
+                <br>
+              </div>
+
+                <div class="form-check form-check-inline container-fluid">
+                  <!-- <input class="form-check-input" type="checkbox" id="bicycle" value="bicycle"> -->
+                  <label class="form-check-label" for="bicycle">Bicycle</label>
+                
+
+                <label for="points">Percentage (between 0 and 10):</label>
+                <input class="slider" type="range" id="step1-bicycle" name="points-bicycle" min="0" max="10" value="0">
+                <br>
+              </div>
+
+                <div class="form-check form-check-inline container-fluid">
+                  <!-- <input class="form-check-input" type="checkbox" id="walking" value="walking"> -->
+                  <label class="form-check-label" for="walking">Walking</label>
+               
+
+                <label for="points">Percentage (between 0 and 10):</label>
+                <input class="slider" type="range" id="step1-walking" name="points-walking" min="0" max="10" value="0">  
+              </div>  
+              
+              <h4>Enter Average Time Travelled</h4>
+              <div class="input-field">
+                <i class="fas fa-stopwatch"></i>
+                <input type="number" id="step1-hour" name="quantity" min="0" placeholder="in HRS"  required="required">
+              </div>            
+              <div class="input-field">
+                <i class="fas fa-stopwatch"></i>
+                <input type="number" id="step1-min" name="quantity" min="0" placeholder="in MINS"  required="required">
+              </div>
+                
+                <div class="btn-box"><button type="button" id="next1">Next</button></div>
+              </form>
+
+              
+            </div>
+
+              <!-- Form 2     -->
+              <form id="form2">
+                  <h3>SELECT THE DIET MEAL THAT YOU PREFER THE MOST </h3>
+                  <div class = "food-options">
+                    
+                    <div class="custom-control custom-radio">
+                      <input type="radio" class="custom-control-input" id="step2-meat" name="example1" value='lots of meat'>
+                      <label class="custom-control-label" for="customRadio">Lots of Meat <br/> (more than 100g of meat everyday)</label>
+                      <img class="ramen" src="/static/img/meat.png" alt="ramen-img" width="100" height="100">                      
+                    </div> 
+
+                    <div class="custom-control custom-radio">
+                      <input type="radio" class="custom-control-input" id="step2-lowmeat" name="example1" value='low meat'>
+                      <label class="custom-control-label" for="customRadio">Low Meat <br/> (Meat every other day on average) </label> 
+                      <img class="ramen" src="/static/img/proteins.png" alt="ramen-img" width="100" height="100">        
+                    </div>
+
+                    <div class="custom-control custom-radio">
+                      <input type="radio" class="custom-control-input" id="step2-pescatarian" name="example1" value='Pescatarian'>
+                      <label class="custom-control-label" for="customRadio">Pescatarian <br/> (A serving of fish/seafood every other day) </label>  
+                      <img class="ramen" src="/static/img/pescatarian.png" alt="ramen-img" width="100" height="100">       
+                    </div>
+                    
+                    <div class="custom-control custom-radio">
+                      <input type="radio" class="custom-control-input" id="step2-vegetarian" name="example1" value='Vegetarian'>
+                      <label class="custom-control-label" for="customRadio">Vegetarian <br/> (No meat, but eggs and dairy products eaten)</label>  
+                      <img class="ramen" src="/static/img/salad.png" alt="ramen-img" width="100" height="100">       
+                    </div>
+
+                    <div class="custom-control custom-radio">
+                      <input type="radio" class="custom-control-input" id="step2-vegan" name="example1" value='Vegan'>
+                      <label class="custom-control-label" for="customRadio">Vegan <br/> (NO meat, eggs, dairy or other animal products eaten) </label>
+                      <img class="ramen" src="/static/img/diet.png" alt="ramen-img" width="100" height="100">         
+                    </div>
+
+                  </div>
+                  <div class="btn-box">
+                      <button type="button" id="back1">Back</button>
+                      <button type="button"id="next2">Next</button>
+                  </div>
+              </form>
+
+              <!-- Form 3 -->
+              <form id="form3" action='#'>
+                  <h3>ONE STEP AWAY FROM KNOWING YOUR CARBON FOOTPRINT.</h3>
+                  <h4>What was your electricity consumption range value last month? </h4> 
+                  <div class="slider-wrapper">
+                    <label class="slider-wrapper-label"  for="customRadio">  </label>
+                    <input id="range-slider" class="fluid-slider" type="range" value="0" min="0" max="15000"  required="required">
+                    <span id="range-label" class="range-label"></span>
+                  </div>
+                  <div class="box">
+                   <h1 >Value of your electricity bill in INR:</h1> 
+                    <h2 id="waoo">
+                    </h2>
+                  </div>
+                  <h1 id="waoo">
+
+                  </h1>
+
+                  <h4> How many members are there in your family?</h4>
+                  <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="number" id="member-quantity" name="quantity" min="0" placeholder="MEMBERS"  required="required">
+                  </div>
+                  <h4> Please mention your state </h4>
+                  <div class="input-field">
+                    <i class="fas fa-thumbtack"></i>
+                    <input type="text" placeholder="Loaction-State" required="required" id="state">
+                  </div>
+                  <h4> How many flights do you take yearly?</h4>
+                  <div class="input-field">
+                    <i class="fas fa-plane"></i>
+                    <input type="number" id="flight" name="quantity" min="0" placeholder="no-of-flights"  required="required">
+                  </div>
+                
+                  <div class="btn-box">
+                      <button type="button" id="back2">Back</button>
+                      <button type="button" id="final-submit">Submit</button>                      
+                  </div>
+                </form>
+                
+
+                <!-- Progress Bar -->
+                <div class="step-row">
+                    <div id="progress"></div>
+                    <div class="step-col">Step1</div>
+                    <div class="step-col">Step2</div>
+                    <div class="step-col">Step3</div>
+                </div>
+
+                
+
+
+        </div>
+
+    </body>
+    <script src="/static/js/questionare.js"></script>
+    <!---------------For Preloader------------------------>
+<script>
+  //after window is loaded completely 
+  window.onload = function(){
+      //hide the preloader
+      document.querySelector(".preloader").style.display = "none";
   }
-  
-  .range-label:after {
-    position: absolute;
-    content: '';
-    top: 33px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 10px;
-    height: 8px;
-    background-repeat: no-repeat;
-    background-image: radial-gradient(circle, white 50%, transparent 50%), radial-gradient(circle, white 50%, transparent 50%), linear-gradient(#c20042, #c20042);
-    background-size: 180% 100%, 180% 100%, 100% 100%;
-    background-position: 150% 0%, -50% 0%, 100% 100%;
-  }
-  
-  ::-moz-range-track {
-   background: #c20042;
-   border: 0;
-  }
-  
-   input::-moz-focus-inner, input::-moz-focus-outer {
-   border: 0;
-  }
+</script>
+</html>
