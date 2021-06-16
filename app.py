@@ -142,13 +142,13 @@ def auth_twitter():
 def processing_signup():
     if 'user' in session:
         return redirect('/MyAccount')
-    #user_info = request.json
-    user_info = {}
-    user_info['firstname'] = request.form['firstname']
-    user_info['lastname'] = request.form['lastname']
-    user_info['email'] = request.form['email']
-    user_info['password'] = request.form['password']
-    user_info['location'] = request.form['location']
+    user_info = request.json
+    #user_info = {}
+    #user_info['firstname'] = request.form['firstname']
+    #user_info['lastname'] = request.form['lastname']
+    #user_info['email'] = request.form['email']
+    #user_info['password'] = request.form['password']
+    #user_info['location'] = request.form['location']
     print(user_info) 
     db_S_respond=db_S.write_user_table(user_info)
     print(user_info)
@@ -158,10 +158,10 @@ def processing_signup():
 def processing_signin():
     if 'user' in session:
         return redirect('/MyAccount')
-    #user_info = request.json
-    user_info = {}
-    user_info['email'] = request.form['email']
-    user_info['password'] = request.form['password']
+    user_info = request.json
+    #user_info = {}
+    #user_info['email'] = request.form['email']
+    #user_info['password'] = request.form['password']
     if db_S.check_user_table(user_info):
         session['user']=user_info
         if db_S.check_user_input_table(user_info):
