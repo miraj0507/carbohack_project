@@ -163,6 +163,7 @@ def processing_signin():
 
 #************************************************** OUTSIDER VIEW /END **************************************************************
 
+
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
@@ -244,7 +245,7 @@ def My_Account():
     #    return redirect('/questionare')
 #    Details of the parameters taken in from the questionaire. Stored in the database. Graph is plotted. Things to be calculated according to formulae present here.
 #    https://docs.google.com/document/d/1qZepM5Bbe13qaWUCraEf1Hmmb-otN7MImFnaBgSw44w/edit?ts=60bf9810
-    return render_template('dashboard.html')
+    return render_template('dashboard.html', avg=0, x=0, elec=0, travel=0, food=0, fly = 0, car_taxi = 0, motorbike=0)
 
 @app.route("/logout")
 def logout():

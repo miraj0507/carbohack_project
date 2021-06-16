@@ -17,6 +17,7 @@ class Database_Soumee():
 
 
 	def write_user_table(self, user_info):
+		print('inside databse')
 		firstname = user_info['firstname']
 		lastname = user_info['lastname']
 		email = user_info['email']
@@ -30,12 +31,12 @@ class Database_Soumee():
 	    # Checking if no other user exists with the same passwords and stuff
 	    # And yet again displaying the entry.html file so that user can enter his credentials to login to his account
 		#self.db.execute("SELECT password FROM user WHERE password= :password ",{"password":password}).fetchall())== 0 and
-		if len(self.db.execute("SELECT passwords FROM users WHERE passwords= :password ",{"password":password}).fetchall())== 0 and len(self.db.execute("SELECT email FROM users WHERE emails =:email ", {"email":email}).fetchall())== 0:
+		if len(self.db.execute("SELECT passwords FROM users WHERE passwords= :password ",{"password":password}).fetchall())== 0 and len(self.db.execute("SELECT email FROM users WHERE email =:email ", {"email":email}).fetchall())== 0:
 			print("there is no password")
 			print("there is no email")
 			self.db.execute("INSERT INTO users(uid, full_name, email, passwords, location_state) VALUES(seq_user.nextval,:full_name, :email, :password, :location_state)",
 			               { "full_name":full_name, "email":email, "password":password, "location_state": location_state})
-
+			print('commiting')
 			self.db.commit()
 			return "Registered"
 		else:
