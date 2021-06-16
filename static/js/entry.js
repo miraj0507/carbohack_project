@@ -141,7 +141,13 @@ $(document).ready(function() {
           error: function(){
             alert("server side error");
           }
-      });   
+      })
+    .done(function(data) {
+        if (data.resp === "Correct"){
+        alert('Great!!! You are signed up .... Please sign in to access your account. ');
+        container.classList.remove("sign-up-mode");}
+      });
+       e.preventDefault();   
 
   });
 
@@ -158,7 +164,7 @@ $(document).ready(function() {
           data: JSON.stringify(user_signin),
           dataType: "json",
           contentType: 'application/json',
-          success: function(response)
+          /*success: function(response)
           {
               if (response.resp1 === 'Correct') {
                 //console.log("done")
@@ -167,7 +173,7 @@ $(document).ready(function() {
               else {
                   alert(response.resp2);
               }
-          },
+          },*/
           error: function(){
             alert("server side error");
           }
