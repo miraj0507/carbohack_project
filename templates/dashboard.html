@@ -11,10 +11,13 @@
         <!-- ===== BOX ICONS ===== -->
         <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 
-         
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js" integrity="sha256-qoN08nWXsFH+S9CtIq99e5yzYHioRHtNB9t2qy1MSmc=" crossorigin="anonymous"></script>
 
         <!-- ===== CSS ===== -->
         <link rel="stylesheet" href="/static/css/dashboard.css">
+
+
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 
         <title>carbohack-homepage</title>
     </head>
@@ -46,7 +49,7 @@
                             <span class="nav__name">Dashboard</span>
                         </a>
 
-                        <a href="#" class="nav__link">
+                        <a href="user.html" class="nav__link">
                             <i class='bx bx-user nav__icon' ></i>
                             <span class="nav__name">User Account</span>
                         </a>
@@ -118,91 +121,129 @@
         <div class="modal">		
             <div class="modal-wrap">	
               
-                <form id="form1" action="" >
-                    <h3>HOW DO YOU TRAVEL MOST OFTEN?</h3>
-                    <div class="form-check form-check-inline container-fluid">
-                      <!-- <input class="form-check-input" type="checkbox" id="bus" value="bus"> -->
-                      <label class="form-check-label" for="bus">Bus</label>
+              <form id="form1" action="" >
+                <h3>HOW DID YOU TRAVEL TODAY ?</h3>
+                <p>Percentage (between 0 and 10):</p>
+                <div class="form-check form-check-inline container-fluid">
+                  <!-- <input class="form-check-input" type="checkbox" id="bus" value="bus"> -->
+                  <label class="form-check-label" for="bus">Bus</label>
+              
+
+                 <label for="points">:</label>
+                 <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0" required="required">
+                 <output for="range" class="output"></output>
+              </div>
+              <div class="form-check form-check-inline container-fluid">
+                <!-- <input class="form-check-input" type="checkbox" id="metro" value="metro"> -->
+                <label class="form-check-label" for="metro">Metro</label>
+             
+
+              <label for="points">:</label>
+              <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0">
+             
+              <br>
+            </div>
+             
+
+              <div class="form-check form-check-inline container-fluid">
+                <!-- <input class="form-check-input" type="checkbox" id="train" value="train"> -->
+                <label class="form-check-label" for="train">Train</label>
+              
+
+              <label for="points">:</label>
+              <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0">
+              <br >
+            </div>
+              
+              <div class="form-check form-check-inline container-fluid">
+                <!-- <input class="form-check-input" type="checkbox" id="car" value="car" > -->
+                <label class="form-check-label" for="car">CAR/CAB</label>
+             
+
+                <label for="points">:</label>
+                <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0"> 
+              <br>
+            </div>
+
+              <div class="form-check form-check-inline container-fluid">
+                <!-- <input class="form-check-input" type="checkbox" id="motorbike" value="motorbike" > -->
+                <label class="form-check-label" for="motorbike">MotorBike</label>
+              
+
+                <label for="points">:</label>
+                <input  class="slider" type="range" id="points" name="points" min="0" max="10" value="0">
+              <br>
+            </div>
+
+              <div class="form-check form-check-inline container-fluid">
+                <!-- <input class="form-check-input" type="checkbox" id="bicycle" value="bicycle"> -->
+                <label class="form-check-label" for="bicycle">Bicycle</label>
+              
+
+              <label for="points">:</label>
+              <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0">
+              <br>
+            </div>
+
+              <div class="form-check form-check-inline container-fluid">
+                <!-- <input class="form-check-input" type="checkbox" id="walking" value="walking"> -->
+                <label class="form-check-label" for="walking">Walking</label>
+             
+
+              <label for="points">:</label>
+              <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0">  
+            </div>  
+            
+            <h4>Enter Average Time Travelled</h4>
+            <div class="input-field">
+              <i class="fas fa-stopwatch"></i>
+              <input type="number" id="quantity" name="quantity" min="0" placeholder="in HRS"  required="required">
+            </div>            
+            <div class="input-field">
+              <i class="fas fa-stopwatch"></i>
+              <input type="number" id="quantity" name="quantity" min="0" placeholder="in MINS"  required="required">
+            </div>
+              
+              
+            </form>
+
+            <form id="form2">
+                <h3>WHAT'S YOUR DIET FOR TODAY? </h3>
+                <div class = "food-options">
                   
-    
-                     <label for="points">Percentage (between 0 and 10):</label>
-                     <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0" required="required">
-                     <output for="range" class="output"></output>
+                  <div class="custom-control custom-radio meat">
+                    <input type="radio" class="custom-control-input" id="customRadio" name="example1">
+                    <label class="custom-control-label" for="customRadio">Lots of Meat</label>
+                    <img class="ramen" src="/static/img/meat.png" alt="ramen-img" style="width: 50px;">                      
+                  </div> 
+
+                  <div class="custom-control custom-radio low-meat">
+                    <input type="radio" class="custom-control-input" id="customRadio" name="example1">
+                    <label class="custom-control-label" for="customRadio">Low Meat </label> 
+                    <img class="ramen" src="/static/img/proteins.png" alt="ramen-img" style="width: 50px;">        
                   </div>
-                  <div class="form-check form-check-inline container-fluid">
-                    <!-- <input class="form-check-input" type="checkbox" id="metro" value="metro"> -->
-                    <label class="form-check-label" for="metro">Metro</label>
-                 
-  
-                  <label for="points">Percentage (between 0 and 10):</label>
-                  <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0">
-                 
-                  <br>
-                </div>
-                 
-  
-                  <div class="form-check form-check-inline container-fluid">
-                    <!-- <input class="form-check-input" type="checkbox" id="train" value="train"> -->
-                    <label class="form-check-label" for="train">Train</label>
+
+                  <div class="custom-control custom-radio fish">
+                    <input type="radio" class="custom-control-input" id="customRadio" name="example1">
+                    <label class="custom-control-label" for="customRadio">Pescatarian  </label>  
+                    <img class="ramen" src="/static/img/pescatarian.png" alt="ramen-img" style="width: 50px;">       
+                  </div>
                   
-  
-                  <label for="points">Percentage (between 0 and 10):</label>
-                  <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0">
-                  <br >
+                  <div class="custom-control custom-radio veg">
+                    <input type="radio" class="custom-control-input" id="customRadio" name="example1">
+                    <label class="custom-control-label" for="customRadio">Vegetarian </label>  
+                    <img class="ramen" src="/static/img/salad.png" alt="ramen-img" style="width: 50px;">       
+                  </div>
+
+                  <div class="custom-control custom-radio vegan">
+                    <input type="radio" class="custom-control-input" id="customRadio" name="example1">
+                    <label class="custom-control-label" for="customRadio">Vegan  </label>
+                    <img class="ramen" src="/static/img/diet.png" alt="ramen-img" style="width: 50px;">         
+                  </div>
                 </div>
-                  
-                  <div class="form-check form-check-inline container-fluid">
-                    <!-- <input class="form-check-input" type="checkbox" id="car" value="car" > -->
-                    <label class="form-check-label" for="car">CAR/CAB</label>
-                 
-  
-                    <label for="points">Percentage (between 0 and 10):</label>
-                    <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0"> 
-                  <br>
-                </div>
-  
-                  <div class="form-check form-check-inline container-fluid">
-                    <!-- <input class="form-check-input" type="checkbox" id="motorbike" value="motorbike" > -->
-                    <label class="form-check-label" for="motorbike">MotorBike</label>
-                  
-  
-                    <label for="points">Percentage (between 0 and 10):</label>
-                    <input  class="slider" type="range" id="points" name="points" min="0" max="10" value="0">
-                  <br>
-                </div>
-  
-                  <div class="form-check form-check-inline container-fluid">
-                    <!-- <input class="form-check-input" type="checkbox" id="bicycle" value="bicycle"> -->
-                    <label class="form-check-label" for="bicycle">Bicycle</label>
-                  
-  
-                  <label for="points">Percentage (between 0 and 10):</label>
-                  <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0">
-                  <br>
-                </div>
-  
-                  <div class="form-check form-check-inline container-fluid">
-                    <!-- <input class="form-check-input" type="checkbox" id="walking" value="walking"> -->
-                    <label class="form-check-label" for="walking">Walking</label>
-                 
-  
-                  <label for="points">Percentage (between 0 and 10):</label>
-                  <input class="slider" type="range" id="points" name="points" min="0" max="10" value="0">  
-                </div>  
                 
-                <h4>Enter Average Time Travelled</h4>
-                <div class="input-field">
-                  <i class="fas fa-stopwatch"></i>
-                  <input type="number" id="quantity" name="quantity" min="0" placeholder="in HRS"  required="required">
-                </div>            
-                <div class="input-field">
-                  <i class="fas fa-stopwatch"></i>
-                  <input type="number" id="quantity" name="quantity" min="0" placeholder="in MINS"  required="required">
-                </div>
-                  
-                  <div class="btn-box"><button type="submit" id="next1">Submit</button></div>
-                </form>
-  
+
+                <div class="btn-box"><button type="submit" id="next1">Submit</button></div>
                 
               </div>
           
@@ -231,7 +272,10 @@
       <div class="content">
   
         <h3>Goal Card</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, totam velit? Iure nemo labore inventore?</p>
+        <p>Here's your personalized goal percentage </p>
+        <div class="wrapper">
+          <div class="container-goal chart" data-size="130" data-value="69" data-arrow="down"></div>
+        </div>
         <a href="#">NEXT STEPS</a>
       </div>
     </div>
@@ -275,52 +319,206 @@ GRADIENT BANNER DESIGN BY miraj:
 
 
 -->
+<!--Made each a list, changed all icons and text ~Oishee-->
 <div class="main-container">
   <div class="heading-container">
     <h1 class="heading">Steps To Reach Your Goal</h1>
   
   </div>
   <div class="card-container">
-    <div class="card card-1">
-      <div class="card__icon"><i class="fas fa-bolt"></i> Step 1 </div>
-      <p class="card__exit"><i class="fas fa-times"></i></p>
-      <h2 class="card__title">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-      <p class="card__apply"><a href="#">Next step <i class="fas fa-arrow-right"></i></a></p>
-    </div>
-    <div class="card card-2">
-      <div class="card__icon"><i class="fas fa-bolt"></i> Step 2</div>
-      <p class="card__exit"><i class="fas fa-times"></i></p>
-      <h2 class="card__title">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
-      <p class="card__apply"><a href="#"> Next step<i class="fas fa-arrow-right"></i></a></p>
-    </div>
-    <div class="card card-3">
-      <div class="card__icon"><i class="fas fa-bolt"></i> Step 3</div>
-      <p class="card__exit"><i class="fas fa-times"></i></p>
-      <h2 class="card__title">Ut enim ad minim veniam.</h2>
-      <p class="card__apply"><a href="#">Next step<i class="fas fa-arrow-right"></i></a></p>
-    </div>
-    <div class="card card-4">
-      <div class="card__icon"><i class="fas fa-bolt"></i> Step 4</div>
-      <p class="card__exit"><i class="fas fa-times"></i></p>
-      <h2 class="card__title">Quis nostrud exercitation ullamco laboris nisi.</h2>
-      <p class="card__apply"><a href="#">Next step <i class="fas fa-arrow-right"></i></a></p>
-    </div>
     <div class="card card-5">
-      <div class="card__icon"><i class="fas fa-bolt"></i> Step 5</div>
-      <p class="card__exit"><i class="fas fa-times"></i></p>
-      <h2 class="card__title">Ut aliquip ex ea commodo consequat. Duis aute irure dolor.</h2>
-      <p class="card__apply"><a href="#">Next step <i class="fas fa-arrow-right"></i></a></p>
+      <div class="card__icon"><i class="fas fa-carrot"></i> Food </div>
+      <h2 class="card__title"><ul style="list-style-type: none;">
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+      </ul></h2>
+      <p class="card__apply">You can do it!!</p>
     </div>
     <div class="card card-1">
-      <div class="card__icon"><i class="fas fa-bolt"></i> Step 6</div>
-      <p class="card__exit"><i class="fas fa-times"></i></p>
-      <h2 class="card__title">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-      <p class="card__apply"><a href="#">Finish<i class="fas fa-arrow-right"></i></a></p>
+      <div class="card__icon"><i class="fas fa-car-side"></i> Travel</div>
+      
+      <h2 class="card__title"><ul style="list-style-type: none;">
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+      </ul></h2>
+      <p class="card__apply"> Go for it!!</a></p>
+    </div>
+    
+    <div class="card card-2">
+      <div class="card__icon"><i class="fas fa-bolt"></i> Electricity </div>
+      
+      <h2 class="card__title"><ul style="list-style-type: none;">
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+      </ul></h2>
+      <p class="card__apply">We are rooting for you!!</p>
     </div>
   </div>
 </div>
 
 
+
+<!-- this is the graph  -->
+
+
+
+
+<div class="full">
+  <h1 class="main-title">
+      <span class="span1">Carbon Emission Statistics I:</span>
+      <span class="span2">Percentage growth in India </span>
+   
+  </h1>
+  <div class="container-graph">
+      <div class="bars">
+          
+          <div class="persp5">
+              <figure class="face top"></figure>
+              <figure class="face front"></figure>
+              <figure class="face left"></figure>
+              <figure class="face right"></figure>
+              <figure class="face back"></figure>
+              <div class="face data-y">5.7</div>
+              <div class="face data-x"></div>
+              
+          </div>
+          
+          <div class="persp4">
+              <figure class="face top"></figure>
+              <figure class="face front"></figure>
+              <figure class="face left"></figure>
+              <figure class="face right"></figure>
+              <figure class="face back"></figure>
+              <div class="face data-y">9.6</div>
+              <div class="face data-x"></div>
+              
+          </div>
+          
+          <div class="persp3">
+              <figure class="face top"></figure>
+              <figure class="face front"></figure>
+              <figure class="face left"></figure>
+              <figure class="face right"></figure>
+              <figure class="face back"></figure>
+              <div class="face data-y">15.6</div>
+              <div class="face data-x"></div>
+              
+          </div>
+      
+          <div class="persp2">
+              <figure class="face top"></figure>
+              <figure class="face front"></figure>
+              <figure class="face left"></figure>
+              <figure class="face right"></figure>
+              <figure class="face back"></figure>
+              <div class="face data-y">26.8</div>
+              <div class="face data-x"></div>
+          </div>
+          
+          <div class="persp1">
+              <figure class="face top"></figure>
+              <figure class="face front"></figure>
+              <figure class="face left"></figure>
+              <figure class="face right"></figure>
+              <figure class="face back"></figure>
+              <div class="face data-y">38.5</div>
+              <div class="face data-x"></div>
+          </div>
+      </div>
+      
+      <div class="base"></div>
+   </div>
+  <div class="subtitle">
+              <ul class="list-social">
+                  <li class="fb">2020</li>
+                  <li class="twt">2015</li>
+                  <li class="gp">2010</li>
+                  <li class="lkd">2005</li>
+                  <li class="pin">2000</li>
+              </ul>
+     </div>
+
+
+</div>
+
+
+
+<!-- graph: -->
+
+<div class="line-chart">
+
+  <div class="aspect-ratio">
+    
+    <canvas id="chart"></canvas>
+  </div>
+  <h1 class="heading">Your Carbon Footprint Tracked in a Graph </h1>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+did you know -->
+
+<div class="did-u-know">
+  <h1 class="heading">Did You Know??</h1>
+  <section class="hero-section">
+    <div class="card-grid">
+      <a class="card" href="#">
+        <div class="card__background" style="background-image: url(/static/img/pexels-lukas-rodriguez-7922315.jpg)"></div>
+        <div class="card__content">
+          <p class="card__category">Category</p>
+          <h3 class="card__heading">Example Card Heading</h3>
+        </div>
+      </a>
+      <a class="card" href="#">
+        <div class="card__background" style="background-image: url(/static/img/pexels-alphatradezone-5831264.jpg)"></div>
+        <div class="card__content">
+          <p class="card__category">Category</p>
+          <h3 class="card__heading">Example Card Heading</h3>
+        </div>
+      </a>
+      <a class="card" href="#">
+        <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1556680262-9990363a3e6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
+        <div class="card__content">
+          <p class="card__category">Category</p>
+          <h3 class="card__heading">Example Card Heading</h3>
+        </div>
+      </li>
+    </a>
+    <a class="card" href="#">
+      <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
+      <div class="card__content">
+        <p class="card__category">Category</p>
+        <h3 class="card__heading">Example Card Heading</h3>
+      </div>
+    </a>
+    <div>
+  </section>
+</div>
+
+
+
+          <!-- <div class="wrapper">
+            <canvas id='c'></canvas>
+            <div class="label">YEAR</div>
+          </div> -->
+          
 
         <!--===== MAIN JS =====-->
         <script src="/static/js/dashboard.js"></script>
