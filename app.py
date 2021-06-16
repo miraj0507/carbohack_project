@@ -156,7 +156,7 @@ def processing_signin():
     #user_info['email'] = request.form['email']
     #user_info['password'] = request.form['password']
     print(user_info)
-    return jsonify(resp1="Incorrect", resp2='Invalid Credentials')
+    return jsonify(resp1="Correct", resp2='Invalid Credentials')
 
 # /END
 #**************************************************************************
