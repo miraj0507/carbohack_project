@@ -1,12 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/user.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <script
         src="https://kit.fontawesome.com/64d58efce2.js"
         crossorigin="anonymous"
       ></script>
-  </head>
-  
+</head>
+<body>
+  <!--------------Preloader----------------->
+  <div class="preloader">
+    <canvas id='canvas'></canvas>
+      <div class="wrapper">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="shadow"></div>
+          <div class="shadow"></div>
+          <div class="shadow"></div>
+          <span>Loading</span>
+      </div>
+  </div>
+  <!---------------------------------------->
     <div class="box">
       <div id="overlay">
         <div class="image">
@@ -15,7 +33,8 @@
           </div>
         </div>
         <div class="text">{{ fullname }}</div>
-        <div class="text1">{{ state }}</div>
+      <div class="text1">{{ state }}</div>
+    </div>
   
  
   <div class="panel-group">
@@ -75,4 +94,15 @@
         </h4>
       </div>
     </div>
-    
+  </div>
+</body>    
+<!---------------For Preloader------------------------>
+<script>
+  //after window is loaded completely 
+  window.onload = function(){
+      //hide the preloader
+      document.querySelector(".preloader").style.display = "none";
+  }
+</script>
+
+</html>
