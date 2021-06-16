@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display:900&display=swap');
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  background: #EEEEF5;
+}
+
+
+.text {
+  font-size: 8vw;
+  line-height: 8vw;
+  margin: 0;
+  font-family: 'Red Hat Display', sans-serif;
+  font-weight: 900;
+  background: url(/static/img/community1.jpg);
+  background-size: 40%;
+  background-position: 50% 50%;
+  -webkit-background-clip: text;
+  color: rgba(0,0,0,0.08);
+  animation: zoomout 10s ease 500ms forwards;
+}
+
+@keyframes zoomout {
+  from {
+    background-size: 70%;
+  }
+  to {
+    background-size: 20%;
+  }
+}
+.fixedButton{
+  position: fixed;
+  bottom: 0px;
+  left: 0px; 
+  padding: 20px;
+}
+.roundedFixedBtn{
+height: 60px;
+line-height: 60px; 
+width: 110px;  
+font-size: 2em;
+font-weight: bold;
+border-radius: 10%;
+background-color: #000;
+color: white;
+text-align: center;
+font-size: 1.5rem;
+text-decoration: none;
+display:inline-block;
+cursor: pointer;
+}
