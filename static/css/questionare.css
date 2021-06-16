@@ -115,7 +115,7 @@ body{
 
 
 .container{
-    width: 65%;
+    width: 75%;
     height: 1450px;
     margin: 8% auto;
     padding-left: 0px;
@@ -336,25 +336,7 @@ p{
     width:20px;
     height:20px;
 }
-@media only screen and (max-width: 700px) {
-    .custom-radio{
-        color:teal;
-        font-size: 15px;
-        margin: auto;
-    }
-    .food-options{
-        padding: 10px 40px 0px 90px;
-      }
-      /* .custom-control{
-        padding: 40px;
-      } */
-      h3{
-        text-align: center;
-        margin-top: 80px;
-        color: #5d0623;
-        font-size: 25px;
-        font-family: "Poppins", sans-serif;
-    }
+
     .form-check {
         padding: 1%;
         margin: 10px  40px 30px 10px;
@@ -512,3 +494,38 @@ p{
    input::-moz-focus-inner, input::-moz-focus-outer {
    border: 0;
   }
+
+@media only screen and (max-width: 700px) {
+    .custom-radio{
+        color:teal;
+        font-size: 15px;
+        margin: auto;
+    }
+  .slider-wrapper{
+    padding:40px;
+  }
+    .food-options{
+        padding: 10px 40px 0px 90px;
+      }
+      /* .custom-control{
+        padding: 40px;
+      } */
+      h3{
+        text-align: center;
+        margin-top: 80px;
+        color: #5d0623;
+        font-size: 25px;
+        font-family: "Poppins", sans-serif;}
+  h5{
+      font-size: 20px;
+    }
+    h4{
+      font-size: 15px;
+    }
+    h1{
+      font-size:20px;
+    }
+    .input-field{
+      height: 50px;
+    }
+    }
