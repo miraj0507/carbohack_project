@@ -116,8 +116,8 @@ body{
 
 .container{
     width: 75%;
-    height: 1550px;
-    margin: 7% auto;
+    height: 1450px;
+    margin: 8% auto;
     padding-left: 0px;
     padding-right: 0px;
     background: white;
@@ -345,7 +345,7 @@ p{
         color:teal;
         font-style: bold;
     }
-  }
+  
   .box{
     margin: auto;
     padding: 40px;
@@ -495,17 +495,17 @@ p{
    border: 0;
   }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 600px) {
     .custom-radio{
         color:teal;
-        font-size: 15px;
+        font-size: 12px;
         margin: auto;
     }
   .slider-wrapper{
     padding:40px;
   }
     .food-options{
-        padding: 10px 40px 0px 90px;
+      padding: 10px 40px 10px 70px;
       }
       /* .custom-control{
         padding: 40px;
@@ -514,7 +514,7 @@ p{
         text-align: center;
         margin-top: 80px;
         color: #5d0623;
-        font-size: 25px;
+        font-size: 15px;
         font-family: "Poppins", sans-serif;}
   h5{
       font-size: 20px;
@@ -528,8 +528,9 @@ p{
     .input-field{
       height: 50px;
     }
-  .container{
+    .container{
       width:100%;
     }
 
-    }
+}
+   
