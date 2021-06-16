@@ -24,6 +24,20 @@
     
     </head>
     <body>
+      <!--------------Preloader----------------->
+      <div class="preloader">
+        <canvas id='canvas'></canvas>
+          <div class="wrapper">
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="shadow"></div>
+              <div class="shadow"></div>
+              <div class="shadow"></div>
+              <span>Loading</span>
+          </div>
+      </div>
+  <!---------------------------------------->
       <nav class="navbar navbar-light bg-nav">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
@@ -223,4 +237,12 @@
 
     </body>
     <script src="/static/js/questionare.js"></script>
+    <!---------------For Preloader------------------------>
+<script>
+  //after window is loaded completely 
+  window.onload = function(){
+      //hide the preloader
+      document.querySelector(".preloader").style.display = "none";
+  }
+</script>
 </html>

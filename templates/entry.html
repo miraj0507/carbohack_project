@@ -13,6 +13,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </head>
   <body>
+    <!--------------Preloader----------------->
+    <div class="preloader">
+      <canvas id='canvas'></canvas>
+        <div class="wrapper">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+            <span>Loading</span>
+        </div>
+    </div>
+  <!---------------------------------------->
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
@@ -118,4 +132,12 @@
     <script src="/static/js/entry.js"></script>
 
   </body>
+  <!---------------For Preloader------------------------>
+<script>
+  //after window is loaded completely 
+  window.onload = function(){
+      //hide the preloader
+      document.querySelector(".preloader").style.display = "none";
+  }
+</script>
 </html>
