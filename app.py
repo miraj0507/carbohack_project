@@ -142,27 +142,34 @@ def auth_twitter():
 def processing_signup():
     if 'user' in session:
         return redirect('/MyAccount')
-    user_info = request.json
+    #user_info = request.json
+    user_info = {}
+    user_info['firstname'] = request.form['firstname']
+    user_info['lastname'] = request.form['lastname']
+    user_info['email'] = request.form['email']
+    user_info['password'] = request.form['password']
+    user_info['location'] = request.form['location']
     print(user_info) 
     db_S_respond=db_S.write_user_table(user_info)
     print(user_info)
-    return jsonify(resp1="Correct", resp2=db_S_respond)
+    return jsonify({'resp':"Correct", 'resp2':db_S_respond})
 
 @app.route('/processing_signin', methods=['POST'])
 def processing_signin():
     if 'user' in session:
         return redirect('/MyAccount')
-    user_info = request.json
-    #user_info['email'] = request.form['email']
-    #user_info['password'] = request.form['password']
+    #user_info = request.json
+    user_info = {}
+    user_info['email'] = request.form['email']
+    user_info['password'] = request.form['password']
     if db_S.check_user_table(user_info):
         session['user']=user_info
         if db_S.check_user_input_table(user_info):
-            return jsonify(resp1="Correct", resp2='/MyAccount')
+            return jsonify({"resp" : "Correct", "resp2":'/MyAccount'})
         else:
-            return jsonify(resp1="Correct", resp2="/questionare")
+            return jsonify({'resp': "Correct", 'resp2':"/questionare"})
     print(user_info)
-    return jsonify(resp1="Incorrect", resp2='Invalid Credentials')
+    return jsonify({'resp':"Incorrect", 'resp2':'Invalid Credentials'})
 
 # /END
 #**************************************************************************
