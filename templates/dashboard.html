@@ -20,6 +20,20 @@
         <title>carbohack-homepage</title>
     </head>
     <body id="body-pd">
+	<!--------------Preloader----------------->
+	<div class="preloader" id="preloader">
+	    <canvas id='canvas'></canvas>
+	      <div class="wrapper">
+		  <div class="circle"></div>
+		  <div class="circle"></div>
+		  <div class="circle"></div>
+		  <div class="shadow"></div>
+		  <div class="shadow"></div>
+		  <div class="shadow"></div>
+		  <span>Welcome</span>
+	      </div>
+	</div>
+        <!---------------------------------------->
         <header class="header" id="header">
             <div class="header__toggle">
                 <i class='bx bx-menu' id="header-toggle"></i>
@@ -550,4 +564,12 @@ GRADIENT BANNER DESIGN BY miraj:
         <!--===== MAIN JS =====-->
         <script src="/static/js/dashboard.js"></script>
     </body>
+<!---------------For Preloader------------------------>
+<script>
+  //after window is loaded completely 
+  window.onload = function(){
+      //hide the preloader
+      document.getElementById("preloader").style.display = "none";
+  }
+</script>
 </html>
