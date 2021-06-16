@@ -102,9 +102,9 @@ $(document).ready(function() {
 });*/
 
 
-  if ((window.location.href).includes("signup")){
-  container.classList.add("sign-up-mode");
-  }
+  //if ((window.location.href).includes("signup")){
+  //container.classList.add("sign-up-mode");
+  //}
 
   $('#signup').click(function() {
     var user_info = {
@@ -122,7 +122,7 @@ $(document).ready(function() {
           data: JSON.stringify(user_info),
           dataType: "json",
           contentType: 'application/json',
-          success: function(response) {
+          /*success: function(response) {
             if (response.resp1 === 'Correct') {
               if (response.resp2 === 'Registered'){
                 alert('Great!!! You are signed up .... Please sign in to access your account. ');
@@ -137,7 +137,7 @@ $(document).ready(function() {
             else {
               alert("Server did not respond");
             }
-          },
+          },*/
           error: function(){
             alert("server side error");
           }
@@ -171,7 +171,12 @@ $(document).ready(function() {
           error: function(){
             alert("server side error");
           }
+      })
+    .done(function(data) {
+        if (data.resp === "Correct"){
+        window.location = '/MyAccount';}
       });
+       e.preventDefault();
 
   });
 });
