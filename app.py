@@ -160,8 +160,8 @@ def processing_signin():
         return redirect('/MyAccount')
     #user_info = request.json
     user_info = {}
-    user_info['email'] = request.form.get('email')
-    user_info['password'] = request.form.get('password')
+    user_info['email'] = request.form['email']
+    user_info['password'] = request.form['password']
     if db_S.check_user_table(user_info):
         session['user']=user_info
         if db_S.check_user_input_table(user_info):
