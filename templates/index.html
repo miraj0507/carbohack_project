@@ -13,6 +13,21 @@
         <title>CarboHack</title>
     </head>
     <body>
+        <!--------------Preloader----------------->
+        <div class="preloader" id="preloader">
+            <canvas id='canvas'></canvas>
+            <div class="wrapper">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="shadow"></div>
+                <div class="shadow"></div>
+                <div class="shadow"></div>
+                <span>Loading</span>
+            </div>
+        </div>
+        <!---------------------------------------->
+
 
         <!--========== SCROLL TOP ==========-->
         <a href="#" class="scrolltop" id="scroll-top">
@@ -169,7 +184,7 @@
                 </div>
             </section>
 
-            <!--========== CONTACT US ==========-->
+            <!--========== JOIN COMMUNITY ==========-->
             <section class="contact section bd-container" id="contact">
                 <div class="contact__container bd-grid">
                     <div class="contact__data">
@@ -219,7 +234,7 @@
                 </div>
 
                 <div class="footer__content">
-                    <h3 class="footer__title">Adress</h3>
+                    <h3 class="footer__title">Address</h3>
                     <ul>
                         <li>Lima - Peru</li>
                         <li>Jr Union #999</li>
@@ -238,4 +253,12 @@
         <!--========== MAIN JS ==========-->
         <script src="/static/js/main.js"></script>
     </body>
+    <!---------------For Preloader------------------------>
+    <script>
+        //after window is loaded completely 
+        window.onload = function(){
+            //hide the preloader
+            document.querySelector(".preloader").style.display = "none";
+        }
+    </script>
 </html>
