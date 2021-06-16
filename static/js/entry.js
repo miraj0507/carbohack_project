@@ -62,14 +62,17 @@ $(document).ready(function() {
   });
 
   $('#signin').click(function(e) {
-    var user_signin={
+    /*var user_signin={
               email: $("#email-signin").val(),
               password: $("#password-signin").val(),
-          }
+          }*/
       $.ajax({
           type: "POST",
           url: '/processing_signin',
-          data: user_signin,
+          data: {
+              email: $("#email-signin").val(),
+              password: $("#password-signin").val(),
+          },
           //data: JSON.stringify(user_signin),
           //dataType: "json",
           //contentType: 'application/json',
