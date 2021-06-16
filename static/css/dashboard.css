@@ -1426,6 +1426,7 @@ figure { margin: 0;}
     list-style: none; 
     float: left; 
     margin-right: 10px;
+	padding:10px;
     color:white;
     margin-bottom:40px;
 }
