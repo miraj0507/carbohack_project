@@ -49,7 +49,7 @@
   position: absolute;
   border-radius: 50%;
   background-color: #fff;
-  left:30%;
+  left:15%;
   transform-origin: 50%;
   animation: circle .5s alternate infinite ease;
 }
@@ -75,7 +75,8 @@
   animation-delay: .2s;
 }
 .circle:nth-child(3){
-  left:60%;
+  left:auto;
+  right:15%;
   animation-delay: .3s;
 }
 .shadow{
@@ -116,12 +117,12 @@
 }
 .preloadcircles span{
   position: absolute;
-  top:85px;
+  top:75px;
   font-family: 'Lato';
-  font-size: 40px;
+  font-size: 20px;
   letter-spacing: 12px;
   color: #fff;
-  left:30%;
+  left:15%;
 }
 
 /***************************************************/
