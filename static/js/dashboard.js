@@ -313,7 +313,7 @@ class Dial {
         backgroundColor: gradient,
         pointBackgroundColor: 'white',
         borderWidth: 1,
-        borderColor: '#911215',
+        borderColor: '	#FF0000',
         data: [5, 10, 15, 20, 25, 100]
       }]
   };
