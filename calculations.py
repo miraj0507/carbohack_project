@@ -39,7 +39,7 @@ class Calculations():
         time = lambda percent: (percent/10)*((t['hour']*60 + t['minutes'])/60)
 
         #fly = [0,0,0] #db_S.example('fly')
-        #fly_emi = 138.45*(time(travel_data['fly']))
+        fly_emi = 138.45*(time(travel_data['fly']))
 
         #car = [0,0,0] #db_S.example('fly')
         car_emi = 0.23*35*(time(travel_data['car']))
@@ -76,10 +76,11 @@ class Calculations():
             self.food = 3.81
         elif food_choice == 'Pescatarian':
             self.food = 3.91
-        elif food_choice == 'Low meat':
+        elif food_choice == 'low meat':
             self.food = 4.67
-        elif food_choice == 'High meat':
+        elif food_choice == 'high meat':
             self.food = 7.19
+        #return self.food
 
     def elec_f(self, spend, no_of_people=1):
         #spend, no_of_people = (0,1) # db_S.example
