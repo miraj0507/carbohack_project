@@ -8,6 +8,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from authlib.integrations.flask_client import OAuth
 import datetime
+from datetime import date
 
 import os, sys
 sys.path.append(".")
@@ -222,6 +223,7 @@ def questionare_filling():
     travel_data['train']=int(user_info['train'])
     travel_data['car']=int(user_info['car'])
     travel_data['bike']=int(user_info['bike'])
+    travel_data['fly']=0
     travel_data['bicycle']=0
     travel_data['walking']=0
     travel_data['dates']=dates
@@ -277,6 +279,7 @@ def questionare_update():
     travel_data['car']=int(user_info['car'])
     travel_data['bike']=int(user_info['bike'])
     #travel_data['bicycle']=0
+    travel_data['fly']=int(user_info['flying'])
     travel_data['walking']=0
     travel_data['dates']=today_date
 
@@ -373,9 +376,33 @@ def My_Account():
     
     if not db_S.check_user_input_table(session['user']):
         return redirect('/questionare')
-#    Details of the parameters taken in from the questionaire. Stored in the database. Graph is plotted. Things to be calculated according to formulae present here.
-#    https://docs.google.com/document/d/1qZepM5Bbe13qaWUCraEf1Hmmb-otN7MImFnaBgSw44w/edit?ts=60bf9810
-    return render_template('dashboard.html', avg=0, x=0, elec=0, travel=0, food=0, fly = 0, car_taxi = 0, motorbike=0)
+
+    today_date=db_S.latest_date(session['user'], 'user_output')#str(datetime.datetime.date(datetime.datetime.now()))
+    calc_S.avg=db_S.fetch_data(session['user'], 'user_output', 'monthly_average', today_date)
+    calc_S.x=db_S.fetch_data(session['user'], 'user_output', 'carbon_footprint', today_date)
+    calc_S.goal_selector()
+
+    d= date.today()
+    travel = db_S.get_table_data(session['user'], 'travel','user_input',d)
+    elec = db_S.get_table_data(session['user'], 'electricity','user_input',d)
+    food = db_S.get_food_total(session['user'], d)
+    t_food=0
+    for i in food:
+        calc_S.food_f(i)
+        t_food+=calc_S.food
+        #print(i,str(calc_S.food))
+
+    #print(t_food)
+    #input()
+    fly = db_S.get_table_data(session['user'], 'fly','travel',d)
+    print(fly)
+    car_taxi = db_S.get_table_data(session['user'], 'car','travel',d) + db_S.get_table_data(session['user'], 'taxi','travel',d)
+    print(car_taxi)
+    motorbike = db_S.get_table_data(session['user'], 'motorbike', 'travel',d)
+    print(motorbike)
+    # Details of the parameters taken in from the questionaire. Stored in the database. Graph is plotted. Things to be calculated according to formulae present here.
+    #https://docs.google.com/document/d/1qZepM5Bbe13qaWUCraEf1Hmmb-otN7MImFnaBgSw44w/edit?ts=60bf9810
+    return render_template('dashboard.html', avg=calc_S.avg, x=calc_S.x, percent=(calc_S.r/calc_S.avg), elec=elec, travel=travel, food=t_food, fly = fly, car_taxi = car_taxi, motorbike=motorbike)
 
 @app.route("/logout")
 def logout():
@@ -390,11 +417,27 @@ def User_Profile():
     if not ('user' in session):
         return redirect('/')
     
+    if not db_S.check_user_input_table(session['user']):
+        return redirect('/questionare')
+    
+    state = db_S.fetch_user(session['user'], 'location_state')
     #if not db_S.check_user_input_table(session['user']):
     #    return redirect('/questionare')
 #    Details of the parameters taken in from the questionaire. Stored in the database. Graph is plotted. Things to be calculated according to formulae present here.
 #    https://docs.google.com/document/d/1qZepM5Bbe13qaWUCraEf1Hmmb-otN7MImFnaBgSw44w/edit?ts=60bf9810
-    return render_template('user.html', fullname='Aunomitra Ghosh', state='West Bengal', email='aunomitra.ghosh1999@gmail.com')
+    return render_template('user.html', fullname=session['user']['name'], state=state, email=session['user']['email'])
+
+
+@app.route('/community')
+def community():
+    if not( 'user' in session):
+        return redirect('/')
+
+    if not db_S.check_user_input_table(session['user']):
+        return redirect('/questionare')
+
+    return render_template('community.html')
+
 
 
 if __name__ == '__main__':

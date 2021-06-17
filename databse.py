@@ -3,6 +3,7 @@ from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
+
 app = Flask(__name__)
 app.secret_key = 'random key'
 
@@ -104,8 +105,8 @@ class Database_Soumee():
 
 		email = user_info['email']
 		uid = self.db.execute("SELECT users.uid FROM users WHERE email=:email", {"email":email}).fetchone().items()[0][1]
-		self.db.execute("INSERT INTO travel(travel_id, uid, bus, taxi, train, car, motorbike, cycling, walking, dates) VALUES(next value for travel_seq,:uid, :bus,:taxi, :train, :car, :motorbike, 0, 0, :dates)",
-			            { "uid":uid, 'bus':user_data['bus'], 'taxi':user_data['taxi'], 'train':user_data['taxi'], 'car':user_data['car'], 'motorbike':user_data['bike'], 'dates':user_data['dates']})
+		self.db.execute("INSERT INTO travel(travel_id, uid, bus, taxi, train, car, motorbike, cycling, walking, dates, fly) VALUES(next value for travel_seq,:uid, :bus,:taxi, :train, :car, :motorbike, 0, 0, :dates, :fly)",
+			            { "uid":uid, 'bus':user_data['bus'], 'taxi':user_data['taxi'], 'train':user_data['taxi'], 'car':user_data['car'], 'motorbike':user_data['bike'], 'dates':user_data['dates'], 'fly':user_data['fly']})
 		print('commiting')
 		self.db.commit()
 		print("Registered")
@@ -145,7 +146,7 @@ class Database_Soumee():
 	def update_travel_table(self, user_info, user_data, date):
 		email = user_info['email']
 		uid = self.db.execute("SELECT users.uid FROM users WHERE email=:email", {"email":email}).fetchone().items()[0][1]
-		self.db.execute(f"UPDATE TRAVEL SET BUS={user_data['bus']}, TAXI={user_data['taxi']}, TRAIN={user_data['train']}, CAR={user_data['car']}, MOTORBIKE={user_data['bike']} WHERE uid={uid} and dates='{date}'")
+		self.db.execute(f"UPDATE TRAVEL SET BUS={user_data['bus']}, TAXI={user_data['taxi']}, TRAIN={user_data['train']}, CAR={user_data['car']}, MOTORBIKE={user_data['bike']}, FLY={user_data['fly']} WHERE uid={uid} and dates='{date}'")
 		print('commiting')
 		self.db.commit()
 		print("Registered")
@@ -172,8 +173,58 @@ class Database_Soumee():
 		return self.db.execute(f"select max(dates) from {tablename} where uid={uid}").fetchone().items()[0][1]
 
 	
-	
-	
+	def get_table_data(self, user_info, item, tablename, d):
+		email = user_info['email']
+		uid = self.db.execute("SELECT users.uid FROM users WHERE email=:email", {"email":email}).fetchone().items()[0][1]
+		year_st = d.year
+		month_st= d.month
+		month_end = month_st+1
+		year_end = year_st
+		if month_st>12:
+			month_end=1
+			year_end+=1
+		
+		date_st=f"{year_st}-{month_st}-01"
+		date_end=f"{year_end}-{month_end}-01"
+
+		qqq = f"SELECT sum({item}) from {tablename} where uid={uid} and dates between '{date_st}' and '{date_end}'"
+		print(qqq)
+
+		values = self.db.execute(f"SELECT sum({item}) from {tablename} where uid={uid} and dates between '{date_st}' and '{date_end}'").fetchone().items()[0][1]
+		if values==None:
+			values=0
+
+		print(values)
+		return values
+
+	def get_food_total(self, user_info, d):
+		email = user_info['email']
+		uid = self.db.execute("SELECT users.uid FROM users WHERE email=:email", {"email":email}).fetchone().items()[0][1]
+		year_st = d.year
+		month_st= d.month
+		month_end = month_st+1
+		year_end = year_st
+		if month_st>12:
+			month_end=1
+			year_end+=1
+		
+		date_st=f"{year_st}-{month_st}-01"
+		date_end=f"{year_end}-{month_end}-01"
+
+		qqq = f"SELECT diet from user_input where uid={uid} and dates between '{date_st}' and '{date_end}'"
+		values = self.db.execute(f"SELECT diet from user_input where uid={uid} and dates between '2016-01-01' and '2019-01-01'").fetchall()
+		value_array = [i[0] for i in values]
+		#print(value_array)
+		#input()
+		return value_array
+
+
+
+	def fetch_user(self, user_info, tablename):
+		email = user_info['email']
+		uid = self.db.execute("SELECT users.uid FROM users WHERE email=:email", {"email":email}).fetchone().items()[0][1]
+		value = self.db.execute(f"select {tablename} from user where uid={uid}")
+		return value
 	'''
 	def fetch_travel(self, user_info, need):
 
