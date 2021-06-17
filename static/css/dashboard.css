@@ -88,7 +88,7 @@
   top:62px;
   transform-origin: 50%;
   z-index: -1;
-  left: 30%;
+  left: 15%;
   filter: blur(1px);
   animation: shadow .5s alternate infinite ease;
 }
@@ -111,8 +111,8 @@
   animation-delay: .2s
 }
 .shadow:nth-child(5){
-  left:60%;
-  
+  left:auto;
+  right:15%;
   animation-delay: .3s;
 }
 .preloadcircles span{
