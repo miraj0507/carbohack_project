@@ -400,6 +400,7 @@ img{
 /*========== ABOUT ==========*/
 .about__data{
   text-align: center;
+  margin-top:30px;
 }
 
 .about__description{
@@ -684,18 +685,22 @@ img{
    
   
 }
-@media screen and (max-width: 260px){
+@media screen and (max-width: 710px){
 
   .home__img{
-    width: 250px;
+    width: 250px; 
+     display:flex;
+     height:180px;
+   
   }
   .home__data{
-    padding:100px;
+    padding-top:60px;
     font-size: 25px;
+    
   }
 
 }
 .home__data{
-  padding:100px;
+  padding-top:100px;
  
 }
