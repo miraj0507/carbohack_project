@@ -47,7 +47,7 @@ class Database_Soumee():
 	def oauth_login_signup(self, user_info):
 		if len(self.db.execute(f"select * from users where email='{ user_info['email'] }'").fetchall())==0:
 			self.db.execute("INSERT INTO users(uid, full_name, email, authenticate_id) VALUES(seq_user.nextval,:full_name, :email, :auth_id)",
-			               { "full_name":user_info['full_name'], "email":user_info['email'], "auth_id":user_info['auth_id']})
+			               { "full_name":user_info['name'], "email":user_info['email'], "auth_id":user_info['id']})
 			print('commiting')
 			self.db.commit()
 		
@@ -58,7 +58,7 @@ class Database_Soumee():
 		
 		email= user_info["email"]
 		
-		try:
+		if user_info['password']:
 			password= user_info["password"]
 			if (email == '' or password == ''):
 				return "Empty field"
@@ -71,7 +71,7 @@ class Database_Soumee():
 			print("User exist")
 			return True
 		
-		except KeyError:
+		else:
 			return oauth_login_signup(user_info)
 
 
@@ -79,8 +79,7 @@ class Database_Soumee():
 	def check_user_input_table(self, user_info):
 		
 		email= user_info["email"]
-		password= user_info["password"]
-
+		
 		if self.check_user_table(user_info):
 			sql_obj=self.db.execute("SELECT users.uid FROM users WHERE email=:email", {"email":email}).fetchone()
 			#print(type(sql_obj))
