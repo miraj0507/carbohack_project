@@ -372,21 +372,23 @@ class Dial {
 
  
 
-$("#next1").click(function() {
+$("#next1").click(function(e) {
     var user_info={
         bus:$('#bus-points').val(),
-        metro:$('#metro-points').val(),
+        taxi:$('#taxi-points').val(),
         train:$('#train-points').val(),
         car:$('#car-points').val(),
-        bike:$('#bike-points').val(),
-        bicycle:$('#bicycle-points').val(),
+        bike:$('#motorbike-points').val(),
+        flying:$('#flight-points').val(),
         walking:$('#walking-points').val(),
         hour:$('#hour-quantity').val(),
         minute:$('#min-quantity').val(),
         food:$('input[name=example1]:checked', '#form2').val(),
     };
+    //console.log(user_info)
 
     console.log(user_info);
+    alert('see console');
     $.ajax({
         type: "POST",
         url: '/questionare_update',
@@ -397,7 +399,8 @@ $("#next1").click(function() {
         {
             if (response.resp1 === 'Correct') {
               if (response.resp2 === 'Registered'){
-                window.location.href = '/MyAccount';
+                //window.location.href = '#';
+                alert(response.resp2);
               }
               else{
                   alert(response.resp2);
@@ -410,6 +413,7 @@ $("#next1").click(function() {
         error: function(){
           alert("server side error");
         }
-    });
+    })
+    e.preventDefault();
 });
 

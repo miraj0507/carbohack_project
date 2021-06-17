@@ -72,3 +72,95 @@ class Database_Soumee():
 		
 		print("uid doesnt exist")
 		return False
+
+	def write_user_input_table(self, user_info, user_data):
+		
+		email = user_info['email']
+		uid = self.db.execute("SELECT users.uid FROM users WHERE email=:email", {"email":email}).fetchone().items()[0][1]
+		self.db.execute("INSERT INTO user_input(ui_id, uid, travel, diet, electricity, no_of_flights, dates) VALUES(user_input_seq.nextval,:uid, :travel, :diet, :electricity, :no_of_flights, :dates)",
+			               { "uid":uid, "travel":user_data['travel'], 'diet':user_data['diet'], 'electricity':user_data['elec'], 'no_of_flights':user_data['no_of_flights'], 'dates':user_data['dates']})
+		print('commiting')
+		self.db.commit()
+		return "Registered"
+
+	def write_travel_table(self, user_info, user_data):
+
+		email = user_info['email']
+		uid = self.db.execute("SELECT users.uid FROM users WHERE email=:email", {"email":email}).fetchone().items()[0][1]
+		self.db.execute("INSERT INTO travel(travel_id, uid, bus, taxi, train, car, motorbike, cycling, walking, dates) VALUES(next value for travel_seq,:uid, :bus,:taxi, :train, :car, :motorbike, 0, 0, :dates)",
+			            { "uid":uid, 'bus':user_data['bus'], 'taxi':user_data['taxi'], 'train':user_data['taxi'], 'car':user_data['car'], 'motorbike':user_data['bike'], 'dates':user_data['dates']})
+		print('commiting')
+		self.db.commit()
+		print("Registered")
+
+
+	def write_output_table(self, user_info, user_data):
+
+		email = user_info['email']
+		uid = self.db.execute("SELECT users.uid FROM users WHERE email=:email", {"email":email}).fetchone().items()[0][1]
+		self.db.execute("INSERT INTO user_output(uoid, uid, carbon_footprint, monthly_average, dates) VALUES(next value for user_output_seq,:uid, :carbon_footprint, :monthly_average, :dates)",
+			            { "uid":uid, 'carbon_footprint':user_data['carbon_footprint'],'monthly_average':user_data['monthly_average'] , 'dates': user_data['dates'] })
+		print('commiting')
+		self.db.commit()
+		print("Registered")
+
+	def update_state(self, user_info, state):
+		email = user_info['email']
+		uid = self.db.execute("SELECT users.uid FROM users WHERE email=:email", {'email':email}).fetchone().items()[0][1]
+		self.db.execute(f"UPDATE users SET location_state='{state}' WHERE uid={uid}")
+		self.db.commit()
+		print('registered')
+
+	def check_dates(self, user_info, today_date):
+		email = user_info['email']
+		uid = self.db.execute("SELECT users.uid FROM users WHERE email=:email", {"email":email}).fetchone().items()[0][1]
+		
+		if len(self.db.execute(f"SELECT * FROM USER_INPUT WHERE DATES='{today_date}' and uid={uid}").fetchall())==0:
+			return False
+		return True
+
+	def fetch_data(self,user_info, table_name, item, today_date):
+		email = user_info['email']
+		uid = self.db.execute("SELECT users.uid FROM users WHERE email=:email", {"email":email}).fetchone().items()[0][1]
+		data=self.db.execute(f"SELECT {item} FROM {table_name} WHERE dates='{today_date}' and uid={uid}").fetchone().items()[0][1]
+		return data
+
+	def update_travel_table(self, user_info, user_data, date):
+		email = user_info['email']
+		uid = self.db.execute("SELECT users.uid FROM users WHERE email=:email", {"email":email}).fetchone().items()[0][1]
+		self.db.execute(f"UPDATE TRAVEL SET BUS={user_data['bus']}, TAXI={user_data['taxi']}, TRAIN={user_data['train']}, CAR={user_data['car']}, MOTORBIKE={user_data['bike']} WHERE uid={uid} and dates='{date}'")
+		print('commiting')
+		self.db.commit()
+		print("Registered")
+
+	def update_user_input_table(self, user_info, user_data, date):
+		email = user_info['email']
+		uid = self.db.execute("SELECT users.uid FROM users WHERE email=:email", {"email":email}).fetchone().items()[0][1]
+		self.db.execute(f"UPDATE USER_INPUT SET  travel={user_data['travel']}, diet='{user_data['diet']}', electricity=0, no_of_flights={user_data['no_of_flights']} where uid={uid} and dates='{date}'")
+		print('commiting')
+		self.db.commit()
+		return "Registered"
+
+	def update_data(self, user_info, tablename, condition, value, date):
+		email = user_info['email']
+		uid = self.db.execute("SELECT users.uid FROM users WHERE email=:email", {"email":email}).fetchone().items()[0][1]
+		self.db.execute(f"UPDATE {tablename} SET {condition}={value} where uid={uid} and dates='{date}'")
+		print('commiting')
+		self.db.commit()
+		return "Registered"
+
+	def latest_date(self, user_info, tablename):
+		email = user_info['email']
+		uid = self.db.execute("SELECT users.uid FROM users WHERE email=:email", {"email":email}).fetchone().items()[0][1]
+		return self.db.execute(f"select max(dates) from {tablename} where uid={uid}").fetchone().items()[0][1]
+
+
+	'''
+	def fetch_travel(self, user_info, need):
+
+		email = user_info['email']
+		uid=self,db.execute("SELECT users.uid FROM users WHERE email=:email",{'email':email}).fetchone().items()[0][1]
+		data=self.db.execute(f"SELECT {need} from travel t inner join (select uid, max(dates) as MaxDate from travel group by uid) tm on t.uid = tm.uid and ").fetchall()
+		print(data)
+	'''
+			
