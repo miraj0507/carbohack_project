@@ -1492,7 +1492,7 @@ figure { margin: 0;}
   padding: 0;
   box-sizing: border-box;
 }
-  .did-u-know{
+.did-u-know{
     align-items: center;
     position:relative ;
     right:20%;
@@ -1501,7 +1501,8 @@ figure { margin: 0;}
     margin-left: 35%;
     margin-right:35%;
 
-  }
+}
+
 
 .hero-section{
   align-items: center;
@@ -1590,8 +1591,7 @@ figure { margin: 0;}
   color: var(--text-lighter);
   font-size: 1.9rem;
   text-shadow: 2px 2px 20px rgba(0,0,0,0.2);
-  line-height: 1.4;
-  word-spacing: 100vw;
+  line-height: 1.5;
 }
 
 
