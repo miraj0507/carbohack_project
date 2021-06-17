@@ -358,16 +358,21 @@ h1{
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+
+@media only screen and (max-width: 330px) {
+
+}
+
 .carbon-emission{
-	background-color:#1D2521; /*#1a2329*/
-	width:120%;
+	/* background-color:#1D2521; */
+	width:100%;
 
 	position:relative;
     margin:auto;
-   
+   margin:50px;
 	justify-content:center;
 	align-items:center;
-	overflow:hidden;
+	/* overflow:hidden; */
 
 }
 .Card{
@@ -377,7 +382,7 @@ h1{
 	height:260px;
     margin-right:2%;
     margin-left:9%;
-    margin-top: 40px;
+    margin-top: 60px;
     margin-bottom: 30px;
 	border-radius:74% 82% 70% 88%;
 	display:table;
@@ -428,10 +433,10 @@ h1{
 }
 .Card div h2{
 	font-size:25px;
-  margin-top: 9px;
+  margin-top: 10px;
 }
 .Card div p{
-	margin-top:20px;
+	margin-top:40px;
 	font-size:18px;
 }
 @keyframes RotateDiv{
@@ -508,11 +513,11 @@ p{
 	color: #1f2029;
 }
 
-.section{
+.section-question{
   position: relative;
   
   margin-top:20px;
-  margin-bottom:15px;
+  margin-bottom:25px;
   width: 100%;
   display: block;
   display: -ms-flexbox;
@@ -700,6 +705,9 @@ p{
 	.modal-wrap p {
 	  padding: 15px 20px 0 20px;
 	}
+  .section-question{
+    width:600px;
+  }
 }
 
 
@@ -990,7 +998,13 @@ li:not(:last-child) {
     justify-content: center;
   }
 }
+@media only screen and (max-width: 530px) {
 
+  .card-container {
+    justify-content: center;
+    width:700px;
+  }
+}
 
 
 
@@ -1013,12 +1027,12 @@ li:not(:last-child) {
 
 /* personalized environmental kit card */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap");
-/* * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-} */
+}
 
 /* body {
   display: flex;
@@ -1026,7 +1040,7 @@ li:not(:last-child) {
   align-items: center;
   flex-wrap: wrap;
   min-height: 100vh;
-  background: #232427;
+  
 } */
 
 body .container {
@@ -1034,8 +1048,9 @@ body .container {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  /* max-width: 1200px; */
+  max-width: 1600px;
   margin: 40px 0;
+  padding:30px;
 }
 
 body .container .card {
@@ -1082,7 +1097,7 @@ body .container .card .box:hover {
   transform: translateY(-50px);
 }
 
-body .container .card .box:before {
+body .container.card .box:before {
   content: "";
   position: absolute;
   top: 0;
@@ -1138,6 +1153,34 @@ body .container .card .box .content a:hover {
   background: #fff;
   color: #000;
 }
+@media only screen and (max-width: 530px) {
+
+.container{
+  width:650px;
+
+}
+.climate-h1{
+  align-items: center;
+  width:640px;
+}
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1635,9 +1678,10 @@ html {
   margin:auto;
   margin-top:100px;
 	max-width: 640px;
-  height: 500px;
+  height: 350px;
+ border-radius: 20px;
 	width: 100%;
-  /* background-color: black; */
+   background-color: black; 
 }
 
 .aspect-ratio {
@@ -1656,6 +1700,19 @@ html {
   height:65px;
   text-align:center;
 }
+@media only screen and (max-width: 600px) {
+ 
+ .line-chart{
+  width: 600px;
 
+
+ }
+ .heading{
+   width:600px;
+ }
+ 
+  
+
+}
 
 
