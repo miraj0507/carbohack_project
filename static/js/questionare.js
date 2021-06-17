@@ -51,10 +51,10 @@ function showSliderValue() {
   }
 }
 
-$("#final-submit").click(function() {
+$("#final-submit").click(function(e) {
     var user_info={
         bus:$('#step1-bus').val(),
-        metro:$('#step1-metro').val(),
+        taxi:$('#step1-taxi').val(),
         train:$('#step1-train').val(),
         car:$('#step1-car').val(),
         bike:$('#step1-bike').val(),
@@ -65,7 +65,6 @@ $("#final-submit").click(function() {
         food:$('input[name=example1]:checked', '#form2').val(),
         elec_bill:$('#range-slider').val(),
         no_of_member:$('#member-quantity').val(),
-        elec_bill:$('#range-slider').val(),
         flights:$('#flight').val(),
         state:$('#state').val()
     };
@@ -81,7 +80,7 @@ $("#final-submit").click(function() {
         {
             if (response.resp1 === 'Correct') {
               if (response.resp2 === 'Registered'){
-                window.location.href = '/MyAccount';
+                window.location.href = '#';
               }
               else{
                   alert(response.resp2);
@@ -95,4 +94,5 @@ $("#final-submit").click(function() {
           alert("server side error");
         }
     });
+    e.preventDefault();
 });

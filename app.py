@@ -206,14 +206,52 @@ def questionare_filling():
     if not('user' in session):
         return redirect('/')
 
+    dates=str(datetime.datetime.date(datetime.datetime.now()))
     user_info = request.json
+    print(user_info)
+    travel_data={}
+    travel_data['bus']=int(user_info['bus'])
+    travel_data['taxi']=int(user_info['taxi'])
+    travel_data['train']=int(user_info['train'])
+    travel_data['car']=int(user_info['car'])
+    travel_data['bike']=int(user_info['bike'])
+    travel_data['bicycle']=0
+    travel_data['walking']=0
+    travel_data['dates']=dates
+    
+    db_S.write_travel_table(session['user'], travel_data)
+    
+    time={}
+    time['hour']=int(user_info['hour'])
+    time['minutes']=int(user_info['minute'])
+    calc_S.travel_f(travel_data, time)
+    
+    food_type=user_info['food']
+    calc_S.food_f(food_type)
+
+    #elec['bill']=user_info['elec_bill']
+    #elec['members']=user_info['no_of_member']
+    calc_S.elec_f(int(user_info['elec_bill']), int(user_info['no_of_member']))
+    
+    user_input={}
+    user_input['travel']=calc_S.travel
+    #elec={}
+    user_input['diet']=user_info['food']
+    user_input['elec']=calc_S.elec
+    user_input['no_of_flights']=int(user_info['flights'])
+    user_input['dates']=dates
+    db_S.write_user_input_table(session['user'], user_input)
+
+    db_S.update_state(session['user'], user_info['state'])
+    
     db_S_respond='Registered'#db_S.example(user_info)
     
-    calc_S.food_f()
-    calc_S.travel_f()
-    calc_S.elec_f()
-    
     calc_S.initial_set_up()
+    user_output={}
+    user_output['carbon_footprint']=calc_S.x
+    user_output['monthly_average']=calc_S.avg
+    user_output['dates']=dates
+    db_S.write_output_table(session['user'], user_output)
     #put output values in output_table
     return jsonify(resp1='Correct', resp2=db_S_respond)
 
@@ -224,28 +262,92 @@ def questionare_update():
 
     user_info = request.json
     print(user_info)
-    db_S_respond='Registered'#db_S.example(user_info)
-    latest_date=db_S.latestDate(session['user'])
     today_date = str(datetime.datetime.date(datetime.datetime.now()))
-    if today_date == latest_date:
-        calc_S.x = 0 #total co2 from databse
+    travel_data={}
+    travel_data['bus']=int(user_info['bus'])
+    travel_data['taxi']=int(user_info['taxi'])
+    travel_data['train']=int(user_info['train'])
+    travel_data['car']=int(user_info['car'])
+    travel_data['bike']=int(user_info['bike'])
+    #travel_data['bicycle']=0
+    travel_data['walking']=0
+    travel_data['dates']=today_date
+
+    time={}
+    time['hour']=int(user_info['hour'])
+    time['minutes']=int(user_info['minute'])
+    
+    db_S_respond='Registered'#db_S.example(user_info)
+    #latest_date=db_S.latestDate(session['user'])
+    if db_S.check_dates(session['user'], today_date):
+        calc_S.x = int(db_S.fetch_data(session['user'],'user_output','carbon_footprint',today_date)) #total co2 from databse
         
-        calc_S.elec = 0 #elec from database
-        calc_S.food = 0 #food
-        calc_S.travel = 0 #travel
+        calc_S.elec = 0
+        calc_S.food_f((db_S.fetch_data(session['user'],'user_input', 'diet',today_date))) #food
+        calc_S.travel = int(db_S.fetch_data(session['user'],'user_input', 'travel', today_date)) #travel
         
         calc_S.delete_data()
-    
-    calc_S.x = 0
-    calc_S.avg = 0
-    calc_S.goal = 0
-    calc_S.r = 0
+        db_S.update_travel_table(session['user'],travel_data,today_date)
 
-    calc_S.food_f()
-    calc_S.travel_f()
-    calc_S.elec_f()
+        
+        calc_S.travel_f(travel_data, time)
+        
+        food_type=user_info['food']
+        calc_S.food_f(food_type)
+
+        #elec['bill']=user_info['elec_bill']
+        #elec['members']=user_info['no_of_member']
+        #calc_S.elec_f(int(user_info['elec_bill']), int(user_info['no_of_member']))
+        
+        user_input={}
+        user_input['travel']=calc_S.travel
+        #elec={}
+        user_input['diet']=user_info['food']
+        user_input['elec']=calc_S.elec
+        user_input['no_of_flights']=int(user_info['flying'])
+        user_input['dates']=today_date
+
+        db_S.update_user_input_table(session['user'], user_input, today_date)
+
+        calc_S.entry_every_day()
+
+        db_S.update_data(session['user'], 'user_output', 'carbon_footprint',calc_S.x, today_date)
+
+    else:
+        latestDate = db_S.latest_date(session['user'], 'user_output')
+
+        calc_S.x = int(db_S.fetch_data(session['user'],'user_output','carbon_footprint',latestDate)) #total co2 from databse
+        
+        db_S.write_travel_table(session['user'], travel_data)
     
-    calc_S.entry_every_day()
+        calc_S.travel_f(travel_data, time)
+        
+        food_type=user_info['food']
+        calc_S.food_f(food_type)
+
+        #elec['bill']=user_info['elec_bill']
+        #elec['members']=user_info['no_of_member']
+        #calc_S.elec_f(int(user_info['elec_bill']), int(user_info['no_of_member']))
+        
+        user_input={}
+        user_input['travel']=calc_S.travel
+        #elec={}
+        user_input['diet']=user_info['food']
+        user_input['elec']=0
+        user_input['no_of_flights']=int(user_info['flying'])
+        user_input['dates']=today_date
+        db_S.write_user_input_table(session['user'], user_input)
+
+        
+        db_S_respond='Registered'#db_S.example(user_info)
+        
+        calc_S.entry_every_day()
+        user_output={}
+        user_output['carbon_footprint']=calc_S.x
+        
+        user_output['monthly_average']=int(db_S.fetch_data(session['user'], 'user_output', 'monthly_average', latestDate))
+        user_output['dates']=today_date
+        db_S.write_output_table(session['user'], user_output)
 
     
     #put output values in output_table
