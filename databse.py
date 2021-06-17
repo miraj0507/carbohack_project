@@ -154,7 +154,17 @@ class Database_Soumee():
 		uid = self.db.execute("SELECT users.uid FROM users WHERE email=:email", {"email":email}).fetchone().items()[0][1]
 		return self.db.execute(f"select max(dates) from {tablename} where uid={uid}").fetchone().items()[0][1]
 
-
+	def oauth_login_signup(self, user_info):
+		if len(self.db.execute(f"select * from users where email='{ user_info['email'] }'").fetchall())==0:
+			self.db.execute("INSERT INTO users(uid, full_name, email, authenticate_id) VALUES(seq_user.nextval,:full_name, :email, :auth_id)",
+			               { "full_name":user_info['full_name'], "email":user_info['email'], "auth_id":user_info['auth_id']})
+			print('commiting')
+			self.db.commit()
+			return "MADE AN ACCOUNT"
+		
+		return "EXIST"
+	
+	
 	'''
 	def fetch_travel(self, user_info, need):
 
