@@ -25,6 +25,16 @@ class Calculations():
 
     summ = 0
 
+    def goal_selector(self):
+        if self.avg > self.g:
+            self.goal = self.g
+            self.r = self.avg - self.g
+        else:
+            self.goal = self.avg
+            self.r = 0
+
+
+
     def travel_f(self, travel_data, t):
         time = lambda percent: (percent/10)*((t['hour']*60 + t['minutes'])/60)
 
@@ -88,12 +98,9 @@ class Calculations():
 
         self.x = (self.avg/30)*date
 
-        if self.avg > self.g:
-            self.goal = self.g
-            self.r = self.avg - self.g
-        else:
-            self.goal = self.avg
-            self.r = 0
+        self.goal_selector()
+
+        
 
     def delete_data(self):
         self.x = self.x - (self.travel + self.food + self.elec)
@@ -106,12 +113,7 @@ class Calculations():
         self.avg = self.sum/2
         self.x = 0
 
-        if self.avg > self.g:
-            self.goal = self.g
-            self.r = self.avg - self.g
-        else:
-            self.goal = self.avg
-            self.r = 0
+        self.goal_selector()
     
     def calculate_month(self):
         creation_month, creation_year = (0,0) #db_S.example()
@@ -136,10 +138,4 @@ class Calculations():
 
         self.x = 0
 
-        if self.avg > self.g :
-            self.goal = self.g
-            self.r = self.avg - self.g
-
-        else:
-            self.goal = self.avg
-            self.r = 0
+        self.goal_selector()

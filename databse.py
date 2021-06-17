@@ -23,6 +23,8 @@ class Database_Soumee():
 		email = user_info['email']
 		password = user_info['password']
 		location_state = user_info['location']
+		if (password == '' or email == ''):
+			return "Empty field"
 		
 		full_name=""
 		full_name= full_name + firstname + lastname
@@ -42,19 +44,35 @@ class Database_Soumee():
 		else:
 			return "User Already registered"
 
+	def oauth_login_signup(self, user_info):
+		if len(self.db.execute(f"select * from users where email='{ user_info['email'] }'").fetchall())==0:
+			self.db.execute("INSERT INTO users(uid, full_name, email, authenticate_id) VALUES(seq_user.nextval,:full_name, :email, :auth_id)",
+			               { "full_name":user_info['full_name'], "email":user_info['email'], "auth_id":user_info['auth_id']})
+			print('commiting')
+			self.db.commit()
+		
+		return True
+
 
 	def check_user_table(self, user_info):
 		
 		email= user_info["email"]
-		password= user_info["password"]
+		
+		try:
+			password= user_info["password"]
+			if (email == '' or password == ''):
+				return "Empty field"
 
-		if len(self.db.execute("SELECT email, passwords FROM users WHERE email= :email AND passwords= :password ",
-						{"email":email, "password":password}).fetchall())== 0:
-			print("User doesnt exist")
-			return False
+			if len(self.db.execute("SELECT email, passwords FROM users WHERE email= :email AND passwords= :password ",
+							{"email":email, "password":password}).fetchall())== 0:
+				print("User doesnt exist")
+				return False
 
-		print("User exist")
-		return True
+			print("User exist")
+			return True
+		
+		except KeyError:
+			return oauth_login_signup(user_info)
 
 
 
@@ -154,15 +172,7 @@ class Database_Soumee():
 		uid = self.db.execute("SELECT users.uid FROM users WHERE email=:email", {"email":email}).fetchone().items()[0][1]
 		return self.db.execute(f"select max(dates) from {tablename} where uid={uid}").fetchone().items()[0][1]
 
-	def oauth_login_signup(self, user_info):
-		if len(self.db.execute(f"select * from users where email='{ user_info['email'] }'").fetchall())==0:
-			self.db.execute("INSERT INTO users(uid, full_name, email, authenticate_id) VALUES(seq_user.nextval,:full_name, :email, :auth_id)",
-			               { "full_name":user_info['full_name'], "email":user_info['email'], "auth_id":user_info['auth_id']})
-			print('commiting')
-			self.db.commit()
-			return "MADE AN ACCOUNT"
-		
-		return "EXIST"
+	
 	
 	
 	'''

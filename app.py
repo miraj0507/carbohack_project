@@ -66,11 +66,15 @@ def signup_google():
 
 @app.route('/auth_google')
 def auth_google():
-    user_info = gg.send_user_info()
-    print(user_info)
-    session['user']=user_info
-    #Use the user_info
-    return redirect('/MyAccount')
+    try:
+        user_info = gg.send_user_info()
+        print(user_info)
+        input()
+        session['user']=user_info
+        #Use the user_info
+        return redirect('/MyAccount')
+    except:
+        return render_template('error.html', err="403 Unauthorized")
 
 # /END
 # *************************************************************************
@@ -360,8 +364,9 @@ def questionare_update():
 # User's account page. Left to be done
 @app.route('/MyAccount')
 def My_Account():
-    #if not ('user' in session):
-    #   return redirect('/')
+    if not ('user' in session):
+       return redirect('/')
+    
     
     if not db_S.check_user_input_table(session['user']):
         return redirect('/questionare')
