@@ -72,7 +72,7 @@ class Database_Soumee():
 			return True
 		
 		else:
-			return oauth_login_signup(user_info)
+			return self.oauth_login_signup(user_info)
 
 
 
