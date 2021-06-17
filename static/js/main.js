@@ -93,7 +93,7 @@ themeButton.addEventListener('click', () => {
 const sr = ScrollReveal({
     origin: 'top',
     distance: '30px',
-    duration: 2000,
+    duration: 1000,
     reset: true
 });
 
@@ -103,5 +103,11 @@ sr.reveal(`.home__data, .home__img,
             .app__data, .app__img,
             .contact__data, .contact__button,
             .footer__content`, {
-    interval: 200
+    interval: 30
 })
+
+
+// window.onload = function(){
+   
+//     document.querySelector(".preloader").style.display = "none";
+// }
