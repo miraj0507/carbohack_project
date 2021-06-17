@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script
+        src="https://kit.fontawesome.com/64d58efce2.js"
+        crossorigin="anonymous"
+      ></script>
+        <!-- ===== BOX ICONS ===== -->
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js" integrity="sha256-qoN08nWXsFH+S9CtIq99e5yzYHioRHtNB9t2qy1MSmc=" crossorigin="anonymous"></script>
+
+        <!-- ===== CSS ===== -->
+        <link rel="stylesheet" href="/static/css/dashboard.css">
+
+
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+
+        <title>carbohack-homepage</title>
+    </head>
+    <body id="body-pd">
+	<!--------------Preloader----------------->
+	<div class="preloader" id="preloader">
+	    <canvas id='canvas'></canvas>
+	      <div class="preloadcircles">
+		  <div class="circle"></div>
+		  <div class="circle"></div>
+		  <div class="circle"></div>
+		  <div class="shadow"></div>
+		  <div class="shadow"></div>
+		  <div class="shadow"></div>
+		  <span>Welcome</span>
+	      </div>
+	</div>
+        <!---------------------------------------->
+        <header class="header" id="header">
+            <div class="header__toggle">
+                <i class='bx bx-menu' id="header-toggle"></i>
+                CARBO-HACK
+            </div>
+
+            <div class="header__img">
+                <img src="/static/img/earth.png" alt="">
+            </div>
+        </header>
+
+        <div class="l-navbar" id="nav-bar">
+          
+            <nav class="nav">
+            
+                <div>
+                    <a href="#" class="nav__logo">
+                        <i class='bx bx-user-circle nav__icon '></i>
+                        <span class="nav__logo-name">CarboHack</span>
+                    </a>
+
+                    <div class="nav__list">
+                        <a href="#" class="nav__link active">
+                        <i class='bx bx-grid-alt nav__icon' ></i>
+                            <span class="nav__name">Dashboard</span>
+                        </a>
+
+                        <a href="/User_Profile" class="nav__link">
+                            <i class='bx bx-user nav__icon' ></i>
+                            <span class="nav__name">User Account</span>
+                        </a>
+                        
+                        <a href="/community" class="nav__link">
+                            <i class='bx bx-message-square-detail nav__icon' ></i>
+                            <span class="nav__name"> Community text</span>
+                        </a>
+
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-bookmark nav__icon' ></i>
+                            <span class="nav__name">History log</span>
+                        </a>
+
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-folder nav__icon' ></i>
+                            <span class="nav__name">Data</span>
+                        </a>
+
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-bar-chart-alt-2 nav__icon' ></i>
+                            <span class="nav__name">Analytics</span>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="/logout" class="nav__link">
+                    <i class='bx bx-log-out nav__icon' ></i>
+                    <span class="nav__name">Log Out</span>
+                </a>
+            </nav>
+        </div>
+
+        <div class="carbon-emission">
+            <div class="Card">
+                <div>
+                    <h2>This Is Your Average Carbon Footprint </h2>
+                    <h2>
+                        {{ avg }} kg 
+                    </h2>
+                </div>
+            </div>
+            <div class="Card">
+                <div>
+                    <h2>This Is Carbon Footprint Average so far in this month</h2>
+                    <h2>
+                        {{ x }} kg 
+                    </h2>
+                </div>
+                
+            </div>
+
+            <div class="Card">
+              <div>
+                  <h2>This Is Global Ideal Carbon Footprint Average</h2>
+                  <h2>
+                      5.0 kg 
+                  </h2>
+              </div>
+              
+          </div>
+        
+        </div>
+
+    
+	  <div class="section-question">
+        <input class="modal-btn" type="checkbox" id="modal-btn" name="modal-btn"/>
+        <label for="modal-btn"><b>Know your daily emission.</b> <i class='bx bx-donate-heart'></i></label> 		
+        <div class="modal">		
+            <div class="modal-wrap">	
+              
+
+              <form id="form1" >
+                <h3>HOW DID YOU TRAVEL TODAY ?</h3>
+                <p>Percentage (between 0 and 10):</p>
+                <div class="form-check form-check-inline container-fluid">
+                  <!-- <input class="form-check-input" type="checkbox" id="bus" value="bus"> -->
+                  <label class="form-check-label" for="bus">Bus  </label>
+              
+
+                 <label for="points">:</label><br>
+                 <input class="slider" type="range" id="bus-points" name="points" min="0" max="10" value="0" required="required">
+                 <output for="range" class="output"></output>
+              </div>
+              <div class="form-check form-check-inline container-fluid">
+                <!-- <input class="form-check-input" type="checkbox" id="metro" value="metro"> -->
+                <label class="form-check-label" for="taxi">Taxi</label>
+             
+
+              <label for="points">:</label>
+              <input class="slider" type="range" id="taxi-points" name="points" min="0" max="10" value="0">
+             
+              <br>
+            </div>
+             
+
+              <div class="form-check form-check-inline container-fluid">
+                <!-- <input class="form-check-input" type="checkbox" id="train" value="train"> -->
+                <label class="form-check-label" for="train">Train</label>
+              
+
+              <label for="points">:</label>
+              <input class="slider" type="range" id="train-points" name="points" min="0" max="10" value="0">
+              <br >
+            </div>
+              
+              <div class="form-check form-check-inline container-fluid">
+                <!-- <input class="form-check-input" type="checkbox" id="car" value="car" > -->
+                <label class="form-check-label" for="car">CAR</label>
+             
+
+                <label for="points">:</label>
+                <input class="slider" type="range" id="car-points" name="points" min="0" max="10" value="0"> 
+              <br>
+            </div>
+
+              <div class="form-check form-check-inline container-fluid">
+                <!-- <input class="form-check-input" type="checkbox" id="motorbike" value="motorbike" > -->
+                <label class="form-check-label" for="motorbike">MotorBike</label>
+              
+
+                <label for="points">:</label>
+                <input  class="slider" type="range" id="motorbike-points" name="points" min="0" max="10" value="0">
+              <br>
+            </div>
+
+              <div class="form-check form-check-inline container-fluid">
+                <!-- <input class="form-check-input" type="checkbox" id="bicycle" value="bicycle"> -->
+                <label class="form-check-label" for="flight">Flight</label>
+              
+
+              <label for="points">:</label>
+              <input class="slider" type="range" id="flight-points" name="points" min="0" max="10" value="0">
+              <br>
+            </div>
+
+              <div class="form-check form-check-inline container-fluid">
+                <!-- <input class="form-check-input" type="checkbox" id="walking" value="walking"> -->
+                <label class="form-check-label" for="walking">Walking/Bicycle</label>
+             
+
+              <label for="points">:</label>
+              <input class="slider" type="range" id="walking-points" name="points" min="0" max="10" value="0">  
+            </div>  
+            
+            <h4>Enter Average Time Travelled</h4>
+            <div class="input-field">
+              <i class="fas fa-stopwatch"></i>
+              <input type="number" id="hour-quantity" name="quantity" min="0" placeholder="in HRS"  required="required">
+            </div>            
+            <div class="input-field">
+              <i class="fas fa-stopwatch"></i>
+              <input type="number" id="min-quantity" name="quantity" min="0" placeholder="in MINS"  required="required">
+            </div>
+              
+              
+            </form>
+
+            <form id="form2">
+                <h3>WHAT'S YOUR DIET FOR TODAY? </h3>
+                <div class = "food-options">
+                  
+                  <div class="custom-control custom-radio meat">
+                    <input type="radio" class="custom-control-input" id="customRadio1" name="example1" value='lots of meat'>
+                    <label class="custom-control-label" for="customRadio1">Lots of Meat</label>
+                    <img class="ramen" src="/static/img/meat.png" alt="ramen-img" style="width: 50px;">                      
+                  </div> 
+
+                  <div class="custom-control custom-radio low-meat">
+                    <input type="radio" class="custom-control-input" id="customRadio2" name="example1" value='low meat'>
+                    <label class="custom-control-label" for="customRadio2">Low Meat </label> 
+                    <img class="ramen" src="/static/img/proteins.png" alt="ramen-img" style="width: 50px;">        
+                  </div>
+
+                  <div class="custom-control custom-radio fish">
+                    <input type="radio" class="custom-control-input" id="customRadio3" name="example1" value='Pescatarian'>
+                    <label class="custom-control-label" for="customRadio3">Pescatarian  </label>  
+                    <img class="ramen" src="/static/img/pescatarian.png" alt="ramen-img" style="width: 50px;">       
+                  </div>
+                  
+                  <div class="custom-control custom-radio veg">
+                    <input type="radio" class="custom-control-input" id="customRadio4" name="example1" value='Vegetarian'>
+                    <label class="custom-control-label" for="customRadio4">Vegetarian </label>  
+                    <img class="ramen" src="/static/img/salad.png" alt="ramen-img" style="width: 50px;">       
+                  </div>
+
+                  <div class="custom-control custom-radio vegan">
+                    <input type="radio" class="custom-control-input" id="customRadio5" name="example1" value='Vegan'>
+                    <label class="custom-control-label" for="customRadio5">Vegan  </label>
+                    <img class="ramen" src="/static/img/diet.png" alt="ramen-img" style="width: 50px;">         
+                  </div>
+                </div>
+                
+
+                <div class="btn-box"><button type="submit" id="next1">Submit</button></div>
+                
+              </div>
+          
+            </div>			          		
+        </div>	
+       
+
+<!-- personalised goal environmental kit  card -->
+
+<div>
+  <h1 class="climate-h1" > Your Climate Change Kit</h1>
+</div>
+<div class="container">
+ 
+  <div class="card">
+    <div class="box">
+      <div class="content">
+
+        <h3>Environment Card</h3>
+        <p>Did you know that the Global Average Carbon Footprint per person is over 4 tons per year? <br>Click on Read More to learn more facts like this</p>
+        <a href="#didyouknow">Read More</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="box">
+      <div class="content">
+  
+        <h3>Goal Card</h3>
+        <p>Your Goal to Reach is 200kg <br>The Percentage of Your Carbon Emission to be Reduced </p>
+        <div class="wrapper-goal">
+          <div class="container-goal chart" data-size="130" data-value="{{ percent*100 }}" data-arrow="down"></div>
+        </div>
+        <a href="#suggestions">Let's Reduce</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="box">
+      <div class="content">
+
+        <h3>Analysis Card</h3>
+        <p>Wanna know what your carbon footprint has been throughtout the months vs India's footprint?<br>Click on Graph to see your own personalized graph</p>
+        <a href="#graph">GRAPH</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- 
+
+GRADIENT BANNER DESIGN BY miraj:
+
+
+-->
+<!--Made each a list, changed all icons and text, added jinja ~Oishee-->
+<div class="main-container" id="suggestions">
+  <div class="heading-container">
+    <h1 class="heading">Personalised Suggested Steps To Reach Your Goal</h1>
+  
+  </div>
+  <div class="card-container">
+    <div class="card card-5">
+      <div class="card__icon"><i class="fas fa-carrot"></i> Food </div>
+      {% if avg <= 200 %}             
+        <h2 class="card__title"><ul style="list-style-type: none;">
+          <li>Your carbon emission due to food is {{ food }} kg</li>
+          <li>That's good!We hope that you can maintain it!</li>
+          <li>Try not to drastically change your diet</li>
+        </ul></h2>
+      {% elif food <= 125 %}
+        <h2 class="card__title"><ul style="list-style-type: none;">
+          <li>Your carbon emission due to food is {{ food }} kg</li>
+          <li>That's good! Try maintaining it!</li>
+          <li>Try not to drastically change your diet</li>
+        </ul></h2>
+      {% else %}             
+        <h2 class="card__title"><ul style="list-style-type: none;">
+          <li>Your carbon emission due to food is {{ food }} kg</li>
+          <li>You can do a little better!</li>
+          <li>Try mixing in veg diet occasionally</li>
+        </ul></h2>
+      {% endif %}
+      <p class="card__apply">You can do it!!</p>
+    </div>
+
+
+    <div class="card card-1">
+      <div class="card__icon"><i class="fas fa-car-side"></i> Travel</div>
+      {% if avg <= 200 %}             
+        <h2 class="card__title"><ul style="list-style-type: none;">
+          <li>Your carbon emission due to travel is {{ travel }} kg</li>
+          <li>You're on the right track! Try maintaining it!</li>
+          <li>If you need to travel more often than now, try taking the bus</li>
+        </ul></h2>
+      {% else %}
+        {% if fly > 80 and car_taxi < 80 %}
+          <h2 class="card__title"><ul style="list-style-type: none;">
+            <li>Your carbon emission due to travel is {{ travel }} kg</li>
+            <li>The reason it is so high is flights. A 30 min flight emits about 70kg!</li>
+            <li>Try going to shortdistance places by cycling or on foot</li>
+          </ul></h2>
+        {% elif fly < 80 and car_taxi > 80 %}
+          <h2 class="card__title"><ul style="list-style-type: none;">
+            <li>Your carbon emission due to travel is {{ travel }} kg</li>
+            <li>You can try taking the bus or the train instead of car or taxi</li>
+            <li>Try going to shortdistance places by cycling or on foot</li>
+          </ul></h2>
+        {% elif fly > 80 and car_taxi > 80 %}
+          <h2 class="card__title"><ul style="list-style-type: none;">
+            <li>Your carbon emission due to travel is {{ travel }} kg</li>
+            <li>The reason it is so high is flights. A 30 min flight emits about 70kg!</li>
+            <li>You can try taking the bus or the train instead of car or taxi</li>
+          </ul></h2>
+        {% elif fly < 80 and car_taxi < 80 and motorbike > 80 %}
+          <h2 class="card__title"><ul style="list-style-type: none;">
+            <li>Your carbon emission due to travel is {{ travel }} kg</li>
+            <li>You can try taking the bus or the train instead of motorbike</li>
+            <li>Try going to shortdistance places by cycling or on foot</li>
+          </ul></h2>
+        {% else %}
+          <h2 class="card__title"><ul style="list-style-type: none;">
+            <li>Your carbon emission due to travel is {{ travel }} kg</li>
+            <li>You can try taking the bus or the train more often</li>
+            <li>Try going to shortdistance places by cycling or on foot</li>
+          </ul></h2>
+        {% endif %}            
+      {% endif %}
+      <p class="card__apply"> Go for it!!</a></p>
+    </div>
+    
+    <div class="card card-2">
+      <div class="card__icon"><i class="fas fa-bolt"></i> Electricity </div>
+      <!-- <p class="card__exit"><i class="fas fa-times"></i></p> -->
+      {% if avg <= 200 %}             
+        <h2 class="card__title"><ul style="list-style-type: none;">
+          <li>Your carbon emission due to electricity is {{ elec }} kg</li>
+          <li>You're doing great!</li>
+          <li>Keep it up!</li>
+        </ul></h2>
+      {% else %}             
+        <h2 class="card__title"><ul style="list-style-type: none;">
+          <li>Your carbon emission due to electricity is {{ elec }} kg</li>
+          <li>Try to cut down the use of some appliances which consume huge electricity</li>
+          <li>Switching to devices with less carbon emissions like LED lights may help</li>
+        </ul></h2>
+      {% endif %}
+      <p class="card__apply">We are rooting for you!!</p>
+    </div>
+  </div>
+</div>
+<!--<div class="main-container">
+  <div class="heading-container">
+    <h1 class="heading">Steps To Reach Your Goal</h1>
+  
+  </div>
+  <div class="card-container">
+    <div class="card card-5">
+      <div class="card__icon"><i class="fas fa-carrot"></i> Food </div>
+      <h2 class="card__title"><ul style="list-style-type: none;">
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+      </ul></h2>
+      <p class="card__apply">You can do it!!</p>
+    </div>
+    <div class="card card-1">
+      <div class="card__icon"><i class="fas fa-car-side"></i> Travel</div>
+      
+      <h2 class="card__title"><ul style="list-style-type: none;">
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+      </ul></h2>
+      <p class="card__apply"> Go for it!!</a></p>
+    </div>
+    
+    <div class="card card-2">
+      <div class="card__icon"><i class="fas fa-bolt"></i> Electricity </div>
+      
+      <h2 class="card__title"><ul style="list-style-type: none;">
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+      </ul></h2>
+      <p class="card__apply">We are rooting for you!!</p>
+    </div>
+  </div>
+</div>-->
+
+
+
+<!-- this is the graph  -->
+
+
+
+
+
+
+
+
+
+
+
+
+          <!-- <div class="wrapper">
+            <canvas id='c'></canvas>
+            <div class="label">YEAR</div>
+          </div> -->
+          
+
+<!-- this is the graph  -->
+
+
+
+
+<div class="full" id="graph">
+  <h1 class="main-title">
+      <span class="span1">Carbon Emission Statistics I:</span>
+      <span class="span2">Percentage growth in India </span>
+   
+  </h1>
+  <div class="container-graph">
+      <div class="bars">
+          
+          <div class="persp5">
+              <figure class="face top"></figure>
+              <figure class="face front"></figure>
+              <figure class="face left"></figure>
+              <figure class="face right"></figure>
+              <figure class="face back"></figure>
+              <div class="face data-y">5.7</div>
+              <div class="face data-x"></div>
+              
+          </div>
+          
+          <div class="persp4">
+              <figure class="face top"></figure>
+              <figure class="face front"></figure>
+              <figure class="face left"></figure>
+              <figure class="face right"></figure>
+              <figure class="face back"></figure>
+              <div class="face data-y">9.6</div>
+              <div class="face data-x"></div>
+              
+          </div>
+          
+          <div class="persp3">
+              <figure class="face top"></figure>
+              <figure class="face front"></figure>
+              <figure class="face left"></figure>
+              <figure class="face right"></figure>
+              <figure class="face back"></figure>
+              <div class="face data-y">15.6</div>
+              <div class="face data-x"></div>
+              
+          </div>
+      
+          <div class="persp2">
+              <figure class="face top"></figure>
+              <figure class="face front"></figure>
+              <figure class="face left"></figure>
+              <figure class="face right"></figure>
+              <figure class="face back"></figure>
+              <div class="face data-y">26.8</div>
+              <div class="face data-x"></div>
+          </div>
+          
+          <div class="persp1">
+              <figure class="face top"></figure>
+              <figure class="face front"></figure>
+              <figure class="face left"></figure>
+              <figure class="face right"></figure>
+              <figure class="face back"></figure>
+              <div class="face data-y">38.5</div>
+              <div class="face data-x"></div>
+          </div>
+      </div>
+      
+      <div class="base"></div>
+   </div>
+  <div class="subtitle">
+              <ul class="list-social">
+                  <li class="fb">2020</li>
+                  <li class="twt">2015</li>
+                  <li class="gp">2010</li>
+                  <li class="lkd">2005</li>
+                  <li class="pin">2000</li>
+              </ul>
+     </div>
+
+
+</div>
+
+
+
+<!-- graph: -->
+
+<div class="line-chart">
+
+  <div class="aspect-ratio">
+    
+    <canvas id="chart"></canvas>
+  </div>
+  
+</div>
+<h1 class="heading">Your Carbon Footprint Tracked in a Graph </h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+did you know -->
+
+<div class="did-u-know" id="didyouknow">
+  <h1 class="heading">Did You Know???</h1>
+  <section class="hero-section">
+    <div class="card-grid">
+      <a class="card" href="#">
+        <div class="card__background" style="background-image: url(/static/img/dik1.jpg)"></div>
+        <div class="card__content">
+          <!-- <p class="card__category">Category</p> -->
+          <h3 class="card__heading">One tree absorbs 21 kilograms of carbon dioxide per year</h3>
+        </div>
+      </a>
+      <a class="card" href="#">
+        <div class="card__background" style="background-image: url(/static/img/dik4.jpg)"></div>
+        <div class="card__content">
+          <!-- <p class="card__category">Category</p> -->
+          <h3 class="card__heading">The average footprint of beef is about four times that of chicken</h3>
+        </div>
+      </a>
+      <a class="card" href="#">
+        <div class="card__background" style="background-image: url(/static/img/dik3.jpg)"></div>
+        <div class="card__content">
+          <!-- <p class="card__category">Category</p> -->
+          <h3 class="card__heading">Just one hour of flight releases 90kg of carbon dioxide into the air</h3>
+        </div>
+      </li>
+    </a>
+    <a class="card" href="#">
+      <div class="card__background" style="background-image: url(/static/img/dik5.jpg)"></div>
+      <div class="card__content">
+        <!-- <p class="card__category">Category</p> -->
+        <h3 class="card__heading">The oceans absorb over 2bn tonnes of carbon dioxide per year</h3>
+      </div>
+    </a>
+    <div>
+  </section>
+</div>
+
+
+
+          <!-- <div class="wrapper">
+            <canvas id='c'></canvas>
+            <div class="label">YEAR</div>
+          </div> -->
+          
+
+        <!--===== MAIN JS =====-->
+        <script src="/static/js/dashboard.js"></script>
+    </body>
+<!---------------For Preloader------------------------>
+<script>
+  //after window is loaded completely 
+  window.onload = function(){
+      //hide the preloader
+      document.getElementById("preloader").style.display = "none";
+  }
+</script>
+</html>
