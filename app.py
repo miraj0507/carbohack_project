@@ -69,7 +69,8 @@ def auth_google():
     try:
         user_info = gg.send_user_info()
         print(user_info)
-        input()
+        user_info['password']=None
+        #input()
         session['user']=user_info
         #Use the user_info
         return redirect('/MyAccount')
@@ -92,6 +93,7 @@ def signup_facebook():
 @app.route('/auth_facebook/')
 def auth_facebook():
     user_info = ff.send_user_info()
+    user_info['password']=None
     print(user_info)
     session['user']=user_info
     #Use the user_info
@@ -166,6 +168,7 @@ def processing_signin():
     user_info = {}
     user_info['email'] = request.form['email']
     user_info['password'] = request.form['password']
+    #user_info['id']=None
     if db_S.check_user_table(user_info):
         session['user']=user_info
         if db_S.check_user_input_table(user_info):
