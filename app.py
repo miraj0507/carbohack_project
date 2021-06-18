@@ -396,6 +396,7 @@ def My_Account():
     travel = db_S.get_table_data(session['user'], 'travel','user_input',d)
     elec = db_S.get_table_data(session['user'], 'electricity','user_input',d)
     food = db_S.get_food_total(session['user'], d)
+    print(f"food-Total:{food}")
     t_food=0
     for i in food:
         calc_S.food_f(i)
