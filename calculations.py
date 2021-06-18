@@ -90,13 +90,13 @@ class Calculations():
     def initial_set_up(self):
         flight = 0 #db_S.example()
         fly = 138.45*2*flight
-
+        print(f"travel {travel} food {food} elec{food}")
         self.avg = (self.travel + self.food + self.elec)*30 + fly/12
 
         self.summ = self.avg
 
         date = int((datetime.datetime.now()).strftime("%d")) - 1
-        print(date)
+        print(f"date {date} avg {avg}")
 
         self.x = (self.avg/30)*date
 
