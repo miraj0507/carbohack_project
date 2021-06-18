@@ -64,12 +64,12 @@
                             <span class="nav__name">Dashboard</span>
                         </a>
 
-                        <a href="/templates/user.html" class="nav__link">
+                        <a href="/User_Profile" class="nav__link">
                             <i class='bx bx-user nav__icon' ></i>
                             <span class="nav__name">User Account</span>
                         </a>
                         
-                        <a href="/templates/community.html" class="nav__link">
+                        <a href="/community" class="nav__link">
                             <i class='bx bx-message-square-detail nav__icon' ></i>
                             <span class="nav__name"> Community text</span>
                         </a>
@@ -121,7 +121,7 @@
               <div>
                   <h2>This Is Global Ideal Carbon Footprint Average</h2>
                   <h2>
-                      5.0 kg 
+                      200 kg 
                   </h2>
               </div>
               
@@ -292,7 +292,7 @@
         <h3>Goal Card</h3>
         <p>Your Goal to Reach is 200kg <br>The Percentage of Your Carbon Emission to be Reduced </p>
         <div class="wrapper-goal">
-          <div class="container-goal chart" data-size="130" data-value="89" data-arrow="down"></div>
+          <div class="container-goal chart" data-size="130" data-value="{{percent*100}}" data-arrow="down"></div>
         </div>
         <a href="#suggestions">Let's Reduce</a>
       </div>

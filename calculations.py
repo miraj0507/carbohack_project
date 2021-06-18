@@ -62,7 +62,7 @@ class Calculations():
         #taxi = [0,0,0] #db_S.example('fly')
         taxi_emi = 0.23*30*(time(travel_data['taxi']))
 
-        self.travel = car_emi+train_emi+bus_emi+motorbike+taxi_emi
+        self.travel = car_emi+train_emi+bus_emi+motorbike+taxi_emi+fly_emi
 
 
 
@@ -78,7 +78,7 @@ class Calculations():
             self.food = 3.91
         elif food_choice == 'low meat':
             self.food = 4.67
-        elif food_choice == 'high meat':
+        elif food_choice == 'lots of meat':
             self.food = 7.19
         #return self.food
 
@@ -87,15 +87,16 @@ class Calculations():
         spend = spend/no_of_people
         self.elec = spend*0.42/(30*6)
 
-    def initial_set_up(self):
-        flight = 0 #db_S.example()
+    def initial_set_up(self, fli):
+        flight = int(fli) #db_S.example()
         fly = 138.45*2*flight
-
+        print(f"travel {self.travel} food {self.food} elec{self.food}")
         self.avg = (self.travel + self.food + self.elec)*30 + fly/12
 
         self.summ = self.avg
 
         date = int((datetime.datetime.now()).strftime("%d")) - 1
+        print(f"date {date} avg {self.avg}")
 
         self.x = (self.avg/30)*date
 

@@ -69,7 +69,7 @@ $("#final-submit").click(function(e) {
         state:$('#state').val()
     };
 
-    console.log(user_info);
+    //console.log(user_info);
     $.ajax({
         type: "POST",
         url: '/questionare_filling',
@@ -80,7 +80,7 @@ $("#final-submit").click(function(e) {
         {
             if (response.resp1 === 'Correct') {
               if (response.resp2 === 'Registered'){
-                window.location.href = '#';
+                window.location.href = '/MyAccount';
               }
               else{
                   alert(response.resp2);

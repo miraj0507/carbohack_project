@@ -32,7 +32,6 @@ Session(app)
 #db = scoped_session(sessionmaker(bind=engine))
 
 db_S = Database_Soumee()
-calc_S = Calculations()
 
 
 #*********************************************** OUTSIDER VIEW /START ***************************************************************
@@ -214,6 +213,9 @@ def questionare_filling():
     if not('user' in session):
         return redirect('/')
 
+    calc_S = Calculations()
+
+
     dates=str(datetime.datetime.date(datetime.datetime.now()))
     user_info = request.json
     print(user_info)
@@ -228,6 +230,7 @@ def questionare_filling():
     travel_data['walking']=0
     travel_data['dates']=dates
     
+    print(travel_data)
     db_S.write_travel_table(session['user'], travel_data)
     
     time={}
@@ -237,11 +240,11 @@ def questionare_filling():
     
     food_type=user_info['food']
     calc_S.food_f(food_type)
-
+    print('food', calc_S.food, food_type)
     #elec['bill']=user_info['elec_bill']
     #elec['members']=user_info['no_of_member']
     calc_S.elec_f(int(user_info['elec_bill']), int(user_info['no_of_member']))
-    
+    print(user_info['elec_bill'], user_info['no_of_member'],calc_S.elec)
     user_input={}
     user_input['travel']=calc_S.travel
     #elec={}
@@ -254,8 +257,9 @@ def questionare_filling():
     db_S.update_state(session['user'], user_info['state'])
     
     db_S_respond='Registered'#db_S.example(user_info)
-    
-    calc_S.initial_set_up()
+    print(f"Carbon:{calc_S.x} , Monthly:{calc_S.avg}")
+    calc_S.initial_set_up(user_info['flights'])
+    print(f"Carbon:{calc_S.x} , Monthly:{calc_S.avg}")
     user_output={}
     user_output['carbon_footprint']=calc_S.x
     user_output['monthly_average']=calc_S.avg
@@ -268,6 +272,9 @@ def questionare_filling():
 def questionare_update():
     if not('user' in session):
         return redirect('/')
+
+    calc_S = Calculations()
+
 
     user_info = request.json
     print(user_info)
@@ -291,7 +298,7 @@ def questionare_update():
     #latest_date=db_S.latestDate(session['user'])
     if db_S.check_dates(session['user'], today_date):
         calc_S.x = int(db_S.fetch_data(session['user'],'user_output','carbon_footprint',today_date)) #total co2 from databse
-        
+        latestDate = db_S.latest_date(session['user'], 'user_output')
         calc_S.elec = 0
         calc_S.food_f((db_S.fetch_data(session['user'],'user_input', 'diet',today_date))) #food
         calc_S.travel = int(db_S.fetch_data(session['user'],'user_input', 'travel', today_date)) #travel
@@ -313,8 +320,8 @@ def questionare_update():
         user_input['travel']=calc_S.travel
         #elec={}
         user_input['diet']=user_info['food']
-        user_input['elec']=calc_S.elec
-        user_input['no_of_flights']=int(user_info['flying'])
+        user_input['elec']=db_S.fetch_data(session['user'], 'user_input', 'electricity', latestDate)
+        user_input['no_of_flights']=0
         user_input['dates']=today_date
 
         db_S.update_user_input_table(session['user'], user_input, today_date)
@@ -343,8 +350,8 @@ def questionare_update():
         user_input['travel']=calc_S.travel
         #elec={}
         user_input['diet']=user_info['food']
-        user_input['elec']=0
-        user_input['no_of_flights']=int(user_info['flying'])
+        user_input['elec']=db_S.fetch_data(session['user'], 'user_input', 'electricity', latestDate)
+        user_input['no_of_flights']=0
         user_input['dates']=today_date
         db_S.write_user_input_table(session['user'], user_input)
 
@@ -377,6 +384,9 @@ def My_Account():
     if not db_S.check_user_input_table(session['user']):
         return redirect('/questionare')
 
+    calc_S = Calculations()
+
+
     today_date=db_S.latest_date(session['user'], 'user_output')#str(datetime.datetime.date(datetime.datetime.now()))
     calc_S.avg=db_S.fetch_data(session['user'], 'user_output', 'monthly_average', today_date)
     calc_S.x=db_S.fetch_data(session['user'], 'user_output', 'carbon_footprint', today_date)
@@ -386,6 +396,7 @@ def My_Account():
     travel = db_S.get_table_data(session['user'], 'travel','user_input',d)
     elec = db_S.get_table_data(session['user'], 'electricity','user_input',d)
     food = db_S.get_food_total(session['user'], d)
+    print(f"food-Total:{food}")
     t_food=0
     for i in food:
         calc_S.food_f(i)
@@ -400,6 +411,7 @@ def My_Account():
     print(car_taxi)
     motorbike = db_S.get_table_data(session['user'], 'motorbike', 'travel',d)
     print(motorbike)
+    #data = get_graph()
     # Details of the parameters taken in from the questionaire. Stored in the database. Graph is plotted. Things to be calculated according to formulae present here.
     #https://docs.google.com/document/d/1qZepM5Bbe13qaWUCraEf1Hmmb-otN7MImFnaBgSw44w/edit?ts=60bf9810
     return render_template('dashboard.html', avg=calc_S.avg, x=calc_S.x, percent=(calc_S.r/calc_S.avg), elec=elec, travel=travel, food=t_food, fly = fly, car_taxi = car_taxi, motorbike=motorbike)
@@ -437,6 +449,28 @@ def community():
         return redirect('/questionare')
 
     return render_template('community.html')
+
+@app.route('/get_graph', methods=['POST'])
+def get_graph():
+    print('inside get_graph')
+    if not( 'user' in session):
+        return redirect('/')
+
+    #if not db_S.check_user_input_table(session['user']):
+    #    return redirect('/questionare')
+
+    calc_S = Calculations()
+
+    y = date.today().year
+    data = []
+    for i in range(1, 13):
+        d=db_S.get_monthly_avg(session['user'], i, y)
+        if d == None:
+            d=str(0)
+        data.append(d)
+    print(data) 
+    return jsonify({'resp':(','.join(data))})
+
 
 
 

@@ -290,23 +290,113 @@ class Dial {
 
 
 
+  var data  = {
+    labels: [ 'January', 'February', 'March', 'April', 'May', 'June','July','August','September','October','November','December' ],
+    datasets: [{
+      label: 'Custom Label Name',
+      backgroundColor: gradient,
+      pointBackgroundColor: 'white',
+      borderWidth: 1,
+      borderColor: '	#FF0000',
+      data: ['5','10','15','20','25','100']//calc_graph()//[5, 10, 15, 20, 25, 100]
+    }]
+};
 
 
-
-
+var options = {
+  responsive: true,
+  maintainAspectRatio: true,
+  animation: {
+    easing: 'easeInOutQuad',
+    duration: 520
+  },
+  scales: {
+    xAxes: [{
+      gridLines: {
+        color: 'rgba(0, 0, 0, 0)',
+        lineWidth: 1
+      }
+    }],
+    yAxes: [{
+      gridLines: {
+        color: 'rgba(0, 0, 0, 0)',
+        lineWidth: 1
+      }
+    }]
+  },
+  elements: {
+    line: {
+      tension: 0.4
+    }
+  },
+  legend: {
+    display: false
+  },
+  point: {
+    backgroundColor: 'white'
+  },
+  tooltips: {
+    titleFontFamily: 'Open Sans',
+    backgroundColor: 'rgba(0,0,0,0)',
+    titleFontColor: 'red',
+    caretSize: 5,
+    cornerRadius: 2,
+    xPadding: 10,
+    yPadding: 10
+  }
+};
+//console.log(data.datasets.data)
+//calc_graph();
 
 
  
-
-  var chart    = document.getElementById('chart').getContext('2d'),
+  /*var chart    = document.getElementById('chart').getContext('2d'),
       gradient = chart.createLinearGradient(0, 0, 0, 450);
   
   gradient.addColorStop(0, 'rgba(25, 0,0, 0.5)');
   gradient.addColorStop(0.5, 'rgba(5, 0, 0, 0)');
-  gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+  gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');*/
   
-  
-  var data  = {
+  var graph_func = function calc_graph(){
+    var d;
+
+    $.ajax({
+      url: '/get_graph',
+      type: "POST",
+      //async: false,
+      error: function(){
+        alert("Can not get graph data. Server error.");
+      }
+          
+    })
+    .done(function(response){
+      console.log(response.resp);
+      d = response.resp.split(',');
+      data.datasets[0].data=d
+      console.log(data.datasets.data)
+      var chart    = document.getElementById('chart').getContext('2d'),
+      gradient = chart.createLinearGradient(0, 0, 0, 450);
+      console.log("charting");
+      gradient.addColorStop(0, 'rgba(25, 0,0, 0.5)');
+      gradient.addColorStop(0.5, 'rgba(5, 0, 0, 0)');
+      gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      
+      var chartInstance = new Chart(chart, {
+        type: 'line',
+        data: data,
+        options: options
+        
+    });  
+      //console.log(d)
+      
+
+    });
+    //console.log(d)
+    //return d
+  }
+
+
+ /*var data  = {
       labels: [ 'January', 'February', 'March', 'April', 'May', 'June','July','August','September','October','November','December' ],
       datasets: [{
         label: 'Custom Label Name',
@@ -314,7 +404,7 @@ class Dial {
         pointBackgroundColor: 'white',
         borderWidth: 1,
         borderColor: '	#FF0000',
-        data: [5, 10, 15, 20, 25, 100]
+        data: calc_graph()//[5, 10, 15, 20, 25, 100]
       }]
   };
   
@@ -361,15 +451,18 @@ class Dial {
       yPadding: 10
     }
   };
+*/  
   
-  
-  var chartInstance = new Chart(chart, {
+ /* var chartInstance = new Chart(chart, {
       type: 'line',
       data: data,
       options: options
-  });
+  });*/
+$(document).ready(function(){
+  graph_func();
+});
 
- 
+
 
 $("#next1").click(function(e) {
     var user_info={
@@ -386,8 +479,8 @@ $("#next1").click(function(e) {
     };
     //console.log(user_info)
 
-    console.log(user_info);
-    alert('see console');
+    //console.log(user_info);
+    //alert('see console');
     $.ajax({
         type: "POST",
         url: '/questionare_update',
@@ -398,8 +491,9 @@ $("#next1").click(function(e) {
         {
             if (response.resp1 === 'Correct') {
               if (response.resp2 === 'Registered'){
-                //window.location.href = '#';
                 alert(response.resp2);
+                window.location.href = '#';
+                
               }
               else{
                   alert(response.resp2);
