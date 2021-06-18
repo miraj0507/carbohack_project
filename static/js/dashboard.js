@@ -391,7 +391,7 @@ var options = {
       
 
     });
-    console.log(d)
+    //console.log(d)
     //return d
   }
 
@@ -479,8 +479,8 @@ $("#next1").click(function(e) {
     };
     //console.log(user_info)
 
-    console.log(user_info);
-    alert('see console');
+    //console.log(user_info);
+    //alert('see console');
     $.ajax({
         type: "POST",
         url: '/questionare_update',
@@ -491,8 +491,9 @@ $("#next1").click(function(e) {
         {
             if (response.resp1 === 'Correct') {
               if (response.resp2 === 'Registered'){
-                //window.location.href = '#';
                 alert(response.resp2);
+                window.location.href = '#';
+                
               }
               else{
                   alert(response.resp2);
