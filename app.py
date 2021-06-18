@@ -298,7 +298,7 @@ def questionare_update():
     #latest_date=db_S.latestDate(session['user'])
     if db_S.check_dates(session['user'], today_date):
         calc_S.x = int(db_S.fetch_data(session['user'],'user_output','carbon_footprint',today_date)) #total co2 from databse
-        
+        latestDate = db_S.latest_date(session['user'], 'user_output')
         calc_S.elec = 0
         calc_S.food_f((db_S.fetch_data(session['user'],'user_input', 'diet',today_date))) #food
         calc_S.travel = int(db_S.fetch_data(session['user'],'user_input', 'travel', today_date)) #travel
@@ -320,7 +320,7 @@ def questionare_update():
         user_input['travel']=calc_S.travel
         #elec={}
         user_input['diet']=user_info['food']
-        user_input['elec']=calc_S.elec
+        user_input['elec']=db_S.fetch_data(session['user'], 'user_input', 'electricity', latestDate)
         user_input['no_of_flights']=0
         user_input['dates']=today_date
 
@@ -350,7 +350,7 @@ def questionare_update():
         user_input['travel']=calc_S.travel
         #elec={}
         user_input['diet']=user_info['food']
-        user_input['elec']=0
+        user_input['elec']=db_S.fetch_data(session['user'], 'user_input', 'electricity', latestDate)
         user_input['no_of_flights']=0
         user_input['dates']=today_date
         db_S.write_user_input_table(session['user'], user_input)
