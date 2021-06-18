@@ -223,8 +223,27 @@ class Database_Soumee():
 	def fetch_user(self, user_info, tablename):
 		email = user_info['email']
 		uid = self.db.execute("SELECT users.uid FROM users WHERE email=:email", {"email":email}).fetchone().items()[0][1]
-		value = self.db.execute(f"select {tablename} from user where uid={uid}")
+		value = self.db.execute(f"select {tablename} from users where uid={uid}")
 		return value
+
+	def get_monthly_avg(self, user_info, month, year):
+		nxt_mnth = month+1
+		nxt_year = year
+		if nxt_mnth>12:
+			nxt_mnth=1
+			nxt_year=year+1
+		st_date = f"{year}-{month}-1"
+		end_date = f"{nxt_year}-{nxt_mnth}-1"
+
+		d = self.db.execute(f"SELECT distinct monthly_average from user_output where dates between '{st_date}' and '{end_date}'").fetchone()
+		if d == None:
+			dd=str(0)
+		else:
+			dd=str(d.items()[0][1])
+		
+		return dd
+
+
 	'''
 	def fetch_travel(self, user_info, need):
 

@@ -400,6 +400,7 @@ def My_Account():
     print(car_taxi)
     motorbike = db_S.get_table_data(session['user'], 'motorbike', 'travel',d)
     print(motorbike)
+    #data = get_graph()
     # Details of the parameters taken in from the questionaire. Stored in the database. Graph is plotted. Things to be calculated according to formulae present here.
     #https://docs.google.com/document/d/1qZepM5Bbe13qaWUCraEf1Hmmb-otN7MImFnaBgSw44w/edit?ts=60bf9810
     return render_template('dashboard.html', avg=calc_S.avg, x=calc_S.x, percent=(calc_S.r/calc_S.avg), elec=elec, travel=travel, food=t_food, fly = fly, car_taxi = car_taxi, motorbike=motorbike)
@@ -437,6 +438,26 @@ def community():
         return redirect('/questionare')
 
     return render_template('community.html')
+
+@app.route('/get_graph', methods=['POST'])
+def get_graph():
+    print('inside get_graph')
+    #if not( 'user' in session):
+    #    return redirect('/')
+
+    #if not db_S.check_user_input_table(session['user']):
+    #    return redirect('/questionare')
+
+    y = date.today().year
+    data = []
+    for i in range(1, 13):
+        d=db_S.get_monthly_avg(session['user'], i, y)
+        if d == None:
+            d=str(0)
+        data.append(d)
+    print(data) 
+    return jsonify({'resp':(','.join(data))})
+
 
 
 
