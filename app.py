@@ -240,7 +240,7 @@ def questionare_filling():
     
     food_type=user_info['food']
     calc_S.food_f(food_type)
-    print('food', calc_S.food)
+    print('food', calc_S.food, food_type)
     #elec['bill']=user_info['elec_bill']
     #elec['members']=user_info['no_of_member']
     calc_S.elec_f(int(user_info['elec_bill']), int(user_info['no_of_member']))
@@ -258,7 +258,7 @@ def questionare_filling():
     
     db_S_respond='Registered'#db_S.example(user_info)
     print(f"Carbon:{calc_S.x} , Monthly:{calc_S.avg}")
-    calc_S.initial_set_up()
+    calc_S.initial_set_up(user_info['flights'])
     print(f"Carbon:{calc_S.x} , Monthly:{calc_S.avg}")
     user_output={}
     user_output['carbon_footprint']=calc_S.x
