@@ -96,7 +96,7 @@ class Calculations():
         self.summ = self.avg
 
         date = int((datetime.datetime.now()).strftime("%d")) - 1
-        print(f"date {self.date} avg {self.avg}")
+        print(f"date {date} avg {self.avg}")
 
         self.x = (self.avg/30)*date
 
