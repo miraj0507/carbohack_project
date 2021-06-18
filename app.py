@@ -32,7 +32,6 @@ Session(app)
 #db = scoped_session(sessionmaker(bind=engine))
 
 db_S = Database_Soumee()
-calc_S = Calculations()
 
 
 #*********************************************** OUTSIDER VIEW /START ***************************************************************
@@ -214,6 +213,9 @@ def questionare_filling():
     if not('user' in session):
         return redirect('/')
 
+    calc_S = Calculations()
+
+
     dates=str(datetime.datetime.date(datetime.datetime.now()))
     user_info = request.json
     print(user_info)
@@ -228,6 +230,7 @@ def questionare_filling():
     travel_data['walking']=0
     travel_data['dates']=dates
     
+    print(travel_data)
     db_S.write_travel_table(session['user'], travel_data)
     
     time={}
@@ -237,11 +240,11 @@ def questionare_filling():
     
     food_type=user_info['food']
     calc_S.food_f(food_type)
-
+    print('food', calc_S.food)
     #elec['bill']=user_info['elec_bill']
     #elec['members']=user_info['no_of_member']
     calc_S.elec_f(int(user_info['elec_bill']), int(user_info['no_of_member']))
-    
+    print(user_info['elec_bill'], user_info['no_of_member'],calc_S.elec)
     user_input={}
     user_input['travel']=calc_S.travel
     #elec={}
@@ -268,6 +271,9 @@ def questionare_filling():
 def questionare_update():
     if not('user' in session):
         return redirect('/')
+
+    calc_S = Calculations()
+
 
     user_info = request.json
     print(user_info)
@@ -377,6 +383,9 @@ def My_Account():
     if not db_S.check_user_input_table(session['user']):
         return redirect('/questionare')
 
+    calc_S = Calculations()
+
+
     today_date=db_S.latest_date(session['user'], 'user_output')#str(datetime.datetime.date(datetime.datetime.now()))
     calc_S.avg=db_S.fetch_data(session['user'], 'user_output', 'monthly_average', today_date)
     calc_S.x=db_S.fetch_data(session['user'], 'user_output', 'carbon_footprint', today_date)
@@ -442,11 +451,13 @@ def community():
 @app.route('/get_graph', methods=['POST'])
 def get_graph():
     print('inside get_graph')
-    #if not( 'user' in session):
-    #    return redirect('/')
+    if not( 'user' in session):
+        return redirect('/')
 
     #if not db_S.check_user_input_table(session['user']):
     #    return redirect('/questionare')
+
+    calc_S = Calculations()
 
     y = date.today().year
     data = []

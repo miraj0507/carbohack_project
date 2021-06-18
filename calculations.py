@@ -62,7 +62,7 @@ class Calculations():
         #taxi = [0,0,0] #db_S.example('fly')
         taxi_emi = 0.23*30*(time(travel_data['taxi']))
 
-        self.travel = car_emi+train_emi+bus_emi+motorbike+taxi_emi
+        self.travel = car_emi+train_emi+bus_emi+motorbike+taxi_emi+fly_emi
 
 
 
@@ -96,6 +96,7 @@ class Calculations():
         self.summ = self.avg
 
         date = int((datetime.datetime.now()).strftime("%d")) - 1
+        print(date)
 
         self.x = (self.avg/30)*date
 
