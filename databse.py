@@ -212,7 +212,7 @@ class Database_Soumee():
 		date_end=f"{year_end}-{month_end}-01"
 
 		qqq = f"SELECT diet from user_input where uid={uid} and dates between '{date_st}' and '{date_end}'"
-		values = self.db.execute(f"SELECT diet from user_input where uid={uid} and dates between '2016-01-01' and '2019-01-01'").fetchall()
+		values = self.db.execute(f"SELECT diet from user_input where uid={uid} and dates between '{date_st}' and '{date_end}'").fetchall()
 		value_array = [i[0] for i in values]
 		#print(value_array)
 		#input()
