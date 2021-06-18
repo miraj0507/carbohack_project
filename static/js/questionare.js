@@ -69,7 +69,7 @@ $("#final-submit").click(function(e) {
         state:$('#state').val()
     };
 
-    console.log(user_info);
+    //console.log(user_info);
     $.ajax({
         type: "POST",
         url: '/questionare_filling',
