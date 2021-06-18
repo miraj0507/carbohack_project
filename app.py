@@ -257,8 +257,9 @@ def questionare_filling():
     db_S.update_state(session['user'], user_info['state'])
     
     db_S_respond='Registered'#db_S.example(user_info)
-    
+    print(f"Carbon:{calc_S.x} , Monthly:{calc_S.avg}")
     calc_S.initial_set_up()
+    print(f"Carbon:{calc_S.x} , Monthly:{calc_S.avg}")
     user_output={}
     user_output['carbon_footprint']=calc_S.x
     user_output['monthly_average']=calc_S.avg
