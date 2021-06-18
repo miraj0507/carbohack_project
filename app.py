@@ -321,7 +321,7 @@ def questionare_update():
         #elec={}
         user_input['diet']=user_info['food']
         user_input['elec']=calc_S.elec
-        user_input['no_of_flights']=int(user_info['flying'])
+        user_input['no_of_flights']=0
         user_input['dates']=today_date
 
         db_S.update_user_input_table(session['user'], user_input, today_date)
@@ -351,7 +351,7 @@ def questionare_update():
         #elec={}
         user_input['diet']=user_info['food']
         user_input['elec']=0
-        user_input['no_of_flights']=int(user_info['flying'])
+        user_input['no_of_flights']=0
         user_input['dates']=today_date
         db_S.write_user_input_table(session['user'], user_input)
 
